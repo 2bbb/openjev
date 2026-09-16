@@ -13,7 +13,9 @@ pip install -e .
 pytest -q
 ```
 
-Use one GPU per scorer process. The tested environment used Python 3.10, CUDA, PyTorch 2.10.0, Transformers 5.17.0, and BF16 on an RTX 3090. Exact model commit IDs are in [../manifests/models.json](../manifests/models.json).
+Use one GPU per scorer process. The measured environment was Ubuntu 22.04 on Linux x86_64, Python 3.10.12, NVIDIA driver 595.71.05, CUDA 12.8, PyTorch 2.10.0+cu128, Transformers 5.17.0, BF16, and an RTX 3090. `requirements.txt` pins the observed Python runtime packages; the CUDA-enabled PyTorch wheel still requires a compatible NVIDIA driver. Exact model commit IDs are in [../manifests/models.json](../manifests/models.json).
+
+`pytest -q` runs all core and browser-source tests. Timing is hardware-sensitive, and BF16/kernel differences can change borderline probabilities or choices. Treat committed row counts, schemas, source hashes, and checksums as exact acceptance criteria; treat timings and model outputs as measurements to compare with the committed row-level evidence, not byte-identical golden outputs.
 
 ## Score owned examples
 
@@ -47,6 +49,32 @@ python benchmarks/fetch_sources.py --output /path/on/large-drive/openjev-sources
 The frozen 706-row matrix and source IDs are in `benchmarks/manifests/`. Row-level direct and reranker outputs are in `results/raw/predictions/`. The complete owned 144-row labeled workload is distributed in `benchmarks/data/authored144.jsonl`.
 
 Build the exact external evaluation rows and recompute their metrics with the commands in [the benchmark guide](../benchmarks/README.md#quality-evidence). The builders consume only hash-verified downloads and frozen selection IDs; the TypeSafe and Every evaluators accept the rebuilt gold rows plus the committed row-level predictions.
+
+## Reproduce perturbation evidence
+
+Rebuild the frozen 108-row fixture from the 36 owned originals, then verify it matches the committed fixture:
+
+```bash
+python benchmarks/build_perturbations.py \
+  --source benchmarks/data/authored144.jsonl \
+  --output /tmp/perturbations108.jsonl \
+  --manifest /tmp/perturbations108-manifest.json
+cmp /tmp/perturbations108.jsonl benchmarks/data/perturbations108.jsonl
+```
+
+Regenerate direct and reranker predictions with `openjev-score --mode serial` and `--mode reranker`, respectively, or recompute the exact committed report from the included row-level predictions:
+
+```bash
+python benchmarks/evaluate_perturbations.py \
+  --gold benchmarks/data/authored144.jsonl \
+  --perturbations benchmarks/data/perturbations108.jsonl \
+  --direct-base results/raw/predictions/direct-authored144.jsonl \
+  --direct-perturbations results/raw/predictions/direct-perturbations108.jsonl \
+  --reranker-base results/raw/predictions/reranker-authored144.jsonl \
+  --reranker-perturbations results/raw/predictions/reranker-perturbations108.jsonl \
+  --output perturbation-report.json
+cmp perturbation-report.json results/raw/perturbation-comparison.json
+```
 
 ## Reproduce the headline speed results
 
@@ -83,8 +111,11 @@ CUDA_VISIBLE_DEVICES=0 python benchmarks/shape777_reranker.py \
 
 All scripts require a new output path. Timing includes prompt construction, tokenization, transfers, model execution, and CPU readout after a warmup; model loading and final result-file writes are excluded.
 
-Verify the committed evidence bundle from its own directory:
+Verify the committed evidence bundle and confirm that every selected scalar in the machine-readable summary matches its raw report:
 
 ```bash
-cd results/raw && sha256sum -c SHA256SUMS
+(cd results/raw && sha256sum -c SHA256SUMS)
+python benchmarks/verify_published.py
 ```
+
+The source-specific quality commands above regenerate the metrics stored in `results/raw/quality-comparison.json`. `verify_published.py` checks 69 published summary values against that report plus the perturbation, systems, and generation reports. It deliberately does not require byte-identical GPU reruns.

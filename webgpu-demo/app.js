@@ -5,8 +5,33 @@ const worker = new Worker("worker.js", { type: "module" });
 const $ = (selector) => document.querySelector(selector);
 const loadButton = $("#load");
 const runButton = $("#run");
+const modelSelect = $("#model-select");
+const models = {
+  "Qwen3-0.6B-q4f16_1-MLC": { name: "Qwen3 0.6B", short: "Qwen3 · 0.6B", size: "~352 MB", url: "https://huggingface.co/mlc-ai/Qwen3-0.6B-q4f16_1-MLC" },
+  "Qwen3.5-0.8B-q4f16_1-MLC": { name: "Qwen3.5 0.8B", short: "Qwen3.5 · 0.8B", size: "~447 MB", url: "https://huggingface.co/mlc-ai/Qwen3.5-0.8B-q4f16_1-MLC" },
+};
+const presets = {
+  account: {
+    state: "A customer says a password reset succeeded, but every login attempt still returns ‘account locked’. Two unlock emails were requested and neither arrived.",
+    question: "Which queue should handle this request?",
+    options: ["Account access support", "Billing support", "Close as resolved"],
+  },
+  email: {
+    state: "An email claims to be from the payroll team and says the recipient’s salary payment will be suspended today. It comes from payroll-review@outlook.com and links to a non-company sign-in page asking for a password and verification code.",
+    question: "How should this email be classified?",
+    options: ["Legitimate", "Spam", "Phishing"],
+  },
+};
+const MIN_OPTIONS = 2;
+const MAX_OPTIONS = 20;
+const optionList = $("#option-list");
+const addOptionButton = $("#add-option");
+const removeOptionButton = $("#remove-option");
 const files = new Map();
 let ready = false;
+const isMobileDevice = navigator.userAgentData?.mobile === true
+  || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
+  || window.matchMedia("(max-width: 600px)").matches;
 
 const supportState = reactive({ text: "Checking WebGPU…", kind: "", icon: "memory" });
 createApp({ setup: () => supportState }).mount("#support");
@@ -19,6 +44,15 @@ function setSupport(text, kind = "") {
   supportState.text = text;
   supportState.kind = kind;
   supportState.icon = kind === "error" ? "error" : kind === "ok" ? "check_circle" : "memory";
+}
+
+function renderSelectedModel() {
+  const selected = models[modelSelect.value];
+  $("#selected-model").textContent = selected.short;
+  $("#model-size").textContent = `${selected.size} model`;
+  $("#model-link").href = selected.url;
+  $("#download-detail").textContent = `${selected.size} on first load`;
+  loadButton.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">download</span> load ${selected.name}`;
 }
 
 function renderProgress(event) {
@@ -34,7 +68,7 @@ function renderProgress(event) {
     const percent = Math.min(100, (totals.loaded / totals.total) * 100);
     $("#download-meter").style.width = `${percent}%`;
     $("#download-value").textContent = `${percent.toFixed(0)}%`;
-    $("#download-detail").textContent = `${(totals.loaded / 1e6).toFixed(0)} / ${(totals.total / 1e6).toFixed(0)} MB observed`;
+    $("#download-detail").textContent = event.text || "model files and WebGPU runtime";
   } else if (event.status === "initiate") {
     $("#download-value").textContent = "cache check";
     $("#download-detail").textContent = event.file;
@@ -66,6 +100,7 @@ function renderDirect(data) {
   }));
   $("#direct-total").textContent = seconds(data.totalMs);
   $("#direct-input").textContent = `${data.inputTokens} tok`;
+  $("#direct-readouts").textContent = `${data.readouts} readout${data.readouts === 1 ? "" : "s"}`;
 }
 
 function resetResults() {
@@ -74,8 +109,7 @@ function resetResults() {
   $("#generated-output").textContent = "waiting for direct readout…";
   $("#generated-output").className = "output empty";
   for (const id of ["#direct-total", "#direct-input", "#generation-ttft", "#generation-total", "#generation-input", "#generation-tokens"]) $(id).textContent = "—";
-  $("#generation-validity").textContent = "not checked yet";
-  $("#generation-validity").className = "validation";
+  $("#direct-readouts").textContent = "—";
   $("#ratio").textContent = "measuring…";
 }
 
@@ -98,8 +132,9 @@ worker.addEventListener("message", ({ data }) => {
     case "ready":
       ready = true;
       $("#warmup-value").textContent = seconds(data.warmupMs);
-      setSupport("Ready. Qwen3-0.6B is loaded locally on WebGPU.", "ok");
+      setSupport(`Ready. ${data.modelName} is loaded locally on WebGPU.`, "ok");
       loadButton.disabled = true;
+      modelSelect.disabled = true;
       loadButton.innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">check</span> model ready';
       runButton.disabled = false;
       break;
@@ -122,10 +157,6 @@ worker.addEventListener("message", ({ data }) => {
       $("#generation-total").textContent = seconds(data.generationMs);
       $("#generation-input").textContent = `${data.inputTokens} tok`;
       $("#generation-tokens").textContent = `${data.generatedTokens} tok`;
-      $("#generation-validity").textContent = data.valid
-        ? `valid choice · ${data.choice} · ${data.choiceDescription}`
-        : `format failure · ${data.validationError}`;
-      $("#generation-validity").className = `validation ${data.valid ? "ok" : "error"}`;
       $("#ratio").textContent = `${(data.generationMs / data.directMs).toFixed(2)}× generation / direct`;
       $("#run-note").textContent = `Measured sequentially in this tab. Direct: ${seconds(data.directMs)}. Generation: ${seconds(data.generationMs)}. Order is fixed and the model was warmed before both.`;
       setSupport("Comparison complete. Edit the decision and run again whenever you like.", "ok");
@@ -137,6 +168,7 @@ worker.addEventListener("message", ({ data }) => {
       setSupport(data.message, "error");
       runButton.disabled = !ready;
       loadButton.disabled = ready;
+      modelSelect.disabled = ready;
       loadButton.innerHTML = ready
         ? '<span class="material-symbols-rounded" aria-hidden="true">check</span> model ready'
         : '<span class="material-symbols-rounded" aria-hidden="true">refresh</span> retry model load';
@@ -148,6 +180,48 @@ worker.addEventListener("error", (event) => {
   setSupport(`Worker failed: ${event.message}`, "error");
   loadButton.disabled = false;
 });
+
+function optionRows() {
+  return [...optionList.querySelectorAll(".option-row")];
+}
+
+function syncOptionControls() {
+  const rows = optionRows();
+  rows.forEach((row, index) => { row.querySelector("b").textContent = String.fromCharCode(65 + index); });
+  $("#option-count").textContent = `${rows.length} / ${MAX_OPTIONS}`;
+  removeOptionButton.disabled = rows.length <= MIN_OPTIONS;
+  addOptionButton.disabled = rows.length >= MAX_OPTIONS;
+}
+
+function appendOption(value = "") {
+  if (optionRows().length >= MAX_OPTIONS) return;
+  const row = document.createElement("label");
+  row.className = "option-row";
+  const label = document.createElement("b");
+  const input = document.createElement("input");
+  input.className = "option";
+  input.value = value;
+  input.placeholder = "Describe this option";
+  row.append(label, input);
+  optionList.append(row);
+  syncOptionControls();
+  return input;
+}
+
+function setOptions(values) {
+  while (optionRows().length > values.length) optionRows().at(-1).remove();
+  while (optionRows().length < values.length) appendOption();
+  optionRows().forEach((row, index) => { row.querySelector(".option").value = values[index]; });
+  syncOptionControls();
+}
+
+addOptionButton.addEventListener("click", () => appendOption()?.focus());
+removeOptionButton.addEventListener("click", () => {
+  const rows = optionRows();
+  if (rows.length > MIN_OPTIONS) rows.at(-1).remove();
+  syncOptionControls();
+});
+syncOptionControls();
 
 async function checkWebGPU() {
   if (!navigator.gpu) {
@@ -162,18 +236,39 @@ async function checkWebGPU() {
     return;
   }
   if (!adapter.features.has("shader-f16")) {
-    setSupport("WebGPU is available, but this GPU lacks the shader-f16 feature required by the compact model.", "error");
+    setSupport("WebGPU is available, but this browser does not expose the half-precision feature Qwen3 needs.", "error");
     loadButton.disabled = true;
     return;
   }
-  setSupport("WebGPU is available. The model does not download until you click load.", "ok");
+  setSupport("WebGPU is ready. The model does not download until you click load.", "ok");
 }
 
 loadButton.addEventListener("click", () => {
   loadButton.disabled = true;
+  modelSelect.disabled = true;
   loadButton.innerHTML = '<span class="material-symbols-rounded spin" aria-hidden="true">progress_activity</span> loading…';
-  worker.postMessage({ type: "load" });
+  worker.postMessage({ type: "load", modelId: modelSelect.value });
 });
+
+document.querySelectorAll("[data-preset]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const preset = presets[button.dataset.preset];
+    if (!preset) return;
+    $("#state").value = preset.state;
+    $("#question").value = preset.question;
+    setOptions(preset.options);
+    $("#state").focus();
+  });
+});
+
+modelSelect.addEventListener("change", renderSelectedModel);
+modelSelect.value = isMobileDevice
+  ? "Qwen3-0.6B-q4f16_1-MLC"
+  : "Qwen3.5-0.8B-q4f16_1-MLC";
+$("#device-note").textContent = isMobileDevice
+  ? "Phone detected · Qwen3 0.6B selected for the lightest load."
+  : "Works best on a laptop or desktop · Qwen3.5 0.8B selected by default.";
+renderSelectedModel();
 
 runButton.addEventListener("click", () => {
   const state = $("#state").value.trim();

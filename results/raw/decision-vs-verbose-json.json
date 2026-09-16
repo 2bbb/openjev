@@ -14,7 +14,7 @@
   "workload": {
     "states": 1,
     "criteria": 21,
-    "source": "/mnt/ssd/public/openjev/data/rebase-6h/shape777.jsonl",
+    "source": "benchmarks/data/shape777.jsonl",
     "comparison": "Same frozen model and state; typed readout returns two-option distributions, naive path autoregressively emits one JSON object."
   },
   "direct_parallel": {

@@ -4,11 +4,15 @@
 
 **Can we run something like Jev on a 3090 at home?**
 
+**Wow! No waitlist.** [Run it in your browser today.](webgpu-demo/index.html)
+
 [![Measured replay: typed decisions appear together while JSON streams token by token](demo/assets/openjev-phase1-replay.gif)](demo/index.html)
 
 *Same frozen 4B model · same state · same 21 questions · measured separately, aligned at t=0 in the replay*
 
 </div>
+
+![Some AI company asks you to join a waitlist; OpenJev runs in your browser today](assets/openjev-no-waitlist.png)
 
 Most agent decisions are small: *route this*, *retry that*, *does the evidence support X?* A chat model can answer them, but it spends time generating text that software immediately parses back into an `if` statement.
 
@@ -117,8 +121,9 @@ Returned probabilities are conditional on the supplied options. Calibrate and va
 
 - [Results](docs/RESULTS.md) — quality, speed, perturbations, and claim boundaries
 - [Method](docs/METHOD.md) — frozen prompts, metrics, and timing scope
-- [Reproduce](docs/REPRODUCE.md) — environment and pinned commands
+- [Reproduce](docs/REPRODUCE.md) — exact environment, pinned commands, perturbations, and verification
 - [Interactive replay](demo/index.html)
+- [Browser-only WebGPU demo](webgpu-demo/index.html) — no waitlist; use it today
 - [Machine-readable summary](results/phase1-summary.json)
 - [Benchmark bundle](benchmarks/README.md) — fixtures, runners, selection IDs, and reproduction commands
 - [Raw results and checksums](results/raw/)

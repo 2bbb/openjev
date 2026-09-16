@@ -9,7 +9,7 @@
   },
   "hardware": "NVIDIA GeForce RTX 3090",
   "input": {
-    "path": "/mnt/ssd/public/openjev/project/publish/benchmarks/data/shape777.jsonl",
+    "path": "benchmarks/data/shape777.jsonl",
     "sha256": "8dcf414b12fc2684e3c4ca5f3ebfd3f525f5346fec4a9bc67eb65138101f55f1",
     "states": 1,
     "criteria": 21

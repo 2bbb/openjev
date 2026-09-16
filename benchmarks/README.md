@@ -14,6 +14,19 @@ CUDA_VISIBLE_DEVICES=0 python benchmarks/decision_vs_generation.py \
 
 This runs three warmed measurements of each path on the first 21-row shared-state group. The generated baseline requests only an ordered JSON array of `"yes"`/`"no"` strings. The committed run, including exact prompt messages and token timelines, is [decision-vs-compact-array.json](../results/raw/decision-vs-compact-array.json).
 
+## Stability perturbations
+
+The committed 108-row stability fixture is deterministically derived from the 36 owned originals. Rebuild it and its manifest with:
+
+```bash
+python benchmarks/build_perturbations.py \
+  --source benchmarks/data/authored144.jsonl \
+  --output perturbations108.jsonl \
+  --manifest perturbations108-manifest.json
+```
+
+`docs/REPRODUCE.md` gives the complete command for rebuilding `results/raw/perturbation-comparison.json` from the committed row-level predictions. The regenerated report is byte-identical to the committed report.
+
 ## Full 37×21 systems benchmark
 
 ```bash
@@ -134,8 +147,9 @@ python benchmarks/evaluate.py \
 
 The fetcher has byte limits and verifies every downloaded SHA-256. TypeSafe artifacts are fetched for local evaluation because no explicit redistribution grant was located. WANLI is CC-BY-4.0. Every provides its experiment JSON and source archive as direct public downloads.
 
-The source-specific transformations are described in [METHOD.md](../docs/METHOD.md). Verify every committed raw result from the checksum file's directory:
+The source-specific transformations are described in [METHOD.md](../docs/METHOD.md). Verify every committed raw result and its connection to the machine-readable summary:
 
 ```bash
-cd results/raw && sha256sum -c SHA256SUMS
+(cd results/raw && sha256sum -c SHA256SUMS)
+python benchmarks/verify_published.py
 ```
