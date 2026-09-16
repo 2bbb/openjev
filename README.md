@@ -4,7 +4,7 @@
 
 **Can we run something like Jev on a 3090 at home?**
 
-**Wow! No waitlist.** [Run it in your browser today.](webgpu-demo/index.html)
+**Wow! No waitlist.** [Run it in your browser today.](https://openjev.com)
 
 [![Measured replay: typed decisions appear together while JSON streams token by token](demo/assets/openjev-phase1-replay.gif)](demo/index.html)
 
