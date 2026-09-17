@@ -134,3 +134,27 @@ def test_serial_keys_by_exact_tokens_not_python_value_equality(model, rows):
     actual = serial.score(row)
     assert not actual["cache_hit"]
     assert_same(backend.score(model, Tokenizer(), row, {}), actual)
+
+
+@pytest.mark.parametrize('limit_mib', [None, 0, 64])
+def test_loader_applies_cache_limit_and_records_bytes(tmp_path, monkeypatch, model, limit_mib):
+    import json
+    import mlx_lm
+
+    (tmp_path / 'config.json').write_text(json.dumps({'model_type': 'qwen3_5'}))
+    monkeypatch.setattr(mlx_lm, 'load', lambda *args, **kwargs: (model, Tokenizer()))
+    previous = mx.set_cache_limit(32 * 1024 * 1024)
+    try:
+        kwargs = {} if limit_mib is None else {'cache_limit_mib': limit_mib}
+        _, _, metadata = backend.load_model(str(tmp_path), 'local-fixture', **kwargs)
+        expected = (256 if limit_mib is None else limit_mib) * 1024 * 1024
+        assert metadata['allocator_cache_limit_bytes'] == expected
+        assert mx.set_cache_limit(previous) == expected
+    finally:
+        mx.set_cache_limit(previous)
+
+
+@pytest.mark.parametrize('limit', [-1, 1.5, True])
+def test_loader_rejects_invalid_cache_limit_before_loading(limit):
+    with pytest.raises(ValueError, match='nonnegative integer'):
+        backend.load_model('Qwen/Qwen3.5-4B', '0' * 40, cache_limit_mib=limit)

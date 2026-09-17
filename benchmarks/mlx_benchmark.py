@@ -253,10 +253,14 @@ def main():
     parser.add_argument("--model", default="Qwen/Qwen3.5-4B")
     parser.add_argument("--revision", default="851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a")
     parser.add_argument("--bits", type=int, choices=(4, 8))
+    parser.add_argument("--mlx-cache-limit-mib", type=int, default=backend.DEFAULT_CACHE_LIMIT_MIB,
+                        help="Inactive allocation cache in MiB (default: 256; 0 disables caching)")
     parser.add_argument("--suite", choices=("diagnostic", "quality", "shape", "generation", "quantization", "all"), default="all")
     parser.add_argument("--reference-run", type=Path, help="Completed unquantized MLX quality run for quantization comparison")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
+    if args.mlx_cache_limit_mib < 0:
+        parser.error("--mlx-cache-limit-mib must be nonnegative")
     if args.suite == "quantization" and args.bits is None:
         parser.error("The quantization suite requires --bits 4 or --bits 8")
     reference_metadata = None
@@ -270,7 +274,8 @@ def main():
             name: hashlib.sha256((args.reference_run / name).read_bytes()).hexdigest()
             for name in ("manifest.json", "authored144.jsonl", "perturbations108.jsonl")}}
     args.output.mkdir(parents=True, exist_ok=False)
-    model, tokenizer, metadata = backend.load_model(args.model, args.revision, args.bits)
+    model, tokenizer, metadata = backend.load_model(
+        args.model, args.revision, args.bits, cache_limit_mib=args.mlx_cache_limit_mib)
     import mlx.core as mx
 
     manifest = {"model": metadata, "hardware": mx.device_info(), "macos": platform.mac_ver()[0],

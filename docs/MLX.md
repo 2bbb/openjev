@@ -48,10 +48,22 @@ unsupported. Installations on other platforms can continue using the existing
 Torch paths without importing MLX. The MLX extra is specific to macOS arm64;
 it does not replace the repository's existing Torch dependencies.
 
-The loader caps MLX's inactive allocation cache at 256 MiB. MLX's default cache
+The loader caps MLX's inactive allocation cache at 256 MiB by default.
+Use `--mlx-cache-limit-mib 512` to change it, or `--mlx-cache-limit-mib 0`
+to disable inactive allocation caching. The benchmark and precision-probe
+scripts accept the same flag. Python callers can pass `cache_limit_mib=512`
+to `mlx_backend.load_model`; prediction metadata records the effective limit
+in bytes. This is a process-wide MLX allocator setting, not the prefix cache. MLX's default cache
 can otherwise retain almost all system RAM across variable-length prompts,
 which is unsuitable when other local models share unified memory. This bounds
 the allocation cache, not the active model or batch memory requirement.
+
+## Apple Silicon demo
+
+![Native MLX CLI on an Apple M5 Max](media/openjev-mlx.png)
+
+[Replayable terminal recording and capture details](media/README.md).
+The screenshot shows the completed recording of a real local CLI run.
 
 ## Cache correctness
 

@@ -18,7 +18,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--mlx-cache-limit-mib", type=int, default=backend.DEFAULT_CACHE_LIMIT_MIB,
+                        help="Inactive allocation cache in MiB (default: 256; 0 disables caching)")
     args = parser.parse_args()
+    if args.mlx_cache_limit_mib < 0:
+        parser.error("--mlx-cache-limit-mib must be nonnegative")
     if args.output.exists():
         parser.error("Output must be new")
     contract = json.loads(Path("manifests/mlx-validation.json").read_text())
@@ -35,7 +39,7 @@ def main():
             if delta > threshold or choice(row) != choice(reference):
                 selected.append((gold[row["id"]], reference, row))
     print(f"Investigating {len(selected)} decisions", flush=True)
-    model, tokenizer, metadata = backend.load_model(source, revision)
+    model, tokenizer, metadata = backend.load_model(source, revision, cache_limit_mib=args.mlx_cache_limit_mib)
     bf16 = [backend.score(model, tokenizer, row, metadata) for row, _, _ in selected]
     serial = backend.SerialPrefixScorer(model, tokenizer, metadata)
     bf16_serial = [serial.score(row) for row, _, _ in selected]

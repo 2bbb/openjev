@@ -6,18 +6,28 @@ manifest. The Mac also had an unrelated local-model service resident; it was
 left running. Timings describe this machine and workload, not an isolated
 cross-hardware comparison with the published CUDA results.
 
-## Run history
+## Retained final runs
 
 | Directory | Status and purpose |
 | --- | --- |
-| `2026-09-17-bf16-pilot` | Initial seven-decision pilot on MLX-LM 0.31.3; review threshold frozen before full evaluation. Superseded runtime. |
-| `2026-09-17-bf16` | Incomplete first run. Diagnostic and quality completed; process exited 137 during fresh shape scoring. No completed systems report. |
-| `2026-09-17-bf16-bounded` | Complete run after limiting inactive MLX allocations to 256 MiB. Superseded runtime. Contains the before/after precision investigation. |
-| `2026-09-17-q8` | Complete initial 8-bit experiment on MLX-LM 0.31.3. Superseded runtime; generated arrays were invalid. |
 | `2026-09-17-bf16-fixed` | Complete BF16 evaluation with the pinned upstream normalization fix. |
 | `2026-09-17-q8-fixed` | Complete 8-bit diagnostic, quality, and generation evaluation against BF16. |
 | `2026-09-17-q4-fixed` | Complete 4-bit diagnostic, quality, and generation evaluation against BF16. |
 | `2026-09-17-cli-smoke` | Installed CLI direct, serial, and shared modes on three retained fixture rows. |
+
+## Earlier experiments (summarized)
+
+The incomplete and superseded raw runs are omitted from this tree. They remain
+available at the [original evidence commit](https://github.com/fcoury/openjev/tree/56e7ce2a38214137f476d2444e9193f72dcbb4ab/results/mlx):
+
+- `2026-09-17-bf16-pilot`: seven-decision pilot on MLX-LM 0.31.3; review
+  thresholds frozen before full evaluation.
+- `2026-09-17-bf16`: diagnostic and quality completed, but process exited 137
+  during fresh shape scoring; no completed systems result.
+- `2026-09-17-bf16-bounded`: full run with the 256 MiB allocator limit on the
+  superseded runtime; also contains the before/after normalization probes.
+- `2026-09-17-q8`: first 8-bit experiment on the superseded runtime;
+  compact-generation arrays were incomplete.
 
 The initial inactive-cache limit was approximately 122 GiB. The first run's
 exit occurred while another model occupied substantial memory; memory pressure
@@ -84,8 +94,8 @@ commit, with no local model fork or monkey patch.
 | Native MLX weights cast to FP32 vs CPU FP32 | 0.109083 | 0.009402 |
 | Source RMSNorm weights folded in FP32 vs CPU FP32 | 0.101279 | 0.007598 |
 
-Evidence: [original probe](2026-09-17-bf16-bounded/precision-probe.json),
-[fixed-runtime probe](2026-09-17-bf16-bounded/precision-upstream-fixed.json).
+Evidence: [original probe](https://github.com/fcoury/openjev/blob/56e7ce2a38214137f476d2444e9193f72dcbb4ab/results/mlx/2026-09-17-bf16-bounded/precision-probe.json),
+[fixed-runtime probe](https://github.com/fcoury/openjev/blob/56e7ce2a38214137f476d2444e9193f72dcbb4ab/results/mlx/2026-09-17-bf16-bounded/precision-upstream-fixed.json).
 The second probe selects cases from the same original run, then recomputes
 MLX predictions using the fixed runtime. Per-prediction metadata distinguishes
 runtime and diagnostic transformations. Remaining differences are measured;
@@ -131,9 +141,8 @@ change close decisions. All observed winning-option changes are retained in
 comparison reports. Neither the authored benchmark nor the shape workload is
 a general model-quality qualification.
 
-See [MLX usage and reproduction](../../docs/MLX.md). Evidence directories are
-create-only; partial and superseded runs are retained separately from the final
-measurements. The original CUDA summary and raw evidence are unchanged.
+See [MLX usage and reproduction](../../docs/MLX.md). New evidence directories are create-only. Earlier experiments are summarized
+above and accessible through the original evidence commit. The original CUDA summary and raw evidence are unchanged.
 
 ## Validation and integrity
 
@@ -142,10 +151,9 @@ real pinned checkpoint; each returned the three expected decision IDs and
 finite normalized distributions. Commands, raw outputs, comparisons, and
 hashes are retained in [CLI validation](2026-09-17-cli-smoke/validation.json).
 
-Validation completed with 26 passing tests, including the native tiny hybrid
-cache regressions and the recurrent normalization regression. All six completed
-benchmark directories pass `benchmarks/verify_mlx.py`; the incomplete run is
-explicitly excluded. Original CUDA checksums and all 69 published-summary checks
+Validation covers the native tiny hybrid cache regressions, recurrent
+normalization, and configurable allocation-cache limits. The three retained
+final benchmark directories pass `benchmarks/verify_mlx.py`. Original CUDA checksums and all 69 published-summary checks
 also pass. To check the retained Mac artifacts:
 
 ```bash

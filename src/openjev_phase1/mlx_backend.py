@@ -20,7 +20,11 @@ from .direct import PROMPT_VERSION, encode_prompt
 from .shared import _state_prefix
 
 
-def load_model(source: str, revision: str, bits: int | None = None):
+DEFAULT_CACHE_LIMIT_MIB = 256
+
+
+def load_model(source: str, revision: str, bits: int | None = None, *,
+               cache_limit_mib: int = DEFAULT_CACHE_LIMIT_MIB):
     """Load a pinned checkpoint strictly; optional affine quantization is in memory.
 
     Use the upstream sanitizer for text weights. Custom model code is prohibited,
@@ -34,6 +38,8 @@ def load_model(source: str, revision: str, bits: int | None = None):
         raise ValueError("Remote models require a pinned 40-character revision; local models require a revision label")
     if bits not in (None, 4, 8):
         raise ValueError("MLX quantization must be 4 or 8 bits")
+    if type(cache_limit_mib) is not int or cache_limit_mib < 0:
+        raise ValueError("MLX cache limit must be a nonnegative integer in MiB")
     try:
         import mlx.core as mx
         import mlx.nn as nn
@@ -48,7 +54,7 @@ def load_model(source: str, revision: str, bits: int | None = None):
     mx.set_default_device(mx.gpu)
     # MLX defaults to caching almost all system RAM. Bound inactive allocations
     # so repeated variable-length prompts can coexist with other local models.
-    cache_limit = 256 * 1024 * 1024
+    cache_limit = cache_limit_mib * 1024 * 1024
     mx.set_cache_limit(cache_limit)
     path = Path(source) if local else Path(snapshot_download(
         source, revision=revision,
