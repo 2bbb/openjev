@@ -1,0 +1,1545 @@
+[
+  {
+    "fresh": [
+      {
+        "id": "015c14ff8f2bce2886b3",
+        "option_ids": [
+          "yes",
+          "no"
+        ],
+        "probabilities": [
+          0.29421497216298875,
+          0.7057850278370112
+        ],
+        "option_logits": [
+          24.75,
+          25.625
+        ],
+        "answer_token_ids": [
+          32,
+          33
+        ],
+        "input_tokens": 1891,
+        "input_ids_sha256": "e891b3b153815a911affdb66455bed78d47dee35084b1e1921b4c834cfe51e15",
+        "prompt_sha256": "58094802fc62a694cbeef881b43bde2a662338f2cd0158e3a007d4f0c73c0b37",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-direct-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "forward_seconds": 0.48823391599580646,
+        "total_seconds": 0.4920522077009082
+      },
+      {
+        "id": "815ec74d63795e229fba",
+        "option_ids": [
+          "yes",
+          "no"
+        ],
+        "probabilities": [
+          0.7057850278370112,
+          0.29421497216298875
+        ],
+        "option_logits": [
+          25.625,
+          24.75
+        ],
+        "answer_token_ids": [
+          32,
+          33
+        ],
+        "input_tokens": 1890,
+        "input_ids_sha256": "633f6f338624b2fd5281ee9ea1d720af6f25c3688125192174d14d8a3221e151",
+        "prompt_sha256": "5d78c634775505bc67b04c77b6ac904f6503051699caeb45c542191ff9d3dd0c",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-direct-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "forward_seconds": 0.7803239580243826,
+        "total_seconds": 0.7844562078826129
+      },
+      {
+        "id": "25fd3b3c4282f626ed46",
+        "option_ids": [
+          "yes",
+          "no"
+        ],
+        "probabilities": [
+          0.005220125693558397,
+          0.9947798743064417
+        ],
+        "option_logits": [
+          21.625,
+          26.875
+        ],
+        "answer_token_ids": [
+          32,
+          33
+        ],
+        "input_tokens": 1892,
+        "input_ids_sha256": "89d02a4ee4ca49fccb2a1376f5d5d5d1cb006d8f78b6b9e622df0178e5f20605",
+        "prompt_sha256": "505c879a5e3cffb43a97e2b934e75234b3af0e70e8f148fcc053fe65be8b0792",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-direct-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "forward_seconds": 0.6734857908450067,
+        "total_seconds": 0.6777534168213606
+      },
+      {
+        "id": "d935968eeb58c19921b0",
+        "option_ids": [
+          "yes",
+          "no"
+        ],
+        "probabilities": [
+          0.005911068856243796,
+          0.9940889311437562
+        ],
+        "option_logits": [
+          21.375,
+          26.5
+        ],
+        "answer_token_ids": [
+          32,
+          33
+        ],
+        "input_tokens": 1892,
+        "input_ids_sha256": "31c171e7039861176eb58f6517f4210e974d51644683bf60cd1728fc97ef6468",
+        "prompt_sha256": "d5c4d89b9df56596cc5b404a732333f210c2972330a7097dcf14e6ae364a3a21",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-direct-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "forward_seconds": 0.6250875829719007,
+        "total_seconds": 0.6293328749015927
+      }
+    ],
+    "serial": [
+      {
+        "id": "015c14ff8f2bce2886b3",
+        "option_ids": [
+          "yes",
+          "no"
+        ],
+        "probabilities": [
+          0.29421497216298875,
+          0.7057850278370112
+        ],
+        "option_logits": [
+          24.75,
+          25.625
+        ],
+        "answer_token_ids": [
+          32,
+          33
+        ],
+        "input_tokens": 1891,
+        "input_ids_sha256": "e891b3b153815a911affdb66455bed78d47dee35084b1e1921b4c834cfe51e15",
+        "prompt_sha256": "58094802fc62a694cbeef881b43bde2a662338f2cd0158e3a007d4f0c73c0b37",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-serial-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "cache_hit": false,
+        "prefix_tokens": 1812,
+        "prefill_seconds": 0.5089952498674393,
+        "copy_seconds": 0.0004025828093290329,
+        "suffix_forward_seconds": 0.0733722080476582,
+        "forward_seconds": 0.5823674579150975,
+        "total_seconds": 0.5884242919273674
+      },
+      {
+        "id": "815ec74d63795e229fba",
+        "option_ids": [
+          "yes",
+          "no"
+        ],
+        "probabilities": [
+          0.7057850278370112,
+          0.29421497216298875
+        ],
+        "option_logits": [
+          25.5,
+          24.625
+        ],
+        "answer_token_ids": [
+          32,
+          33
+        ],
+        "input_tokens": 1890,
+        "input_ids_sha256": "633f6f338624b2fd5281ee9ea1d720af6f25c3688125192174d14d8a3221e151",
+        "prompt_sha256": "5d78c634775505bc67b04c77b6ac904f6503051699caeb45c542191ff9d3dd0c",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-serial-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "cache_hit": true,
+        "prefix_tokens": 1812,
+        "prefill_seconds": 0.0,
+        "copy_seconds": 0.00018362468108534813,
+        "suffix_forward_seconds": 0.06708941608667374,
+        "forward_seconds": 0.06708941608667374,
+        "total_seconds": 0.07282437523826957
+      },
+      {
+        "id": "25fd3b3c4282f626ed46",
+        "option_ids": [
+          "yes",
+          "no"
+        ],
+        "probabilities": [
+          0.004609572179374208,
+          0.9953904278206259
+        ],
+        "option_logits": [
+          21.625,
+          27.0
+        ],
+        "answer_token_ids": [
+          32,
+          33
+        ],
+        "input_tokens": 1892,
+        "input_ids_sha256": "89d02a4ee4ca49fccb2a1376f5d5d5d1cb006d8f78b6b9e622df0178e5f20605",
+        "prompt_sha256": "505c879a5e3cffb43a97e2b934e75234b3af0e70e8f148fcc053fe65be8b0792",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-serial-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "cache_hit": true,
+        "prefix_tokens": 1812,
+        "prefill_seconds": 0.0,
+        "copy_seconds": 0.00017787469550967216,
+        "suffix_forward_seconds": 0.06569883413612843,
+        "forward_seconds": 0.06569883413612843,
+        "total_seconds": 0.07134975027292967
+      },
+      {
+        "id": "d935968eeb58c19921b0",
+        "option_ids": [
+          "yes",
+          "no"
+        ],
+        "probabilities": [
+          0.005911068856243796,
+          0.9940889311437562
+        ],
+        "option_logits": [
+          21.25,
+          26.375
+        ],
+        "answer_token_ids": [
+          32,
+          33
+        ],
+        "input_tokens": 1892,
+        "input_ids_sha256": "31c171e7039861176eb58f6517f4210e974d51644683bf60cd1728fc97ef6468",
+        "prompt_sha256": "d5c4d89b9df56596cc5b404a732333f210c2972330a7097dcf14e6ae364a3a21",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-serial-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "cache_hit": true,
+        "prefix_tokens": 1812,
+        "prefill_seconds": 0.0,
+        "copy_seconds": 0.00017229095101356506,
+        "suffix_forward_seconds": 0.06395791610702872,
+        "forward_seconds": 0.06395791610702872,
+        "total_seconds": 0.06947583425790071
+      }
+    ],
+    "shared": [
+      {
+        "id": "015c14ff8f2bce2886b3",
+        "option_ids": [
+          "yes",
+          "no"
+        ],
+        "probabilities": [
+          0.29421497216298875,
+          0.7057850278370112
+        ],
+        "option_logits": [
+          24.625,
+          25.5
+        ],
+        "answer_token_ids": [
+          32,
+          33
+        ],
+        "input_tokens": 1891,
+        "input_ids_sha256": "e891b3b153815a911affdb66455bed78d47dee35084b1e1921b4c834cfe51e15",
+        "prompt_sha256": "58094802fc62a694cbeef881b43bde2a662338f2cd0158e3a007d4f0c73c0b37",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-shared-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence"
+      },
+      {
+        "id": "815ec74d63795e229fba",
+        "option_ids": [
+          "yes",
+          "no"
+        ],
+        "probabilities": [
+          0.7057850278370112,
+          0.29421497216298875
+        ],
+        "option_logits": [
+          25.625,
+          24.75
+        ],
+        "answer_token_ids": [
+          32,
+          33
+        ],
+        "input_tokens": 1890,
+        "input_ids_sha256": "633f6f338624b2fd5281ee9ea1d720af6f25c3688125192174d14d8a3221e151",
+        "prompt_sha256": "5d78c634775505bc67b04c77b6ac904f6503051699caeb45c542191ff9d3dd0c",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-shared-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence"
+      },
+      {
+        "id": "25fd3b3c4282f626ed46",
+        "option_ids": [
+          "yes",
+          "no"
+        ],
+        "probabilities": [
+          0.004609572179374208,
+          0.9953904278206259
+        ],
+        "option_logits": [
+          21.625,
+          27.0
+        ],
+        "answer_token_ids": [
+          32,
+          33
+        ],
+        "input_tokens": 1892,
+        "input_ids_sha256": "89d02a4ee4ca49fccb2a1376f5d5d5d1cb006d8f78b6b9e622df0178e5f20605",
+        "prompt_sha256": "505c879a5e3cffb43a97e2b934e75234b3af0e70e8f148fcc053fe65be8b0792",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-shared-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence"
+      },
+      {
+        "id": "d935968eeb58c19921b0",
+        "option_ids": [
+          "yes",
+          "no"
+        ],
+        "probabilities": [
+          0.005911068856243796,
+          0.9940889311437562
+        ],
+        "option_logits": [
+          21.25,
+          26.375
+        ],
+        "answer_token_ids": [
+          32,
+          33
+        ],
+        "input_tokens": 1892,
+        "input_ids_sha256": "31c171e7039861176eb58f6517f4210e974d51644683bf60cd1728fc97ef6468",
+        "prompt_sha256": "d5c4d89b9df56596cc5b404a732333f210c2972330a7097dcf14e6ae364a3a21",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-shared-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence"
+      }
+    ],
+    "serial_vs_fresh": {
+      "rows": 4,
+      "argmax_flips": [],
+      "prompt_mismatches": [],
+      "max_probability_difference": 0.0006105535141842644,
+      "mean_max_probability_difference": 0.0001526383785460661
+    },
+    "shared_vs_fresh": {
+      "rows": 4,
+      "argmax_flips": [],
+      "prompt_mismatches": [],
+      "max_probability_difference": 0.0006105535141842644,
+      "mean_max_probability_difference": 0.0001526383785460661
+    },
+    "reordered_vs_shared": {
+      "rows": 4,
+      "argmax_flips": [],
+      "prompt_mismatches": [],
+      "max_probability_difference": 0.0,
+      "mean_max_probability_difference": 0.0
+    }
+  },
+  {
+    "fresh": [
+      {
+        "id": "pilot-0",
+        "option_ids": [
+          "yes",
+          "no",
+          "insufficient"
+        ],
+        "probabilities": [
+          0.9993900694962597,
+          0.0001794506861792859,
+          0.0004304798175609318
+        ],
+        "option_logits": [
+          28.25,
+          19.625,
+          20.5
+        ],
+        "answer_token_ids": [
+          32,
+          33,
+          34
+        ],
+        "input_tokens": 142,
+        "input_ids_sha256": "9c7ed3f4945443afd1d9c30961fef2ae88c9dfcde57f264cf5ecf222707b125c",
+        "prompt_sha256": "7ac35785358f0c656eeb741ca0a51f03e0133753a71e2879a18ad0ab56d0c024",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-direct-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "forward_seconds": 0.07621245877817273,
+        "total_seconds": 0.07672875002026558
+      },
+      {
+        "id": "pilot-1",
+        "option_ids": [
+          "yes",
+          "no",
+          "insufficient"
+        ],
+        "probabilities": [
+          0.9992440192001865,
+          0.00020331455083030274,
+          0.0005526662489833249
+        ],
+        "option_logits": [
+          28.25,
+          19.75,
+          20.75
+        ],
+        "answer_token_ids": [
+          32,
+          33,
+          34
+        ],
+        "input_tokens": 143,
+        "input_ids_sha256": "689a672485368c33baf35cbda6f1b2d799e647cda0a9c2ade8ac5b0a597ec42f",
+        "prompt_sha256": "7e03d0c0e633f013ab2035da58e998d27ede3a586338985d179459b1542974c2",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-direct-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "forward_seconds": 0.07348445802927017,
+        "total_seconds": 0.07406674977391958
+      },
+      {
+        "id": "pilot-2",
+        "option_ids": [
+          "yes",
+          "no",
+          "insufficient"
+        ],
+        "probabilities": [
+          0.9991128025624932,
+          0.0002610267693791028,
+          0.000626170668127577
+        ],
+        "option_logits": [
+          28.125,
+          19.875,
+          20.75
+        ],
+        "answer_token_ids": [
+          32,
+          33,
+          34
+        ],
+        "input_tokens": 144,
+        "input_ids_sha256": "4debed408ce03cc21d2d179b549ec7a84565802106a8af434d75ec4a17132abd",
+        "prompt_sha256": "9bd193f57ebf443adb22fd718071794fdbcbf788060ef84b853e78b63a7718d1",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-direct-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "forward_seconds": 0.07187070790678263,
+        "total_seconds": 0.07244887482374907
+      }
+    ],
+    "serial": [
+      {
+        "id": "pilot-0",
+        "option_ids": [
+          "yes",
+          "no",
+          "insufficient"
+        ],
+        "probabilities": [
+          0.9993327900174311,
+          0.00017944040106430075,
+          0.0004877695815044918
+        ],
+        "option_logits": [
+          28.125,
+          19.5,
+          20.5
+        ],
+        "answer_token_ids": [
+          32,
+          33,
+          34
+        ],
+        "input_tokens": 142,
+        "input_ids_sha256": "9c7ed3f4945443afd1d9c30961fef2ae88c9dfcde57f264cf5ecf222707b125c",
+        "prompt_sha256": "7ac35785358f0c656eeb741ca0a51f03e0133753a71e2879a18ad0ab56d0c024",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-serial-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "cache_hit": false,
+        "prefix_tokens": 65,
+        "prefill_seconds": 0.05579395825043321,
+        "copy_seconds": 0.00021120766177773476,
+        "suffix_forward_seconds": 0.06267491588369012,
+        "forward_seconds": 0.11846887413412333,
+        "total_seconds": 0.11944958427920938
+      },
+      {
+        "id": "pilot-1",
+        "option_ids": [
+          "yes",
+          "no",
+          "insufficient"
+        ],
+        "probabilities": [
+          0.9992169693796933,
+          0.0002303793321563029,
+          0.0005526512881503949
+        ],
+        "option_logits": [
+          28.375,
+          20.0,
+          20.875
+        ],
+        "answer_token_ids": [
+          32,
+          33,
+          34
+        ],
+        "input_tokens": 143,
+        "input_ids_sha256": "689a672485368c33baf35cbda6f1b2d799e647cda0a9c2ade8ac5b0a597ec42f",
+        "prompt_sha256": "7e03d0c0e633f013ab2035da58e998d27ede3a586338985d179459b1542974c2",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-serial-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "cache_hit": true,
+        "prefix_tokens": 65,
+        "prefill_seconds": 0.0,
+        "copy_seconds": 0.00023704208433628082,
+        "suffix_forward_seconds": 0.0650162911042571,
+        "forward_seconds": 0.0650162911042571,
+        "total_seconds": 0.06608033319935203
+      },
+      {
+        "id": "pilot-2",
+        "option_ids": [
+          "yes",
+          "no",
+          "insufficient"
+        ],
+        "probabilities": [
+          0.9990780792935818,
+          0.00029577180029019,
+          0.0006261489061278929
+        ],
+        "option_logits": [
+          28.125,
+          20.0,
+          20.75
+        ],
+        "answer_token_ids": [
+          32,
+          33,
+          34
+        ],
+        "input_tokens": 144,
+        "input_ids_sha256": "4debed408ce03cc21d2d179b549ec7a84565802106a8af434d75ec4a17132abd",
+        "prompt_sha256": "9bd193f57ebf443adb22fd718071794fdbcbf788060ef84b853e78b63a7718d1",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-serial-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence",
+        "cache_hit": true,
+        "prefix_tokens": 65,
+        "prefill_seconds": 0.0,
+        "copy_seconds": 0.00017533358186483383,
+        "suffix_forward_seconds": 0.06390612479299307,
+        "forward_seconds": 0.06390612479299307,
+        "total_seconds": 0.06490608397871256
+      }
+    ],
+    "shared": [
+      {
+        "id": "pilot-0",
+        "option_ids": [
+          "yes",
+          "no",
+          "insufficient"
+        ],
+        "probabilities": [
+          0.9992169693796933,
+          0.0002303793321563029,
+          0.0005526512881503949
+        ],
+        "option_logits": [
+          28.0,
+          19.625,
+          20.5
+        ],
+        "answer_token_ids": [
+          32,
+          33,
+          34
+        ],
+        "input_tokens": 142,
+        "input_ids_sha256": "9c7ed3f4945443afd1d9c30961fef2ae88c9dfcde57f264cf5ecf222707b125c",
+        "prompt_sha256": "7ac35785358f0c656eeb741ca0a51f03e0133753a71e2879a18ad0ab56d0c024",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-shared-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence"
+      },
+      {
+        "id": "pilot-1",
+        "option_ids": [
+          "yes",
+          "no",
+          "insufficient"
+        ],
+        "probabilities": [
+          0.9992169693796933,
+          0.0002303793321563029,
+          0.0005526512881503949
+        ],
+        "option_logits": [
+          28.25,
+          19.875,
+          20.75
+        ],
+        "answer_token_ids": [
+          32,
+          33,
+          34
+        ],
+        "input_tokens": 143,
+        "input_ids_sha256": "689a672485368c33baf35cbda6f1b2d799e647cda0a9c2ade8ac5b0a597ec42f",
+        "prompt_sha256": "7e03d0c0e633f013ab2035da58e998d27ede3a586338985d179459b1542974c2",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-shared-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence"
+      },
+      {
+        "id": "pilot-2",
+        "option_ids": [
+          "yes",
+          "no",
+          "insufficient"
+        ],
+        "probabilities": [
+          0.9989947923402663,
+          0.00029574714362657847,
+          0.0007094605161071379
+        ],
+        "option_logits": [
+          28.0,
+          19.875,
+          20.75
+        ],
+        "answer_token_ids": [
+          32,
+          33,
+          34
+        ],
+        "input_tokens": 144,
+        "input_ids_sha256": "4debed408ce03cc21d2d179b549ec7a84565802106a8af434d75ec4a17132abd",
+        "prompt_sha256": "9bd193f57ebf443adb22fd718071794fdbcbf788060ef84b853e78b63a7718d1",
+        "prompt_version": "direct-options-v1",
+        "model": {
+          "source": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "backend": "mlx",
+          "mlx_version": "0.32.2",
+          "mlx_lm_version": "0.32.0",
+          "transformers_version": "5.17.0",
+          "mlx_lm_source": {
+            "url": "https://github.com/ml-explore/mlx-lm.git",
+            "vcs_info": {
+              "vcs": "git",
+              "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+              "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a"
+            }
+          },
+          "allocator_cache_limit_bytes": 268435456,
+          "dtype": [
+            "mlx.core.bfloat16",
+            "mlx.core.float32",
+            "mlx.core.uint32"
+          ],
+          "quantization": {
+            "bits": 4,
+            "group_size": 64,
+            "mode": "affine"
+          },
+          "source_artifact_sha256": {
+            "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+            "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+            "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+            "model.safetensors-00001-of-00002.safetensors": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "model.safetensors-00002-of-00002.safetensors": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "model.safetensors.index.json": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+            "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+            "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+            "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+            "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+            "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+          },
+          "serving_config": "mlx-shared-v1"
+        },
+        "readout": "native last-position logits restricted to declared answer slots; no generated tokens",
+        "probability_status": "conditional option score; uncalibrated as decision confidence"
+      }
+    ],
+    "serial_vs_fresh": {
+      "rows": 3,
+      "argmax_flips": [],
+      "prompt_mismatches": [],
+      "max_probability_difference": 5.728976394355997e-05,
+      "mean_max_probability_difference": 3.969985872688244e-05
+    },
+    "shared_vs_fresh": {
+      "rows": 3,
+      "argmax_flips": [],
+      "prompt_mismatches": [],
+      "max_probability_difference": 0.0001731001165664603,
+      "mean_max_probability_difference": 0.00010605837337312191
+    },
+    "reordered_vs_shared": {
+      "rows": 3,
+      "argmax_flips": [],
+      "prompt_mismatches": [],
+      "max_probability_difference": 0.0,
+      "mean_max_probability_difference": 0.0
+    }
+  }
+]

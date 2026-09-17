@@ -16,6 +16,8 @@ from .shared import score_shared
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", choices=("direct", "serial", "shared", "reranker"), required=True)
+    parser.add_argument("--backend", choices=("torch", "mlx"), default="torch")
+    parser.add_argument("--mlx-bits", type=int, choices=(4, 8), help="Quantize MLX weights in memory; default preserves source precision")
     parser.add_argument("--model", required=True)
     parser.add_argument("--revision", required=True)
     parser.add_argument("--input", type=Path, required=True)
@@ -24,25 +26,36 @@ def main() -> None:
     args = parser.parse_args()
     if args.output.exists() or args.max_tokens < 1:
         parser.error("Output must be new and max-tokens must be positive")
+    if args.mlx_bits and args.backend != "mlx":
+        parser.error("--mlx-bits requires --backend mlx")
+    if args.backend == "mlx" and args.mode == "reranker":
+        parser.error("MLX supports direct, serial, and shared modes; reranker requires torch")
     rows = [json.loads(line) for line in args.input.read_text().splitlines() if line.strip()]
     if not rows:
         parser.error("Input is empty")
     for row in rows:
         validate_row(row)
-    model, tokenizer, metadata = load_causal_model(args.model, args.revision)
+    direct, serial, shared = direct_score, SerialPrefixScorer, score_shared
+    if args.backend == "mlx":
+        from . import mlx_backend
+
+        model, tokenizer, metadata = mlx_backend.load_model(args.model, args.revision, args.mlx_bits)
+        direct, serial, shared = mlx_backend.score, mlx_backend.SerialPrefixScorer, mlx_backend.score_shared
+    else:
+        model, tokenizer, metadata = load_causal_model(args.model, args.revision)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("x") as destination:
         if args.mode == "shared":
-            results, timing = score_shared(model, tokenizer, rows, metadata, args.max_tokens)
+            results, timing = shared(model, tokenizer, rows, metadata, args.max_tokens)
             for result in results:
                 destination.write(json.dumps({**result, "shared_timing": timing}, allow_nan=False) + "\n")
         elif args.mode == "serial":
-            scorer = SerialPrefixScorer(model, tokenizer, metadata, args.max_tokens)
+            scorer = serial(model, tokenizer, metadata, args.max_tokens)
             for row in rows:
                 destination.write(json.dumps(scorer.score(row), allow_nan=False) + "\n")
                 destination.flush()
         else:
-            scorer = direct_score if args.mode == "direct" else reranker_score
+            scorer = direct if args.mode == "direct" else reranker_score
             for row in rows:
                 destination.write(json.dumps(scorer(model, tokenizer, row, metadata, args.max_tokens), allow_nan=False) + "\n")
                 destination.flush()
