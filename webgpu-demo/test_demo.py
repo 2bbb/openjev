@@ -41,7 +41,9 @@ def test_three_pinned_model_tiers():
     assert "may not fit on some low-end devices" in text["app.js"]
     assert 'id="model-notice"' in text["index.html"]
     assert 'id="quality-title"' in text["index.html"]
-    assert 'owned + public benchmarks' in text["index.html"]
+    assert "Model performance" in text["index.html"]
+    assert text["index.html"].count("https://github.com/TheoLeeCJ/openjev") == 2
+    assert "higher is better" in text["index.html"]
     assert "Published Jev" in text["index.html"]
     for score in ("44.0%", "52.8%", "40.7%", "68.6%", "69.3%", "63.7%", "81.3%", "76.6%", "84.5%", "88.3%"):
         assert score in text["index.html"]

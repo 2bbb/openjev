@@ -139,7 +139,7 @@ Returned probabilities are conditional on the supplied options. Calibrate and va
 - [Method](docs/METHOD.md) — frozen prompts, metrics, and timing scope
 - [Reproduce](docs/REPRODUCE.md) — exact environment, pinned commands, perturbations, and verification
 - [Interactive replay](demo/index.html)
-- [Browser-only WebGPU demo](webgpu-demo/index.html) — no waitlist; use it today
+- [Browser-only WebGPU demo](https://openjev.com) — no waitlist; use it today
 - [Machine-readable summary](results/phase1-summary.json)
 - [Benchmark bundle](benchmarks/README.md) — fixtures, runners, selection IDs, and reproduction commands
 - [Raw results and checksums](results/raw/)

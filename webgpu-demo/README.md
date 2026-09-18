@@ -1,5 +1,7 @@
 # OpenJev browser lab
 
+[Try it on openjev.com](https://openjev.com)
+
 This is a browser-only comparison of two readout paths through the same selected quantized local model:
 
 1. **Direct readout** obtains wllama's log-probabilities for the allowed single-token labels and normalizes them over the displayed options. Two to twenty options need one constrained readout.
