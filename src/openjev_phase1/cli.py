@@ -16,7 +16,8 @@ from .shared import score_shared
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", choices=("direct", "serial", "shared", "reranker"), required=True)
-    parser.add_argument("--backend", choices=("torch", "mlx"), default="torch")
+    parser.add_argument("--backend", choices=("torch", "mlx", "mlx-serve"), default="torch")
+    parser.add_argument("--server-url", help="mlx-serve loopback base URL (default: http://127.0.0.1:18082)")
     parser.add_argument("--mlx-bits", type=int, choices=(4, 8), help="Quantize MLX weights in memory; default preserves source precision")
     parser.add_argument("--mlx-cache-limit-mib", type=int,
                         help="MLX inactive allocation cache in MiB (default: 256; 0 disables caching)")
@@ -37,13 +38,25 @@ def main() -> None:
             parser.error("--mlx-cache-limit-mib must be nonnegative")
     if args.backend == "mlx" and args.mode == "reranker":
         parser.error("MLX supports direct, serial, and shared modes; reranker requires torch")
+    if args.server_url is not None and args.backend != "mlx-serve":
+        parser.error("--server-url requires --backend mlx-serve")
+    if args.backend == "mlx-serve" and args.mode != "direct":
+        parser.error("mlx-serve supports direct mode only; native serial/shared/reranker are unsupported")
     rows = [json.loads(line) for line in args.input.read_text().splitlines() if line.strip()]
     if not rows:
         parser.error("Input is empty")
     for row in rows:
         validate_row(row)
+    if args.backend == "mlx-serve" and len({row["id"] for row in rows}) != len(rows):
+        parser.error("Decision IDs must be unique")
     direct, serial, shared = direct_score, SerialPrefixScorer, score_shared
-    if args.backend == "mlx":
+    if args.backend == "mlx-serve":
+        from . import mlx_serve_backend
+
+        model, tokenizer, metadata = mlx_serve_backend.load_model(
+            args.model, args.revision, base_url=args.server_url or "http://127.0.0.1:18082")
+        direct = mlx_serve_backend.score
+    elif args.backend == "mlx":
         from . import mlx_backend
 
         cache_limit_mib = (mlx_backend.DEFAULT_CACHE_LIMIT_MIB if args.mlx_cache_limit_mib is None

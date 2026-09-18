@@ -1,5 +1,9 @@
 # OpenJev
 
+This fork's `qwen38flash` branch adds a bounded direct-scoring bridge for an
+existing Qwen3.8 Flash Next mlx-serve instance, based on Apple Silicon PR #2.
+See [setup, readout limits, and local evidence](docs/QWEN38_FLASH.md).
+
 <div align="center">
 
 **Can we run something like Jev on a 3090 at home?**

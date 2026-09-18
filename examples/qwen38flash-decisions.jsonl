@@ -1,0 +1,3 @@
+{"id":"access-en","state":"Customer cannot access an account after a password reset.","question":"Which queue should handle this request?","options":[{"id":"access","description":"Account access support."},{"id":"billing","description":"Billing support."}]}
+{"id":"access-reversed","state":"Customer cannot access an account after a password reset.","question":"Which queue should handle this request?","options":[{"id":"billing","description":"Billing support."},{"id":"access","description":"Account access support."}]}
+{"id":"billing-ja","state":"顧客から、同じ注文についてクレジットカードに二重請求があるとの連絡。ログインは正常にできる。","question":"どの担当窓口へ振り分けるべきか。","options":[{"id":"access","description":"ログイン・アカウントアクセス担当"},{"id":"billing","description":"請求・返金担当"}]}
