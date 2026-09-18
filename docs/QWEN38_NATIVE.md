@@ -30,7 +30,7 @@ openjev-score --backend qwen38-native --mode shared \
 Outputs are create-only. The CLI groups rows by their exact JSON-serialized
 state, computes each group's prefix once, and preserves the original output
 order. `--mode direct` instead starts a fresh cache for every decision.
-`--prefill-chunk` controls the maximum tokens per prefill call (default 256).
+`--prefill-chunk` controls the maximum tokens per prefill call (default 2048).
 Long inputs exceeding `--max-tokens` are rejected without truncation. The model
 is loaded once per invocation and released on exit, so batch decisions into one
 JSONL file to amortize startup. Serial and reranker modes are not implemented.
@@ -84,7 +84,7 @@ python benchmarks/qwen38_native.py \
   --output results/native-shape-new
 ```
 
-Local measurements and retained evidence are documented in the accompanying
-performance report. These fixtures do not establish superiority over another
+Local measurements and retained evidence are documented in the
+[performance report](QWEN38_PERFORMANCE.md). These fixtures do not establish superiority over another
 model, GGUF/llama.cpp, all workloads, or the published CUDA results. Conditional
 option scores remain uncalibrated as decision confidence.

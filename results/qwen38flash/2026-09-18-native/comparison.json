@@ -1,0 +1,58 @@
+{
+  "quality_comparisons": {
+    "authored144": {
+      "left_rows": 144,
+      "right_rows": 144,
+      "left_run": 0,
+      "right_run": 0,
+      "run_policy": "matched harness_run values; default compares run 0 only",
+      "common_rows": 144,
+      "agreement": 1.0,
+      "argmax_flips": [],
+      "prompt_mismatches": [],
+      "token_mismatches": [],
+      "slot_mismatches": [],
+      "max_probability_delta": 0.21100868733401745,
+      "mean_probability_delta": 0.007779660283457962
+    },
+    "perturbations108": {
+      "left_rows": 108,
+      "right_rows": 108,
+      "left_run": 0,
+      "right_run": 0,
+      "run_policy": "matched harness_run values; default compares run 0 only",
+      "common_rows": 108,
+      "agreement": 1.0,
+      "argmax_flips": [],
+      "prompt_mismatches": [],
+      "token_mismatches": [],
+      "slot_mismatches": [],
+      "max_probability_delta": 0.029092436818589085,
+      "mean_probability_delta": 0.00237711739253522
+    },
+    "shape_direct_vs_shared": {
+      "left_rows": 21,
+      "right_rows": 21,
+      "left_run": 0,
+      "right_run": 0,
+      "run_policy": "matched harness_run values; default compares run 0 only",
+      "common_rows": 21,
+      "agreement": 0.9523809523809523,
+      "argmax_flips": [
+        {
+          "id": "015c14ff8f2bce2886b3",
+          "left": "no",
+          "right": "yes"
+        }
+      ],
+      "prompt_mismatches": [],
+      "token_mismatches": [],
+      "slot_mismatches": [],
+      "max_probability_delta": 0.09338587425955441,
+      "mean_probability_delta": 0.014608168522879834
+    }
+  },
+  "shared_speedup_vs_api": 6.930005995579268,
+  "shared_speedup_vs_native_direct": 5.916043409017768,
+  "scope": "shape777 first 21 rows, one state, two timed runs; load/warmup excluded; not full shape777"
+}

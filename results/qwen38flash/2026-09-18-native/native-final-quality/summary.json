@@ -1,0 +1,4012 @@
+{
+  "reports": {
+    "qwen38-native": {
+      "metadata": {
+        "source": "/Users/2bit/prog/llm/qwens/models/Qwen3.8-Flash-Next",
+        "revision": "7eaef0fa82b4c3bf5c64cec60ace4bf48fd271e3",
+        "backend": "qwen38-native-v1",
+        "mlx_version": "0.32.2",
+        "mlx_vlm_version": "0.7.1",
+        "mlx_vlm_source": {
+          "url": "https://github.com/Blaizzy/mlx-vlm.git",
+          "vcs_info": {
+            "vcs": "git",
+            "commit_id": "10db092733a416439fce874cd96a7835b700f43d",
+            "requested_revision": "10db092733a416439fce874cd96a7835b700f43d"
+          }
+        },
+        "mlx_vlm_expected_revision": "10db092733a416439fce874cd96a7835b700f43d",
+        "quantizers": {
+          "4": 145,
+          "8": 629
+        },
+        "folded_norms": 148,
+        "ngram_storage": "mmap existing merged Q4 table",
+        "norm_execution": "compiled folded-weight RMSNorm",
+        "prefill_chunk": 2048,
+        "load_seconds": 8.075084917014465,
+        "weight_artifacts": {
+          "model-00001.safetensors": {
+            "bytes": 75673848,
+            "header_sha256": "ada463fdd0eb405f833ff0b822d8326fb35a76b066d3d9da0b081521d06abfae"
+          },
+          "model-00002.safetensors": {
+            "bytes": 943719288,
+            "header_sha256": "1c8b03fdad47ca34eb19bde38d520d4b642b1879a73e359d1fb2845c22121e95"
+          },
+          "model-00003.safetensors": {
+            "bytes": 554237720,
+            "header_sha256": "42d8001512569a30780c745467741b2aa872ffe27867878e12960af1447c7719"
+          },
+          "model-00004.safetensors": {
+            "bytes": 943719288,
+            "header_sha256": "4baad163c87e95ed2d7ca99728a2d4fb29813e61398ec4e6e8dfb636e1dd0c40"
+          },
+          "model-00005.safetensors": {
+            "bytes": 513463736,
+            "header_sha256": "7678e445c20f73d8503c0f1407acb0fef29665279ff94507468983baec32b5dc"
+          },
+          "model-00006.safetensors": {
+            "bytes": 75755944,
+            "header_sha256": "e8020ca5bbf175a2aeb5a74cba6637916d82b045cf3dd34d376a3004da916f26"
+          },
+          "model-00007.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "33fb555c6874787e9e3afd5a6c7b291a544b88e25d0d58e07e5980ea47a3ef47"
+          },
+          "model-00008.safetensors": {
+            "bytes": 492615456,
+            "header_sha256": "b85bea40024231085641d909d57d6727292434467b8c4d54dd1636f8c3f7a171"
+          },
+          "model-00009.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "2e5776874ea9317ca7304251cb045fa94e11d7038fcdc3fa1260d85ab5695cd0"
+          },
+          "model-00010.safetensors": {
+            "bytes": 612385160,
+            "header_sha256": "d02bab5af04917a8e2cbad565b7ac4e46338e39aa2cc5d98f95963d0c220c3cd"
+          },
+          "model-00011.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "0dfafdc4291b380fa7afda77976a3079fe2fc86ede77de5164a2675cc5f90459"
+          },
+          "model-00012.safetensors": {
+            "bytes": 557719832,
+            "header_sha256": "a7c1be5a6a0ef9bf39b38417899991d51f00e0e9a285abf6e78e052d7773a748"
+          },
+          "model-00013.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "d99ec6c1ba8f2b0b35d63b277661a892aa2370353344473e18778ab319553dce"
+          },
+          "model-00014.safetensors": {
+            "bytes": 554237776,
+            "header_sha256": "213e264fd7d57ebba3c0fe6aa3c43658c0be8670093920413836c997f892a285"
+          },
+          "model-00015.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "2e3352e1082ca21d955314f9bd93b2e5f3d7d6297821d3de26f0e8c0021dc4f8"
+          },
+          "model-00016.safetensors": {
+            "bytes": 492697536,
+            "header_sha256": "413d565b34db7d52da455874b7bb8f98fbc897475ea66d4bbc5f662ef74b292e"
+          },
+          "model-00017.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "5efd6dbdc9a086a4a49e043b5fb2513b0f6468a77b81e46c2f6a33851062928c"
+          },
+          "model-00018.safetensors": {
+            "bytes": 608923720,
+            "header_sha256": "8bbbec99d208ab5213c69c88f6b987476d4846a5ffa8d20fa2b547118ec76100"
+          },
+          "model-00019.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "95ddd43da6760e01a899de7bc8524d3b27146c26eab81e594bd61730d8732ff0"
+          },
+          "model-00020.safetensors": {
+            "bytes": 554237776,
+            "header_sha256": "0256a767edfd9dcd5dc1fd32c1a04aaabd4b0441f973f5a2f6aba715aca12e48"
+          },
+          "model-00021.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "5b0b0165b432730b2eefae9bceb78e8fd21bebfd3befd27cfca01ab1c6340a67"
+          },
+          "model-00022.safetensors": {
+            "bytes": 557719864,
+            "header_sha256": "a1da4fc936b55b6e1bd63e41928c2cc61f1f8309a7c771794a42bdbc1ddd6ee4"
+          },
+          "model-00023.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "c7ff620b4930ffa168d498a355dc2a204922fb0279aaaf1f25125cdf983a3cb0"
+          },
+          "model-00024.safetensors": {
+            "bytes": 492615456,
+            "header_sha256": "dd119a04ec9a1439e6f3683a02bf54024d9eb4205d0c10b98668efffbf64ea23"
+          },
+          "model-00025.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "ed58e8b667f3b94a9dc3daa4ef6593d1ce6992b431ea4e33a4dbd35ff9bc1a4a"
+          },
+          "model-00026.safetensors": {
+            "bytes": 612385152,
+            "header_sha256": "2edcb0f4a97c71f2b568d31ad2e710a39902751606da406fe8fcdfab5391ffba"
+          },
+          "model-00027.safetensors": {
+            "bytes": 943719288,
+            "header_sha256": "8604c352c7d09a3c8501bbb9eb7d6a3051919d786315923c7fbb872f878d5079"
+          },
+          "model-00028.safetensors": {
+            "bytes": 492615656,
+            "header_sha256": "82c42ae238bd289bf4cede8e36b4e5c5addd56db0691e86bbc1a40bd16c9f00e"
+          },
+          "model-00029.safetensors": {
+            "bytes": 1005341304,
+            "header_sha256": "f5f9b67a60771b2dfeba132adb169de03d0309404cb49d774afb46949f27e0d5"
+          },
+          "model-00030.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "09591607cbdef3ea10acbeecae02f5e1361723579916add4439d60f60f0a8620"
+          },
+          "model-00031.safetensors": {
+            "bytes": 1026097416,
+            "header_sha256": "7902ea46d3cdd1c8220e8f86999b3ddba8a1b48670cdbcb270c8cf9d38debe7b"
+          },
+          "model-00032.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "b9393314abbd6ab763585abbd5ca7e1cfc86e9b46dda1b4e897ff7a38960ab6d"
+          },
+          "model-00033.safetensors": {
+            "bytes": 554237776,
+            "header_sha256": "eae3950e011b01b1aac5702fee60dc87a1474f42c61f0fe72ca2cbc4c252234f"
+          },
+          "model-00034.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "2bf7d2eac768c418bf690162c38f03f8bf325f8b6cd5bef62fadf78d2b76ce2b"
+          },
+          "model-00035.safetensors": {
+            "bytes": 494008472,
+            "header_sha256": "08729e0107ac7ec57d4c2380b76488b7412cee0dcfc94c07989210737e3d3682"
+          },
+          "model-00036.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "8300ff774540c336fadd3398e394d221d2c51cf623df14948c3c00c4c69af0cc"
+          },
+          "model-00037.safetensors": {
+            "bytes": 608903096,
+            "header_sha256": "d1cacc87f469e8b6c786f6bcc34c9d673dcda422ab62164ccb7686198b36a0d5"
+          },
+          "model-00038.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "173da246da354ddfc0b76b94a80109afa5ed502c28eb371dd2ad2dacb855de74"
+          },
+          "model-00039.safetensors": {
+            "bytes": 554243032,
+            "header_sha256": "7ab0cdbc795bf48b2d077d796c5c5856cb72a960c77a5653cf63d06a72f99b29"
+          },
+          "model-00040.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "74af68b6324f2cb5de3c03c00a4ac6653024fd44026be6f36fb5ba562a985f3c"
+          },
+          "model-00041.safetensors": {
+            "bytes": 557720240,
+            "header_sha256": "d4ed24b3520cc86505286ecd4a6406a00cdc1eb60ffb81d4cbb994071d4f8436"
+          },
+          "model-00042.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "99cead57a5b74a5c6c0288b6d990da16b2f55af769a46f1c1e00cce98e73ab58"
+          },
+          "model-00043.safetensors": {
+            "bytes": 492615456,
+            "header_sha256": "bab82cf8338701df89e4d159af19b37c234870086095d1eaf4f8ccbfbc0dce42"
+          },
+          "model-00044.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "574a301337a2a73aefc5455028ae58481187004f17b8a5355917049132ceef52"
+          },
+          "model-00045.safetensors": {
+            "bytes": 610644336,
+            "header_sha256": "8ae5d7ce31b75619a8b307a1f50a9dfb84881f017cae31b5362b6c8626c968ec"
+          },
+          "model-00046.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "3b0a94e88108488de5c4c74f8395a584e3bb84035c74227b224db3e7fb1b405c"
+          },
+          "model-00047.safetensors": {
+            "bytes": 554319856,
+            "header_sha256": "890864db5b2630606191fe7889ce03c3b576eb46094c207fab73b6f332617918"
+          },
+          "model-00048.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "7cb9dc2805190fbe8b00200228ca85d56cccc5d1123242ce38981636890c42e7"
+          },
+          "model-00049.safetensors": {
+            "bytes": 492615448,
+            "header_sha256": "3cfe142c2cc4ebd9507d6ee72a4f76b788ad3ecf14636260ba1eb56f5327f022"
+          },
+          "model-00050.safetensors": {
+            "bytes": 943719288,
+            "header_sha256": "1a874011d7213a703afc41f951a4612a25a0182b6fa842a46ae0ab23d87fdf1c"
+          },
+          "model-00051.safetensors": {
+            "bytes": 608923680,
+            "header_sha256": "294f2a6aabb99e11b22dc8bb4200088fd7614c6cf801eb9aea87569b0f4d1a2a"
+          },
+          "model-00052.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "e230f085f5aef53c586f427b4c2607b4fe1f53b3085db7ca1128c7c691422421"
+          },
+          "model-00053.safetensors": {
+            "bytes": 492615456,
+            "header_sha256": "df73b744f20bb779efbd4c1d1039dc6805946a17f10fecc4f656daa52e1859af"
+          },
+          "model-00054.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "fa2a89f6a1377cad742a6f08976767c90573520010c8cc4012bb994341f593da"
+          },
+          "model-00055.safetensors": {
+            "bytes": 612385184,
+            "header_sha256": "a6775f16b714c5638ff0bdf0cc83248af9cdf35b0d22ab8d5f0cdfc3b355c2c4"
+          },
+          "model-00056.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "e7da72d976c3db2a5f931432515c98b5bab2a84b72af7dbfdb310d0720606e66"
+          },
+          "model-00057.safetensors": {
+            "bytes": 557719848,
+            "header_sha256": "73989ebc5c1d448789fabb579f2a6ecbfc4e6b817c469e2163927b8b341d4cb9"
+          },
+          "model-00058.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "60e5ab5995f45d3ce55919e830765c536e10283f6ce421d06ef4d9e2d6fbb312"
+          },
+          "model-00059.safetensors": {
+            "bytes": 555979024,
+            "header_sha256": "7a2f72360fc3a73e6d4b2b16c86ae4af1a432a706ea67baaca095e4fa6ec54d7"
+          },
+          "model-00060.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "84292a1cb154ee8e9516d9405d32f07e96c06078710456f864858accdf74b7b2"
+          },
+          "model-00061.safetensors": {
+            "bytes": 492615456,
+            "header_sha256": "a3b6ced867fa98e70c0e4276af506fa759de8d904ade88892e2ae3fc2cb8f995"
+          },
+          "model-00062.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "dad66efdf5cb3f2307966d84cb3193282cac13c275cecf9ae88e179b8cdb74a5"
+          },
+          "model-00063.safetensors": {
+            "bytes": 608903496,
+            "header_sha256": "aa05fe07c68e242ffa21949072b89df905d6e715534652eb90b82a4d8fc5746b"
+          },
+          "model-00064.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "2077f4d05f54a4178927e2fd96e9d26759b0e2f35fbf5a8418ee1970fa5b0e7b"
+          },
+          "model-00065.safetensors": {
+            "bytes": 554237776,
+            "header_sha256": "e2b46445a0c040bf4a83f3a3efe3d9ddc0a671eeb6f25151867b1df927979153"
+          },
+          "model-00066.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "141c6359ef520651df29f7220c94a2d59e8f348c5eb5f74fc7cfbdce7c5ca825"
+          },
+          "model-00067.safetensors": {
+            "bytes": 554237776,
+            "header_sha256": "eeaf00122a14ec7d82174aeab23f708f5ca31397558176525d1841d0d6f941c5"
+          },
+          "model-00068.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "31d9eaf92445cf8141a449786d83784233876c596dca0f26ba479fa863fc22af"
+          },
+          "model-00069.safetensors": {
+            "bytes": 492615856,
+            "header_sha256": "61184cec7881bbcd522d5704a9c3a0222631de73fa906ab32b6f560a26c3982d"
+          },
+          "model-00070.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "a741225fb32968030a7b2f82ba3d2fa2a47af294d9bfaeb0ddf854a154740bdc"
+          },
+          "model-00071.safetensors": {
+            "bytes": 608903712,
+            "header_sha256": "03df0a5cad49945b1e03dec643e15144c0cfa965eedfb5e461aecfaeb1cbdd79"
+          },
+          "model-00072.safetensors": {
+            "bytes": 943719288,
+            "header_sha256": "08eaa64f791e682e5824af644c999f943bf2a1bd0b5183f82a44396a9526ab85"
+          },
+          "model-00073.safetensors": {
+            "bytes": 554237752,
+            "header_sha256": "a21b61428bbd3d47e505d87522425718486279031c1043868d4ed3cb5639a0ce"
+          },
+          "model-00074.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "4c34a6c8a2bbd7b01043e3a19a1f3b96fc02dc150ce9386db72f09a99061eb41"
+          },
+          "model-00075.safetensors": {
+            "bytes": 570949864,
+            "header_sha256": "547c045785c108e4e796d32fe408b474cf9e12d2dc3b3c86ce50e77eee30eb18"
+          },
+          "model-00076.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "bb9d31ab1178012a55be2ef0a049860e8b977d76d28a4971a0680db375689b8e"
+          },
+          "model-00077.safetensors": {
+            "bytes": 590447624,
+            "header_sha256": "4cc2aa0509fca08287612b014cab3ffdcd1acb21a66de19adec8c6a56af76870"
+          },
+          "model-00078.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "4b645e6a43acc683ee786424401619346c5103a10c548d4a80bc6ffa655e7cf9"
+          },
+          "model-00079.safetensors": {
+            "bytes": 492615456,
+            "header_sha256": "6ca06759655e4f91f5ed036c5c5123818fec3509ece7a5aaabaafd3ecd058c5e"
+          },
+          "model-00080.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "24bab6ae50b7969a3caf05b7addd4e9961872c64aac418650e4f185d42ceea4c"
+          },
+          "model-00081.safetensors": {
+            "bytes": 608903744,
+            "header_sha256": "f4612d5338eec19a21ed4b2ce3eedd8b43e2804bf1431fa40e4704f2b079afdb"
+          },
+          "model-00082.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "6da8a127eef7b4c06931c38a1b4baefccf42fd701487dcb67bcc776df9f7dcc1"
+          },
+          "model-00083.safetensors": {
+            "bytes": 554243024,
+            "header_sha256": "7e5e5f5078b7af1583d4d97f9c7e5eb5e32960c78ad7ae76a685caf0b18c08c8"
+          },
+          "model-00084.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "3f0b4f1292e9e6d1c5e7047220aced1f365d8336e890bb6c2b32593aa095ff0e"
+          },
+          "model-00085.safetensors": {
+            "bytes": 554237776,
+            "header_sha256": "63ec762021767b419c444cffd220df4b829726c4e7bf43f4dc21aa3f6b0ea952"
+          },
+          "model-00086.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "0a9cbe012875af84652d1d1655a8daea4e10be9509d83ab7301430c45a1843f3"
+          },
+          "model-00087.safetensors": {
+            "bytes": 492636064,
+            "header_sha256": "2744effdad1df9c1d021f57cc2e82a4db5ac5af544b7471712e88e5eaa5c21ed"
+          },
+          "model-00088.safetensors": {
+            "bytes": 943719296,
+            "header_sha256": "5d5b966d2ddfb6f775187a841d354b7b0ae5d72023ae0f5a0c287438e91122a1"
+          },
+          "model-00089.safetensors": {
+            "bytes": 615866640,
+            "header_sha256": "3466b88c94f0368eb2eff3ffb8d2bcf485fdc4bd0c7a0a43d4cfdacffee408e7"
+          },
+          "model-00090.safetensors": {
+            "bytes": 943719288,
+            "header_sha256": "d7982a24b28133e821a0173f1eab3e7f94a9b5b1085113920b1fdff9c5cea32c"
+          },
+          "model-00091.safetensors": {
+            "bytes": 554237720,
+            "header_sha256": "2f516e136364e82991e11ea42dbe25228b3e4ebc1c8ec1d8f8731d75fbf287a1"
+          },
+          "model-00092.safetensors": {
+            "bytes": 943719288,
+            "header_sha256": "458a2a9cff83358f4945ea89cb1f0ca64516a713939ddabea54fa859e312fde9"
+          },
+          "model-00093.safetensors": {
+            "bytes": 499578984,
+            "header_sha256": "dd6df6bed40942834b1eae1f22c502d2b303e3f8d365eb9dd5dda87138819fcb"
+          },
+          "model-00094.safetensors": {
+            "bytes": 943719288,
+            "header_sha256": "6c0b99310c46f7a329a688df5b21ad475b5ead30a356ee5a27a72d259af2147e"
+          },
+          "model-00095.safetensors": {
+            "bytes": 608903032,
+            "header_sha256": "41ad712e17870289cf8de33cd1e196feaa75e1b2f8451f59907ca45021536b5a"
+          },
+          "model-00096.safetensors": {
+            "bytes": 943719288,
+            "header_sha256": "2c49fe3e46c907a1bf035614f5634d44be9796e8b9e387f30dc3b421fd5cfe52"
+          },
+          "model-00097.safetensors": {
+            "bytes": 554237720,
+            "header_sha256": "6c7dd630a79f3111427a72ad7a25c00c69bd391632cdfaa2a6c70f5682fdd090"
+          },
+          "model-00098.safetensors": {
+            "bytes": 943719288,
+            "header_sha256": "e891afe5a1d86b8c89986b1652836ccff54f52a2b3c1f6006c7850b1db54f505"
+          },
+          "model-00099.safetensors": {
+            "bytes": 843129712,
+            "header_sha256": "2041024493ee1528d26f62f9eb6c69fc817ecb345d13bc8ae412908c69b39f9a"
+          },
+          "model-00100.safetensors": {
+            "bytes": 675430752,
+            "header_sha256": "c1f813a4fdbe846fb86098774e3757ec263516408bf1a9a070c7dc30f676e3f5"
+          }
+        },
+        "weight_identity": "header hashes and caller revision; payload SHA not recomputed",
+        "memory_active_bytes": 72905295904,
+        "generated_tokens": 0
+      },
+      "datasets": {
+        "authored144-shared": {
+          "dataset": "authored144",
+          "mode": "shared",
+          "runs": 1,
+          "warmup": {
+            "runs": 0,
+            "timed": false,
+            "records": []
+          },
+          "rows_attempted": 144,
+          "rows_ok": 144,
+          "rows_error": 0,
+          "wall_seconds": 58.81772391695995,
+          "decisions_per_second": 2.4482416253186217,
+          "latency": {
+            "forward_seconds": {
+              "n": 72,
+              "sum": 27.73490691650659,
+              "mean": 0.38520704050703597,
+              "median": 0.38448531250469387,
+              "p90": 0.41781216603703797,
+              "max": 0.45120833395048976
+            },
+            "harness_group_wall_seconds": {
+              "n": 144,
+              "sum": 89.6472662484739,
+              "mean": 0.6225504600588465,
+              "median": 0.5597835829830728,
+              "p90": 0.787967334035784,
+              "max": 5.062262874911539
+            },
+            "harness_wall_seconds": {
+              "n": 144,
+              "sum": 58.77461933158338,
+              "mean": 0.40815707869155127,
+              "median": 0.3758447919972241,
+              "p90": 0.4124352919170633,
+              "max": 2.5311314374557696
+            },
+            "total_seconds": {
+              "n": 72,
+              "sum": 27.787176752230152,
+              "mean": 0.385933010447641,
+              "median": 0.3851635830360465,
+              "p90": 0.41855812491849065,
+              "max": 0.4523658329853788
+            }
+          },
+          "group_timings": [
+            {
+              "group_id": "2fdaa8a61e6e989dd866",
+              "rows": 2,
+              "wall_seconds": 5.062262874911539,
+              "backend_timing": {
+                "total_seconds": 5.060063541983254,
+                "prefix_tokens": 62,
+                "prefill_seconds": 4.1904412501025945,
+                "copy_seconds": 0.0006978749297559261,
+                "suffix_forward_seconds": 0.8550677079474553,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2fdaa8a61e6e989dd866",
+              "rows": 1,
+              "wall_seconds": 0.3165644999826327,
+              "backend_timing": {
+                "total_seconds": 0.3150746669853106,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3144320839783177,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2fdaa8a61e6e989dd866",
+              "rows": 1,
+              "wall_seconds": 0.35279791697394103,
+              "backend_timing": {
+                "total_seconds": 0.35133983299601823,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3506249999627471,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "f4bea3d3bcc01056740d",
+              "rows": 2,
+              "wall_seconds": 0.7516895839944482,
+              "backend_timing": {
+                "total_seconds": 0.7497045000782236,
+                "prefix_tokens": 64,
+                "prefill_seconds": 0.22610470792278647,
+                "copy_seconds": 0.0006662080995738506,
+                "suffix_forward_seconds": 0.5199420840945095,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "f4bea3d3bcc01056740d",
+              "rows": 1,
+              "wall_seconds": 0.43033737502992153,
+              "backend_timing": {
+                "total_seconds": 0.4284354579867795,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.42780508392024785,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "f4bea3d3bcc01056740d",
+              "rows": 1,
+              "wall_seconds": 0.40080937498714775,
+              "backend_timing": {
+                "total_seconds": 0.3994020000100136,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.39874224993400276,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "b51b300da2936decc6b7",
+              "rows": 2,
+              "wall_seconds": 0.6775905840331689,
+              "backend_timing": {
+                "total_seconds": 0.6755239589838311,
+                "prefix_tokens": 54,
+                "prefill_seconds": 0.20492304197978228,
+                "copy_seconds": 0.000984958023764193,
+                "suffix_forward_seconds": 0.4665587090421468,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "b51b300da2936decc6b7",
+              "rows": 1,
+              "wall_seconds": 0.3643160000210628,
+              "backend_timing": {
+                "total_seconds": 0.3629517920780927,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3620399999199435,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "b51b300da2936decc6b7",
+              "rows": 1,
+              "wall_seconds": 0.368627667077817,
+              "backend_timing": {
+                "total_seconds": 0.3669943750137463,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3664006249746308,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e4cfd694c80e08d3e6a5",
+              "rows": 2,
+              "wall_seconds": 0.7080797500675544,
+              "backend_timing": {
+                "total_seconds": 0.7059667919529602,
+                "prefix_tokens": 63,
+                "prefill_seconds": 0.22516775003168732,
+                "copy_seconds": 0.0008290010737255216,
+                "suffix_forward_seconds": 0.4767924170009792,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e4cfd694c80e08d3e6a5",
+              "rows": 1,
+              "wall_seconds": 0.37526429106947035,
+              "backend_timing": {
+                "total_seconds": 0.3738461670000106,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.37314304197207093,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e4cfd694c80e08d3e6a5",
+              "rows": 1,
+              "wall_seconds": 0.37163433304522187,
+              "backend_timing": {
+                "total_seconds": 0.36990954203065485,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3692926249932498,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "20460d4ae0db46091e84",
+              "rows": 2,
+              "wall_seconds": 0.6892857499187812,
+              "backend_timing": {
+                "total_seconds": 0.6871788749704137,
+                "prefix_tokens": 57,
+                "prefill_seconds": 0.21304608299396932,
+                "copy_seconds": 0.000730457017198205,
+                "suffix_forward_seconds": 0.4704102500109002,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "20460d4ae0db46091e84",
+              "rows": 1,
+              "wall_seconds": 0.36325695901177824,
+              "backend_timing": {
+                "total_seconds": 0.36182129103690386,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3611503329593688,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "20460d4ae0db46091e84",
+              "rows": 1,
+              "wall_seconds": 0.36827883298974484,
+              "backend_timing": {
+                "total_seconds": 0.3668980000074953,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3662060829810798,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "51b91ba31984c5939c1c",
+              "rows": 2,
+              "wall_seconds": 0.7236243330407888,
+              "backend_timing": {
+                "total_seconds": 0.7215521249454468,
+                "prefix_tokens": 69,
+                "prefill_seconds": 0.24522608297411352,
+                "copy_seconds": 0.0007507089758291841,
+                "suffix_forward_seconds": 0.47236387501470745,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "51b91ba31984c5939c1c",
+              "rows": 1,
+              "wall_seconds": 0.37965941592119634,
+              "backend_timing": {
+                "total_seconds": 0.37790170800872147,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.37731008301489055,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "51b91ba31984c5939c1c",
+              "rows": 1,
+              "wall_seconds": 0.37613445904571563,
+              "backend_timing": {
+                "total_seconds": 0.37472624995280057,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.37409604096319526,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "770c1607f0a11f88f81e",
+              "rows": 2,
+              "wall_seconds": 0.7940614579711109,
+              "backend_timing": {
+                "total_seconds": 0.7918800830375403,
+                "prefix_tokens": 59,
+                "prefill_seconds": 0.2118541660020128,
+                "copy_seconds": 0.0008131250506266952,
+                "suffix_forward_seconds": 0.5760737499222159,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "770c1607f0a11f88f81e",
+              "rows": 1,
+              "wall_seconds": 0.3761170420330018,
+              "backend_timing": {
+                "total_seconds": 0.3744365409947932,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.37380541604943573,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "770c1607f0a11f88f81e",
+              "rows": 1,
+              "wall_seconds": 0.399075833032839,
+              "backend_timing": {
+                "total_seconds": 0.3975967090809718,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.39691083400975913,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "ffd081ada3bd9be9207a",
+              "rows": 2,
+              "wall_seconds": 0.8037092079175636,
+              "backend_timing": {
+                "total_seconds": 0.8016803330974653,
+                "prefix_tokens": 53,
+                "prefill_seconds": 0.20457875006832182,
+                "copy_seconds": 0.0008387078996747732,
+                "suffix_forward_seconds": 0.593231082893908,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "ffd081ada3bd9be9207a",
+              "rows": 1,
+              "wall_seconds": 0.38913587504066527,
+              "backend_timing": {
+                "total_seconds": 0.3876487499801442,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.38698887499049306,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "ffd081ada3bd9be9207a",
+              "rows": 1,
+              "wall_seconds": 0.40311716706492007,
+              "backend_timing": {
+                "total_seconds": 0.4017123749945313,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.40102058299817145,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2c3a0cb61f7bae78739e",
+              "rows": 2,
+              "wall_seconds": 0.7901435409439728,
+              "backend_timing": {
+                "total_seconds": 0.787834707996808,
+                "prefix_tokens": 56,
+                "prefill_seconds": 0.2088166669709608,
+                "copy_seconds": 0.0007057080511003733,
+                "suffix_forward_seconds": 0.5750908339396119,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2c3a0cb61f7bae78739e",
+              "rows": 1,
+              "wall_seconds": 0.37287162500433624,
+              "backend_timing": {
+                "total_seconds": 0.37124670890625566,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3706683750497177,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2c3a0cb61f7bae78739e",
+              "rows": 1,
+              "wall_seconds": 0.38660316599998623,
+              "backend_timing": {
+                "total_seconds": 0.3851004160242155,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3844002920668572,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "42ed4cbfde7f2f64274b",
+              "rows": 2,
+              "wall_seconds": 0.7534489170648158,
+              "backend_timing": {
+                "total_seconds": 0.7509606669191271,
+                "prefix_tokens": 56,
+                "prefill_seconds": 0.17914087499957532,
+                "copy_seconds": 0.0007017089519649744,
+                "suffix_forward_seconds": 0.5680039580911398,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "42ed4cbfde7f2f64274b",
+              "rows": 1,
+              "wall_seconds": 0.40384441695641726,
+              "backend_timing": {
+                "total_seconds": 0.4023384579923004,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4012943340931088,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "42ed4cbfde7f2f64274b",
+              "rows": 1,
+              "wall_seconds": 0.40693112509325147,
+              "backend_timing": {
+                "total_seconds": 0.4054536250187084,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.404759458033368,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "6dd193172b9240a04bf9",
+              "rows": 2,
+              "wall_seconds": 0.7283395000267774,
+              "backend_timing": {
+                "total_seconds": 0.7261962920892984,
+                "prefix_tokens": 57,
+                "prefill_seconds": 0.1792914579855278,
+                "copy_seconds": 0.0007182499393820763,
+                "suffix_forward_seconds": 0.5432405420579016,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "6dd193172b9240a04bf9",
+              "rows": 1,
+              "wall_seconds": 0.38742958300281316,
+              "backend_timing": {
+                "total_seconds": 0.38580066699068993,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3851594579173252,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "6dd193172b9240a04bf9",
+              "rows": 1,
+              "wall_seconds": 0.40448691695928574,
+              "backend_timing": {
+                "total_seconds": 0.4030332500115037,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4023239160887897,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3200eb252d6737e03027",
+              "rows": 2,
+              "wall_seconds": 0.7440820418996736,
+              "backend_timing": {
+                "total_seconds": 0.7418889579130337,
+                "prefix_tokens": 51,
+                "prefill_seconds": 0.20399091695435345,
+                "copy_seconds": 0.0007328748470172286,
+                "suffix_forward_seconds": 0.5337940000463277,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3200eb252d6737e03027",
+              "rows": 1,
+              "wall_seconds": 0.38662404101341963,
+              "backend_timing": {
+                "total_seconds": 0.38522675004787743,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3845703329425305,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3200eb252d6737e03027",
+              "rows": 1,
+              "wall_seconds": 0.39668304193764925,
+              "backend_timing": {
+                "total_seconds": 0.39520937495399266,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3945773330051452,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "c0cbeb97315307af8111",
+              "rows": 2,
+              "wall_seconds": 0.6971447920659557,
+              "backend_timing": {
+                "total_seconds": 0.6950234159594402,
+                "prefix_tokens": 68,
+                "prefill_seconds": 0.2396214579930529,
+                "copy_seconds": 0.0007132078753784299,
+                "suffix_forward_seconds": 0.45171645807567984,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "c0cbeb97315307af8111",
+              "rows": 1,
+              "wall_seconds": 0.34323070803657174,
+              "backend_timing": {
+                "total_seconds": 0.34153791598509997,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.34081199998036027,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "c0cbeb97315307af8111",
+              "rows": 1,
+              "wall_seconds": 0.3536951249698177,
+              "backend_timing": {
+                "total_seconds": 0.3522839170182124,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3516219579614699,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "428176cd8ad2c7a74eea",
+              "rows": 2,
+              "wall_seconds": 0.7163957909215242,
+              "backend_timing": {
+                "total_seconds": 0.7143712500110269,
+                "prefix_tokens": 75,
+                "prefill_seconds": 0.2309917500242591,
+                "copy_seconds": 0.0007808749796822667,
+                "suffix_forward_seconds": 0.47914695902727544,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "428176cd8ad2c7a74eea",
+              "rows": 1,
+              "wall_seconds": 0.36782670801039785,
+              "backend_timing": {
+                "total_seconds": 0.36647925002034754,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.36581904208287597,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "428176cd8ad2c7a74eea",
+              "rows": 1,
+              "wall_seconds": 0.3442677080165595,
+              "backend_timing": {
+                "total_seconds": 0.34258270903956145,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.34191329195164144,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "389e65bf1ba709b84b12",
+              "rows": 2,
+              "wall_seconds": 0.6907643330050632,
+              "backend_timing": {
+                "total_seconds": 0.6882337499409914,
+                "prefix_tokens": 69,
+                "prefill_seconds": 0.21759179199580103,
+                "copy_seconds": 0.0007991259917616844,
+                "suffix_forward_seconds": 0.466787250014022,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "389e65bf1ba709b84b12",
+              "rows": 1,
+              "wall_seconds": 0.36211849993560463,
+              "backend_timing": {
+                "total_seconds": 0.36074050003662705,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.36002958402968943,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "389e65bf1ba709b84b12",
+              "rows": 1,
+              "wall_seconds": 0.35934220894705504,
+              "backend_timing": {
+                "total_seconds": 0.35782212496269494,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.35722920892294496,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "45f8ead2522a14384cdc",
+              "rows": 2,
+              "wall_seconds": 0.6653505000285804,
+              "backend_timing": {
+                "total_seconds": 0.6633614170132205,
+                "prefix_tokens": 70,
+                "prefill_seconds": 0.22297029197216034,
+                "copy_seconds": 0.000756791909225285,
+                "suffix_forward_seconds": 0.43640612508170307,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "45f8ead2522a14384cdc",
+              "rows": 1,
+              "wall_seconds": 0.35758237494155765,
+              "backend_timing": {
+                "total_seconds": 0.35594495898112655,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.35529287497047335,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "45f8ead2522a14384cdc",
+              "rows": 1,
+              "wall_seconds": 0.35132637503556907,
+              "backend_timing": {
+                "total_seconds": 0.3499025000492111,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.34932091692462564,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3ecec8e2c166e397ad07",
+              "rows": 2,
+              "wall_seconds": 0.6874937909888104,
+              "backend_timing": {
+                "total_seconds": 0.6854186659911647,
+                "prefix_tokens": 73,
+                "prefill_seconds": 0.22317695897072554,
+                "copy_seconds": 0.0007721249712631106,
+                "suffix_forward_seconds": 0.45800133305601776,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3ecec8e2c166e397ad07",
+              "rows": 1,
+              "wall_seconds": 0.3575002079596743,
+              "backend_timing": {
+                "total_seconds": 0.35586037510074675,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3551943749189377,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3ecec8e2c166e397ad07",
+              "rows": 1,
+              "wall_seconds": 0.3511027089552954,
+              "backend_timing": {
+                "total_seconds": 0.34968800004571676,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3490254170028493,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a71a17a287f3d30db2aa",
+              "rows": 2,
+              "wall_seconds": 0.6678303339285776,
+              "backend_timing": {
+                "total_seconds": 0.6656858749920502,
+                "prefix_tokens": 73,
+                "prefill_seconds": 0.2225647500017658,
+                "copy_seconds": 0.0007269160123541951,
+                "suffix_forward_seconds": 0.43928379099816084,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a71a17a287f3d30db2aa",
+              "rows": 1,
+              "wall_seconds": 0.3532172089908272,
+              "backend_timing": {
+                "total_seconds": 0.3515990829328075,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.35101445799227804,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a71a17a287f3d30db2aa",
+              "rows": 1,
+              "wall_seconds": 0.352153958985582,
+              "backend_timing": {
+                "total_seconds": 0.3507312500150874,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.35004879196640104,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "986d7eaba0c7e9738e79",
+              "rows": 2,
+              "wall_seconds": 0.7276392499916255,
+              "backend_timing": {
+                "total_seconds": 0.7254472089698538,
+                "prefix_tokens": 72,
+                "prefill_seconds": 0.22187516593839973,
+                "copy_seconds": 0.0007377079455181956,
+                "suffix_forward_seconds": 0.4997950829565525,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "986d7eaba0c7e9738e79",
+              "rows": 1,
+              "wall_seconds": 0.3842111669946462,
+              "backend_timing": {
+                "total_seconds": 0.382663541007787,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3818927078973502,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "986d7eaba0c7e9738e79",
+              "rows": 1,
+              "wall_seconds": 0.3865298329619691,
+              "backend_timing": {
+                "total_seconds": 0.3850006249267608,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3842670830199495,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "ca2e0b043985fa49bcd2",
+              "rows": 2,
+              "wall_seconds": 0.8298919999506325,
+              "backend_timing": {
+                "total_seconds": 0.8274322079960257,
+                "prefix_tokens": 66,
+                "prefill_seconds": 0.2330145000014454,
+                "copy_seconds": 0.0007432909915223718,
+                "suffix_forward_seconds": 0.5905232490040362,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "ca2e0b043985fa49bcd2",
+              "rows": 1,
+              "wall_seconds": 0.40507487498689443,
+              "backend_timing": {
+                "total_seconds": 0.40350987506099045,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4026756250532344,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "ca2e0b043985fa49bcd2",
+              "rows": 1,
+              "wall_seconds": 0.42015062493737787,
+              "backend_timing": {
+                "total_seconds": 0.41855812491849065,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.41781216603703797,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "85051ba3c30277824ebe",
+              "rows": 2,
+              "wall_seconds": 0.6904164999723434,
+              "backend_timing": {
+                "total_seconds": 0.6882418330060318,
+                "prefix_tokens": 74,
+                "prefill_seconds": 0.2270872499793768,
+                "copy_seconds": 0.0007673759246245027,
+                "suffix_forward_seconds": 0.45709137595258653,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "85051ba3c30277824ebe",
+              "rows": 1,
+              "wall_seconds": 0.38317354198079556,
+              "backend_timing": {
+                "total_seconds": 0.38161033403594047,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3807114999508485,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "85051ba3c30277824ebe",
+              "rows": 1,
+              "wall_seconds": 0.39183662505820394,
+              "backend_timing": {
+                "total_seconds": 0.3902859999798238,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3894054590491578,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e7798dab5f4f121cab77",
+              "rows": 2,
+              "wall_seconds": 0.7346888330066577,
+              "backend_timing": {
+                "total_seconds": 0.7323219169629738,
+                "prefix_tokens": 83,
+                "prefill_seconds": 0.24589566595386714,
+                "copy_seconds": 0.0008898329688236117,
+                "suffix_forward_seconds": 0.482057083863765,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e7798dab5f4f121cab77",
+              "rows": 1,
+              "wall_seconds": 0.3708676660899073,
+              "backend_timing": {
+                "total_seconds": 0.3694163749460131,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.36875970801338553,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e7798dab5f4f121cab77",
+              "rows": 1,
+              "wall_seconds": 0.38908791600260884,
+              "backend_timing": {
+                "total_seconds": 0.3875432090135291,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3868846249533817,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "928ebc7817a8f1cac3e4",
+              "rows": 2,
+              "wall_seconds": 0.7962405420839787,
+              "backend_timing": {
+                "total_seconds": 0.7938060410087928,
+                "prefix_tokens": 68,
+                "prefill_seconds": 0.21534074994269758,
+                "copy_seconds": 0.000927083077840507,
+                "suffix_forward_seconds": 0.5743605409516022,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "928ebc7817a8f1cac3e4",
+              "rows": 1,
+              "wall_seconds": 0.39676520798821,
+              "backend_timing": {
+                "total_seconds": 0.39518758305348456,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.39450795797165483,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "928ebc7817a8f1cac3e4",
+              "rows": 1,
+              "wall_seconds": 0.4141006669960916,
+              "backend_timing": {
+                "total_seconds": 0.4125359579920769,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4118029590463266,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "53b0770ec36835b81d3a",
+              "rows": 2,
+              "wall_seconds": 0.7251197079895064,
+              "backend_timing": {
+                "total_seconds": 0.7228685830486938,
+                "prefix_tokens": 84,
+                "prefill_seconds": 0.26996658300049603,
+                "copy_seconds": 0.0007712919032201171,
+                "suffix_forward_seconds": 0.4486464170040563,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "53b0770ec36835b81d3a",
+              "rows": 1,
+              "wall_seconds": 0.39610933291260153,
+              "backend_timing": {
+                "total_seconds": 0.3945186670171097,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.393737250007689,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "53b0770ec36835b81d3a",
+              "rows": 1,
+              "wall_seconds": 0.3727732920087874,
+              "backend_timing": {
+                "total_seconds": 0.3712400000076741,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3704942080657929,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "056cc5b726d6e8300a77",
+              "rows": 2,
+              "wall_seconds": 0.7195117500377819,
+              "backend_timing": {
+                "total_seconds": 0.7170005000662059,
+                "prefix_tokens": 78,
+                "prefill_seconds": 0.23433337500318885,
+                "copy_seconds": 0.0006811250932514668,
+                "suffix_forward_seconds": 0.47856016689911485,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "056cc5b726d6e8300a77",
+              "rows": 1,
+              "wall_seconds": 0.40570370794739574,
+              "backend_timing": {
+                "total_seconds": 0.40417258394882083,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.40342345798853785,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "056cc5b726d6e8300a77",
+              "rows": 1,
+              "wall_seconds": 0.4060294160153717,
+              "backend_timing": {
+                "total_seconds": 0.40452170895878226,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.40379091689828783,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e3ce8ec496dbc9974f94",
+              "rows": 2,
+              "wall_seconds": 0.7456994169624522,
+              "backend_timing": {
+                "total_seconds": 0.7432513330131769,
+                "prefix_tokens": 59,
+                "prefill_seconds": 0.1827859579352662,
+                "copy_seconds": 0.0007955839391797781,
+                "suffix_forward_seconds": 0.5564472919795662,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e3ce8ec496dbc9974f94",
+              "rows": 1,
+              "wall_seconds": 0.4068713749293238,
+              "backend_timing": {
+                "total_seconds": 0.4051111249718815,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.40435812494251877,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e3ce8ec496dbc9974f94",
+              "rows": 1,
+              "wall_seconds": 0.40925920801237226,
+              "backend_timing": {
+                "total_seconds": 0.40741958306171,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.406709042028524,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a5b234c2e4fb304f1071",
+              "rows": 2,
+              "wall_seconds": 0.7169158749748021,
+              "backend_timing": {
+                "total_seconds": 0.7145072920247912,
+                "prefix_tokens": 91,
+                "prefill_seconds": 0.2605578750371933,
+                "copy_seconds": 0.000685540959239006,
+                "suffix_forward_seconds": 0.4498379580909386,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a5b234c2e4fb304f1071",
+              "rows": 1,
+              "wall_seconds": 0.406077167019248,
+              "backend_timing": {
+                "total_seconds": 0.4043709170073271,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4036496670451015,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a5b234c2e4fb304f1071",
+              "rows": 1,
+              "wall_seconds": 0.38771166699007154,
+              "backend_timing": {
+                "total_seconds": 0.38623662502504885,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.385512207983993,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "d142f7fd0efa0eddc788",
+              "rows": 2,
+              "wall_seconds": 0.7540069170063362,
+              "backend_timing": {
+                "total_seconds": 0.7514562079450116,
+                "prefix_tokens": 80,
+                "prefill_seconds": 0.23751825001090765,
+                "copy_seconds": 0.0007025409722700715,
+                "suffix_forward_seconds": 0.5097602501045913,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "d142f7fd0efa0eddc788",
+              "rows": 1,
+              "wall_seconds": 0.408958708983846,
+              "backend_timing": {
+                "total_seconds": 0.40727691596839577,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.40654341608751565,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "d142f7fd0efa0eddc788",
+              "rows": 1,
+              "wall_seconds": 0.38321370794437826,
+              "backend_timing": {
+                "total_seconds": 0.38152199995238334,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3808570420369506,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3476d3f4f32290fe57c3",
+              "rows": 2,
+              "wall_seconds": 0.7842535839881748,
+              "backend_timing": {
+                "total_seconds": 0.7820513750193641,
+                "prefix_tokens": 63,
+                "prefill_seconds": 0.19050845806486905,
+                "copy_seconds": 0.0007432079873979092,
+                "suffix_forward_seconds": 0.5874473759904504,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3476d3f4f32290fe57c3",
+              "rows": 1,
+              "wall_seconds": 0.421377667109482,
+              "backend_timing": {
+                "total_seconds": 0.41957358398940414,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.41882879100739956,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3476d3f4f32290fe57c3",
+              "rows": 1,
+              "wall_seconds": 0.4113910000305623,
+              "backend_timing": {
+                "total_seconds": 0.4098407080164179,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4091074999887496,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "c979db7416b206c1eb09",
+              "rows": 2,
+              "wall_seconds": 0.738245208049193,
+              "backend_timing": {
+                "total_seconds": 0.7357615410583094,
+                "prefix_tokens": 86,
+                "prefill_seconds": 0.27587983303237706,
+                "copy_seconds": 0.0007598340744152665,
+                "suffix_forward_seconds": 0.45585937495343387,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "c979db7416b206c1eb09",
+              "rows": 1,
+              "wall_seconds": 0.38025362498592585,
+              "backend_timing": {
+                "total_seconds": 0.3787454579723999,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3780043749138713,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "c979db7416b206c1eb09",
+              "rows": 1,
+              "wall_seconds": 0.36293649999424815,
+              "backend_timing": {
+                "total_seconds": 0.36140204197727144,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.36071312497369945,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "f7403e39d6796072491c",
+              "rows": 2,
+              "wall_seconds": 0.6918646249687299,
+              "backend_timing": {
+                "total_seconds": 0.6897316660033539,
+                "prefix_tokens": 71,
+                "prefill_seconds": 0.21714441594667733,
+                "copy_seconds": 0.0006855420069769025,
+                "suffix_forward_seconds": 0.46870779094751924,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "f7403e39d6796072491c",
+              "rows": 1,
+              "wall_seconds": 0.36779779102653265,
+              "backend_timing": {
+                "total_seconds": 0.366080499952659,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3654278330504894,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "f7403e39d6796072491c",
+              "rows": 1,
+              "wall_seconds": 0.374816166004166,
+              "backend_timing": {
+                "total_seconds": 0.3733600830892101,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.37271079199854285,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a060fd4621be415e9f1a",
+              "rows": 2,
+              "wall_seconds": 0.787967334035784,
+              "backend_timing": {
+                "total_seconds": 0.785305583034642,
+                "prefix_tokens": 55,
+                "prefill_seconds": 0.20262875000480562,
+                "copy_seconds": 0.0007985009578987956,
+                "suffix_forward_seconds": 0.5783575830282643,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a060fd4621be415e9f1a",
+              "rows": 1,
+              "wall_seconds": 0.4065993339754641,
+              "backend_timing": {
+                "total_seconds": 0.40479325002525,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.40399779204744846,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a060fd4621be415e9f1a",
+              "rows": 1,
+              "wall_seconds": 0.44154374999925494,
+              "backend_timing": {
+                "total_seconds": 0.4395297500304878,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4385890830308199,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2b0f8eda8903e38a47de",
+              "rows": 2,
+              "wall_seconds": 0.755323791061528,
+              "backend_timing": {
+                "total_seconds": 0.7527024169685319,
+                "prefix_tokens": 76,
+                "prefill_seconds": 0.2625420829281211,
+                "copy_seconds": 0.0007732078665867448,
+                "suffix_forward_seconds": 0.48522066604346037,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2b0f8eda8903e38a47de",
+              "rows": 1,
+              "wall_seconds": 0.3974795410176739,
+              "backend_timing": {
+                "total_seconds": 0.3954781249631196,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3945617909776047,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2b0f8eda8903e38a47de",
+              "rows": 1,
+              "wall_seconds": 0.37502741697244346,
+              "backend_timing": {
+                "total_seconds": 0.373166959034279,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.3723561669467017,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "01020a1eaf46ec2fba5d",
+              "rows": 2,
+              "wall_seconds": 0.7794599169865251,
+              "backend_timing": {
+                "total_seconds": 0.7765322079649195,
+                "prefix_tokens": 78,
+                "prefill_seconds": 0.24947079201228917,
+                "copy_seconds": 0.0009150829864665866,
+                "suffix_forward_seconds": 0.522084999945946,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "01020a1eaf46ec2fba5d",
+              "rows": 1,
+              "wall_seconds": 0.45421666593756527,
+              "backend_timing": {
+                "total_seconds": 0.4523658329853788,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.45120833395048976,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "01020a1eaf46ec2fba5d",
+              "rows": 1,
+              "wall_seconds": 0.449167332961224,
+              "backend_timing": {
+                "total_seconds": 0.44744562497362494,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4466186669887975,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "6a06a2f278301c1412ee",
+              "rows": 2,
+              "wall_seconds": 0.7981998750474304,
+              "backend_timing": {
+                "total_seconds": 0.7957334170350805,
+                "prefix_tokens": 56,
+                "prefill_seconds": 0.1852813339792192,
+                "copy_seconds": 0.0008498750394210219,
+                "suffix_forward_seconds": 0.6063607919495553,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "6a06a2f278301c1412ee",
+              "rows": 1,
+              "wall_seconds": 0.43275512498803437,
+              "backend_timing": {
+                "total_seconds": 0.4309747499646619,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4301982920151204,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "6a06a2f278301c1412ee",
+              "rows": 1,
+              "wall_seconds": 0.4397119579371065,
+              "backend_timing": {
+                "total_seconds": 0.4380865410203114,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.43722787499427795,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2797f8c23d05c0ee06b3",
+              "rows": 2,
+              "wall_seconds": 0.7459047080483288,
+              "backend_timing": {
+                "total_seconds": 0.7436172500019893,
+                "prefix_tokens": 69,
+                "prefill_seconds": 0.22499999997671694,
+                "copy_seconds": 0.0010090420255437493,
+                "suffix_forward_seconds": 0.5143393750768155,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2797f8c23d05c0ee06b3",
+              "rows": 1,
+              "wall_seconds": 0.4159927919972688,
+              "backend_timing": {
+                "total_seconds": 0.41383570909965783,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.41285449999850243,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2797f8c23d05c0ee06b3",
+              "rows": 1,
+              "wall_seconds": 0.4124352919170633,
+              "backend_timing": {
+                "total_seconds": 0.4105187919922173,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.40966250002384186,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            }
+          ],
+          "memory": {
+            "active_bytes": 72905299538,
+            "cache_bytes": 270271100,
+            "peak_bytes": 73498752374
+          },
+          "output": "../../artifacts/openjev-native/native-final-quality/qwen38-native/authored144-shared.jsonl",
+          "quality": {
+            "available_gold": 144,
+            "scored": 144,
+            "evaluated": 144,
+            "coverage": 1.0,
+            "missing": 0,
+            "invalid": 0,
+            "family_results": {
+              "evidence_interpretation": {
+                "n": 48,
+                "accuracy": 0.9791666666666666,
+                "balanced_accuracy": 0.9722222222222222,
+                "macro_f1": 0.9747545582047685,
+                "source_groups": 12,
+                "invalid_or_missing": 0,
+                "all_decisions_correct_group_rate": 0.9166666666666666,
+                "probability_rows": 48,
+                "probability_coverage": 1.0,
+                "nll": 0.04589637587591113,
+                "nll_valid_distributions_only": 0.04589637587591113,
+                "brier": 0.02931743701385771,
+                "brier_valid_distributions_only": 0.02931743701385771,
+                "nll_probability_floor": 1e-12,
+                "risk_coverage": [
+                  {
+                    "requested_coverage": 0.25,
+                    "coverage": 0.25,
+                    "n": 12,
+                    "threshold": 0.9982371436001771,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 0.5,
+                    "coverage": 0.5,
+                    "n": 24,
+                    "threshold": 0.9958637058943915,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 0.75,
+                    "coverage": 0.75,
+                    "n": 36,
+                    "threshold": 0.9902729593498204,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 1,
+                    "coverage": 1.0,
+                    "n": 48,
+                    "threshold": 0.8305067158725735,
+                    "error": 0.02083333333333337
+                  }
+                ],
+                "reliability_bins": [
+                  {
+                    "lower": 0.8,
+                    "upper": 0.9,
+                    "n": 1,
+                    "mean_confidence": 0.8305067158725735,
+                    "accuracy": 0.0
+                  },
+                  {
+                    "lower": 0.9,
+                    "upper": 1.0,
+                    "n": 47,
+                    "mean_confidence": 0.9917689803953331,
+                    "accuracy": 1.0
+                  }
+                ],
+                "accuracy_cluster_bootstrap_95": [
+                  0.9375,
+                  1.0
+                ]
+              },
+              "rule_application": {
+                "n": 48,
+                "accuracy": 0.9583333333333334,
+                "balanced_accuracy": 0.9444444444444445,
+                "macro_f1": 0.9488636363636364,
+                "source_groups": 12,
+                "invalid_or_missing": 0,
+                "all_decisions_correct_group_rate": 0.8333333333333334,
+                "probability_rows": 48,
+                "probability_coverage": 1.0,
+                "nll": 0.1548493686230407,
+                "nll_valid_distributions_only": 0.1548493686230407,
+                "brier": 0.06394529736818297,
+                "brier_valid_distributions_only": 0.06394529736818297,
+                "nll_probability_floor": 1e-12,
+                "risk_coverage": [
+                  {
+                    "requested_coverage": 0.25,
+                    "coverage": 0.25,
+                    "n": 12,
+                    "threshold": 0.9977817371517574,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 0.5,
+                    "coverage": 0.5,
+                    "n": 24,
+                    "threshold": 0.9927829127577185,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 0.75,
+                    "coverage": 0.75,
+                    "n": 36,
+                    "threshold": 0.9832307885926831,
+                    "error": 0.02777777777777779
+                  },
+                  {
+                    "requested_coverage": 1,
+                    "coverage": 1.0,
+                    "n": 48,
+                    "threshold": 0.6999431370000927,
+                    "error": 0.04166666666666663
+                  }
+                ],
+                "reliability_bins": [
+                  {
+                    "lower": 0.6,
+                    "upper": 0.7,
+                    "n": 1,
+                    "mean_confidence": 0.6999431370000927,
+                    "accuracy": 0.0
+                  },
+                  {
+                    "lower": 0.7,
+                    "upper": 0.8,
+                    "n": 1,
+                    "mean_confidence": 0.7878038930767532,
+                    "accuracy": 1.0
+                  },
+                  {
+                    "lower": 0.9,
+                    "upper": 1.0,
+                    "n": 46,
+                    "mean_confidence": 0.9874475876399316,
+                    "accuracy": 0.9782608695652174
+                  }
+                ],
+                "accuracy_cluster_bootstrap_95": [
+                  0.8958333333333334,
+                  1.0
+                ]
+              },
+              "candidate_selection": {
+                "n": 48,
+                "accuracy": 0.8958333333333334,
+                "balanced_accuracy": 0.8774509803921569,
+                "macro_f1": 0.888095238095238,
+                "source_groups": 12,
+                "invalid_or_missing": 0,
+                "all_decisions_correct_group_rate": 0.6666666666666666,
+                "probability_rows": 48,
+                "probability_coverage": 1.0,
+                "nll": 0.2760897385147251,
+                "nll_valid_distributions_only": 0.2760897385147251,
+                "brier": 0.16536518623829424,
+                "brier_valid_distributions_only": 0.16536518623829424,
+                "nll_probability_floor": 1e-12,
+                "risk_coverage": [
+                  {
+                    "requested_coverage": 0.25,
+                    "coverage": 0.25,
+                    "n": 12,
+                    "threshold": 0.9961726133378638,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 0.5,
+                    "coverage": 0.5,
+                    "n": 24,
+                    "threshold": 0.9930886088560553,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 0.75,
+                    "coverage": 0.7708333333333334,
+                    "n": 37,
+                    "threshold": 0.9643965690374765,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 1,
+                    "coverage": 1.0,
+                    "n": 48,
+                    "threshold": 0.6624117938958737,
+                    "error": 0.10416666666666663
+                  }
+                ],
+                "reliability_bins": [
+                  {
+                    "lower": 0.6,
+                    "upper": 0.7,
+                    "n": 1,
+                    "mean_confidence": 0.6624117938958737,
+                    "accuracy": 1.0
+                  },
+                  {
+                    "lower": 0.7,
+                    "upper": 0.8,
+                    "n": 1,
+                    "mean_confidence": 0.7275692920690245,
+                    "accuracy": 0.0
+                  },
+                  {
+                    "lower": 0.8,
+                    "upper": 0.9,
+                    "n": 4,
+                    "mean_confidence": 0.8701718296268662,
+                    "accuracy": 0.25
+                  },
+                  {
+                    "lower": 0.9,
+                    "upper": 1.0,
+                    "n": 42,
+                    "mean_confidence": 0.9861975222151871,
+                    "accuracy": 0.9761904761904762
+                  }
+                ],
+                "accuracy_cluster_bootstrap_95": [
+                  0.8125,
+                  0.9791666666666666
+                ]
+              }
+            },
+            "mean_family_balanced_accuracy": 0.9313725490196078,
+            "mean_family_macro_f1": 0.9372378108878809,
+            "analytic_uncertainty": {
+              "n": 0,
+              "rows": []
+            },
+            "errors": [
+              {
+                "id": "fdb9fc214aea2710763a",
+                "group_id": "428176cd8ad2c7a74eea",
+                "family": "candidate_selection",
+                "gold_id": "insufficient",
+                "predicted_id": "A",
+                "correct": false,
+                "confidence": 0.8580345416578924,
+                "nll": 2.7781109219619884,
+                "brier": 1.62214457178242,
+                "status": "distribution",
+                "probabilities": [
+                  0.07980964461741463,
+                  0.8580345416578924,
+                  0.06215581372469303
+                ]
+              },
+              {
+                "id": "def9fe59d262357a673a",
+                "group_id": "389e65bf1ba709b84b12",
+                "family": "candidate_selection",
+                "gold_id": "insufficient",
+                "predicted_id": "A",
+                "correct": false,
+                "confidence": 0.8925829918005838,
+                "nll": 2.8636357816396014,
+                "brier": 1.6883742382527442,
+                "status": "distribution",
+                "probabilities": [
+                  0.057060921615295516,
+                  0.8925829918005838,
+                  0.050356086584120684
+                ]
+              },
+              {
+                "id": "82c2cd97c160ad27951b",
+                "group_id": "3ecec8e2c166e397ad07",
+                "family": "candidate_selection",
+                "gold_id": "insufficient",
+                "predicted_id": "A",
+                "correct": false,
+                "confidence": 0.7275692920690245,
+                "nll": 1.4430460376419065,
+                "brier": 1.1140487132706007,
+                "status": "distribution",
+                "probabilities": [
+                  0.23620716584437662,
+                  0.0362235420865989,
+                  0.7275692920690245
+                ]
+              },
+              {
+                "id": "d51b05bfb9d6d7f09331",
+                "group_id": "928ebc7817a8f1cac3e4",
+                "family": "rule_application",
+                "gold_id": "insufficient",
+                "predicted_id": "prohibited",
+                "correct": false,
+                "confidence": 0.6999431370000927,
+                "nll": 1.23175618009531,
+                "brier": 0.991564885821291,
+                "status": "distribution",
+                "probabilities": [
+                  0.6999431370000927,
+                  0.29177970974996953,
+                  0.008277153249937701
+                ]
+              },
+              {
+                "id": "f756e1cb04e11766341e",
+                "group_id": "c979db7416b206c1eb09",
+                "family": "candidate_selection",
+                "gold_id": "A",
+                "predicted_id": "B",
+                "correct": false,
+                "confidence": 0.8550272255000751,
+                "nll": 2.1566219678621983,
+                "brier": 1.5138868922847515,
+                "status": "distribution",
+                "probabilities": [
+                  0.02925742276185712,
+                  0.11571535173806778,
+                  0.8550272255000751
+                ]
+              },
+              {
+                "id": "d167e51bb1f499099645",
+                "group_id": "c979db7416b206c1eb09",
+                "family": "candidate_selection",
+                "gold_id": "A",
+                "predicted_id": "B",
+                "correct": false,
+                "confidence": 0.9378929233177542,
+                "nll": 2.9391194907374687,
+                "brier": 1.77670279484131,
+                "status": "distribution",
+                "probabilities": [
+                  0.05291229800149998,
+                  0.9378929233177542,
+                  0.009194778680745756
+                ]
+              },
+              {
+                "id": "843185706adff0c60f8b",
+                "group_id": "f7403e39d6796072491c",
+                "family": "evidence_interpretation",
+                "gold_id": "insufficient",
+                "predicted_id": "contradicted",
+                "correct": false,
+                "confidence": 0.8305067158725735,
+                "nll": 1.8107192634201545,
+                "brier": 1.3894481279698472,
+                "status": "distribution",
+                "probabilities": [
+                  0.8305067158725735,
+                  0.005956815436624414,
+                  0.16353646869080207
+                ]
+              },
+              {
+                "id": "5d31b4bf2d0fc193f53b",
+                "group_id": "a060fd4621be415e9f1a",
+                "family": "rule_application",
+                "gold_id": "insufficient",
+                "predicted_id": "prohibited",
+                "correct": false,
+                "confidence": 0.9913576511476556,
+                "nll": 5.383679910519793,
+                "brier": 1.973645689649407,
+                "status": "distribution",
+                "probabilities": [
+                  0.004051452134013063,
+                  0.0045908967183311946,
+                  0.9913576511476556
+                ]
+              }
+            ],
+            "limitations": [
+              "All gold rows count in accuracy, including missing/invalid/unparsed predictions.",
+              "Native decisions have no probability estimates; one-hot distributions are not fabricated.",
+              "Risk/coverage is descriptive; tied confidence values remain together.",
+              "Analytic event hard-label accuracy measures modal-class agreement, not observed-event accuracy."
+            ]
+          }
+        },
+        "perturbations108-shared": {
+          "dataset": "perturbations108",
+          "mode": "shared",
+          "runs": 1,
+          "warmup": {
+            "runs": 0,
+            "timed": false,
+            "records": []
+          },
+          "rows_attempted": 108,
+          "rows_ok": 108,
+          "rows_error": 0,
+          "wall_seconds": 46.07408225000836,
+          "decisions_per_second": 2.3440510309889113,
+          "latency": {
+            "forward_seconds": {
+              "n": 36,
+              "sum": 17.903595791896805,
+              "mean": 0.49732210533046683,
+              "median": 0.4900723129976541,
+              "p90": 0.5496915000258014,
+              "max": 0.5546502919169143
+            },
+            "harness_group_wall_seconds": {
+              "n": 108,
+              "sum": 74.08839283511043,
+              "mean": 0.6860036373621335,
+              "median": 0.7316533959819935,
+              "p90": 0.8421442499384284,
+              "max": 0.8942747080000117
+            },
+            "harness_wall_seconds": {
+              "n": 108,
+              "sum": 46.048257209244184,
+              "mean": 0.42637275193744617,
+              "median": 0.4092536667303648,
+              "p90": 0.5203046250389889,
+              "max": 0.5579502090113238
+            },
+            "total_seconds": {
+              "n": 36,
+              "sum": 17.938356331666,
+              "mean": 0.4982876758796111,
+              "median": 0.49116272950777784,
+              "p90": 0.5506597909843549,
+              "max": 0.5558655420318246
+            }
+          },
+          "group_timings": [
+            {
+              "group_id": "2fdaa8a61e6e989dd866/stability",
+              "rows": 2,
+              "wall_seconds": 0.728007375029847,
+              "backend_timing": {
+                "total_seconds": 0.725193833000958,
+                "prefix_tokens": 62,
+                "prefill_seconds": 0.19397233298514038,
+                "copy_seconds": 0.0010003750212490559,
+                "suffix_forward_seconds": 0.5260074170073494,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2fdaa8a61e6e989dd866/stability",
+              "rows": 1,
+              "wall_seconds": 0.4822632500436157,
+              "backend_timing": {
+                "total_seconds": 0.4800340000074357,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4788899999111891,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "f4bea3d3bcc01056740d/stability",
+              "rows": 2,
+              "wall_seconds": 0.7678627920104191,
+              "backend_timing": {
+                "total_seconds": 0.764822208089754,
+                "prefix_tokens": 64,
+                "prefill_seconds": 0.20703475002665073,
+                "copy_seconds": 0.00100295792799443,
+                "suffix_forward_seconds": 0.5524335829541087,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "f4bea3d3bcc01056740d/stability",
+              "rows": 1,
+              "wall_seconds": 0.4891831249697134,
+              "backend_timing": {
+                "total_seconds": 0.4869618749944493,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4856880840379745,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "b51b300da2936decc6b7/stability",
+              "rows": 2,
+              "wall_seconds": 0.7505926670273766,
+              "backend_timing": {
+                "total_seconds": 0.747553416993469,
+                "prefix_tokens": 54,
+                "prefill_seconds": 0.1847580000758171,
+                "copy_seconds": 0.0009807921014726162,
+                "suffix_forward_seconds": 0.5573260419769213,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "b51b300da2936decc6b7/stability",
+              "rows": 1,
+              "wall_seconds": 0.4430535000283271,
+              "backend_timing": {
+                "total_seconds": 0.4409539169864729,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.43991441698744893,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e4cfd694c80e08d3e6a5/stability",
+              "rows": 2,
+              "wall_seconds": 0.7573196250014007,
+              "backend_timing": {
+                "total_seconds": 0.7543380839051679,
+                "prefix_tokens": 63,
+                "prefill_seconds": 0.20654237503185868,
+                "copy_seconds": 0.0012567091034725308,
+                "suffix_forward_seconds": 0.5407060000579804,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e4cfd694c80e08d3e6a5/stability",
+              "rows": 1,
+              "wall_seconds": 0.48297287500463426,
+              "backend_timing": {
+                "total_seconds": 0.48077116697095335,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.47957700002007186,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "20460d4ae0db46091e84/stability",
+              "rows": 2,
+              "wall_seconds": 0.7554100829875097,
+              "backend_timing": {
+                "total_seconds": 0.7520062079420313,
+                "prefix_tokens": 57,
+                "prefill_seconds": 0.19117545802146196,
+                "copy_seconds": 0.0012386249145492911,
+                "suffix_forward_seconds": 0.5544430000009015,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "20460d4ae0db46091e84/stability",
+              "rows": 1,
+              "wall_seconds": 0.44843862496782094,
+              "backend_timing": {
+                "total_seconds": 0.44594816700555384,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.44478999997954816,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "51b91ba31984c5939c1c/stability",
+              "rows": 2,
+              "wall_seconds": 0.7736263329861686,
+              "backend_timing": {
+                "total_seconds": 0.7701773750595748,
+                "prefix_tokens": 69,
+                "prefill_seconds": 0.23185870808083564,
+                "copy_seconds": 0.001002832897938788,
+                "suffix_forward_seconds": 0.5328291669720784,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "51b91ba31984c5939c1c/stability",
+              "rows": 1,
+              "wall_seconds": 0.48669475002679974,
+              "backend_timing": {
+                "total_seconds": 0.48468079103622586,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.48352695791982114,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "770c1607f0a11f88f81e/stability",
+              "rows": 2,
+              "wall_seconds": 0.7645176249789074,
+              "backend_timing": {
+                "total_seconds": 0.7615300840698183,
+                "prefix_tokens": 59,
+                "prefill_seconds": 0.19185141706839204,
+                "copy_seconds": 0.0008229591185227036,
+                "suffix_forward_seconds": 0.5653255418874323,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "770c1607f0a11f88f81e/stability",
+              "rows": 1,
+              "wall_seconds": 0.48272529197856784,
+              "backend_timing": {
+                "total_seconds": 0.4808238330297172,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4799739168956876,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "ffd081ada3bd9be9207a/stability",
+              "rows": 2,
+              "wall_seconds": 0.788817459018901,
+              "backend_timing": {
+                "total_seconds": 0.7865045419894159,
+                "prefix_tokens": 53,
+                "prefill_seconds": 0.179748542024754,
+                "copy_seconds": 0.0008489170577377081,
+                "suffix_forward_seconds": 0.602422000025399,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "ffd081ada3bd9be9207a/stability",
+              "rows": 1,
+              "wall_seconds": 0.5463101249188185,
+              "backend_timing": {
+                "total_seconds": 0.5446441250387579,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5438173329457641,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2c3a0cb61f7bae78739e/stability",
+              "rows": 2,
+              "wall_seconds": 0.7129767920123413,
+              "backend_timing": {
+                "total_seconds": 0.7105741669656709,
+                "prefix_tokens": 56,
+                "prefill_seconds": 0.17880604090169072,
+                "copy_seconds": 0.0007136249914765358,
+                "suffix_forward_seconds": 0.5278995000990108,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2c3a0cb61f7bae78739e/stability",
+              "rows": 1,
+              "wall_seconds": 0.47914704110007733,
+              "backend_timing": {
+                "total_seconds": 0.47747004101984203,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4766568330815062,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "42ed4cbfde7f2f64274b/stability",
+              "rows": 2,
+              "wall_seconds": 0.8067078340100124,
+              "backend_timing": {
+                "total_seconds": 0.8043589170556515,
+                "prefix_tokens": 56,
+                "prefill_seconds": 0.19544358307030052,
+                "copy_seconds": 0.0006850420031696558,
+                "suffix_forward_seconds": 0.6050935420207679,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "42ed4cbfde7f2f64274b/stability",
+              "rows": 1,
+              "wall_seconds": 0.448029916966334,
+              "backend_timing": {
+                "total_seconds": 0.44640066695865244,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4455110830022022,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "6dd193172b9240a04bf9/stability",
+              "rows": 2,
+              "wall_seconds": 0.7295238339575008,
+              "backend_timing": {
+                "total_seconds": 0.7272768330294639,
+                "prefix_tokens": 57,
+                "prefill_seconds": 0.17388929100707173,
+                "copy_seconds": 0.0006829160265624523,
+                "suffix_forward_seconds": 0.54954475001432,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "6dd193172b9240a04bf9/stability",
+              "rows": 1,
+              "wall_seconds": 0.47813662502449006,
+              "backend_timing": {
+                "total_seconds": 0.47611658298410475,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.475260040955618,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3200eb252d6737e03027/stability",
+              "rows": 2,
+              "wall_seconds": 0.7337829580064863,
+              "backend_timing": {
+                "total_seconds": 0.7316592910792679,
+                "prefix_tokens": 51,
+                "prefill_seconds": 0.16602050000801682,
+                "copy_seconds": 0.0006917918799445033,
+                "suffix_forward_seconds": 0.5617900419747457,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3200eb252d6737e03027/stability",
+              "rows": 1,
+              "wall_seconds": 0.45948658394627273,
+              "backend_timing": {
+                "total_seconds": 0.45767866692040116,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.45691620907746255,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "c0cbeb97315307af8111/stability",
+              "rows": 2,
+              "wall_seconds": 0.6787682080175728,
+              "backend_timing": {
+                "total_seconds": 0.6766580420080572,
+                "prefix_tokens": 68,
+                "prefill_seconds": 0.21701150003354996,
+                "copy_seconds": 0.0007869580294936895,
+                "suffix_forward_seconds": 0.45558899990282953,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "c0cbeb97315307af8111/stability",
+              "rows": 1,
+              "wall_seconds": 0.43892216705717146,
+              "backend_timing": {
+                "total_seconds": 0.437405375065282,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4367423750227317,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "428176cd8ad2c7a74eea/stability",
+              "rows": 2,
+              "wall_seconds": 0.7004556249594316,
+              "backend_timing": {
+                "total_seconds": 0.698270000051707,
+                "prefix_tokens": 75,
+                "prefill_seconds": 0.23156141699291766,
+                "copy_seconds": 0.0007063749944791198,
+                "suffix_forward_seconds": 0.4627026249654591,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "428176cd8ad2c7a74eea/stability",
+              "rows": 1,
+              "wall_seconds": 0.4633170000743121,
+              "backend_timing": {
+                "total_seconds": 0.4616680829785764,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.46086441702209413,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "389e65bf1ba709b84b12/stability",
+              "rows": 2,
+              "wall_seconds": 0.6926519169937819,
+              "backend_timing": {
+                "total_seconds": 0.6904573750216514,
+                "prefix_tokens": 69,
+                "prefill_seconds": 0.21940020797774196,
+                "copy_seconds": 0.0006896669510751963,
+                "suffix_forward_seconds": 0.46724179200828075,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "389e65bf1ba709b84b12/stability",
+              "rows": 1,
+              "wall_seconds": 0.47421720798593014,
+              "backend_timing": {
+                "total_seconds": 0.4723570409696549,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.47137841710355133,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "45f8ead2522a14384cdc/stability",
+              "rows": 2,
+              "wall_seconds": 0.6930903330212459,
+              "backend_timing": {
+                "total_seconds": 0.6903408330399543,
+                "prefix_tokens": 70,
+                "prefill_seconds": 0.22385579103138298,
+                "copy_seconds": 0.0007950839353725314,
+                "suffix_forward_seconds": 0.46256499912124127,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "45f8ead2522a14384cdc/stability",
+              "rows": 1,
+              "wall_seconds": 0.4484898750670254,
+              "backend_timing": {
+                "total_seconds": 0.4465880000498146,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.44564091693609953,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3ecec8e2c166e397ad07/stability",
+              "rows": 2,
+              "wall_seconds": 0.7095299159409478,
+              "backend_timing": {
+                "total_seconds": 0.7072971250163391,
+                "prefix_tokens": 73,
+                "prefill_seconds": 0.22775070799980313,
+                "copy_seconds": 0.0007027919637039304,
+                "suffix_forward_seconds": 0.4754793749889359,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3ecec8e2c166e397ad07/stability",
+              "rows": 1,
+              "wall_seconds": 0.46215649996884167,
+              "backend_timing": {
+                "total_seconds": 0.46054300002288073,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.45975562499370426,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a71a17a287f3d30db2aa/stability",
+              "rows": 2,
+              "wall_seconds": 0.6990164999151602,
+              "backend_timing": {
+                "total_seconds": 0.696744583081454,
+                "prefix_tokens": 73,
+                "prefill_seconds": 0.2282016669632867,
+                "copy_seconds": 0.0007895000744611025,
+                "suffix_forward_seconds": 0.46458229108247906,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a71a17a287f3d30db2aa/stability",
+              "rows": 1,
+              "wall_seconds": 0.45564191695302725,
+              "backend_timing": {
+                "total_seconds": 0.4538150830194354,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4531107080401853,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "986d7eaba0c7e9738e79/stability",
+              "rows": 2,
+              "wall_seconds": 0.7690121670020744,
+              "backend_timing": {
+                "total_seconds": 0.7667202920420095,
+                "prefix_tokens": 72,
+                "prefill_seconds": 0.2256729999789968,
+                "copy_seconds": 0.0006942511536180973,
+                "suffix_forward_seconds": 0.5368539589690045,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "986d7eaba0c7e9738e79/stability",
+              "rows": 1,
+              "wall_seconds": 0.48431249998975545,
+              "backend_timing": {
+                "total_seconds": 0.48248004098422825,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4816463340539485,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "ca2e0b043985fa49bcd2/stability",
+              "rows": 2,
+              "wall_seconds": 0.8421442499384284,
+              "backend_timing": {
+                "total_seconds": 0.8395534170558676,
+                "prefix_tokens": 66,
+                "prefill_seconds": 0.21434679196681827,
+                "copy_seconds": 0.0009333329508081079,
+                "suffix_forward_seconds": 0.6208774589467794,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "ca2e0b043985fa49bcd2/stability",
+              "rows": 1,
+              "wall_seconds": 0.5451704160077497,
+              "backend_timing": {
+                "total_seconds": 0.5426379999844357,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5411660419777036,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "85051ba3c30277824ebe/stability",
+              "rows": 2,
+              "wall_seconds": 0.8032142909942195,
+              "backend_timing": {
+                "total_seconds": 0.8009028329979628,
+                "prefix_tokens": 74,
+                "prefill_seconds": 0.2541538750519976,
+                "copy_seconds": 0.0007516250479966402,
+                "suffix_forward_seconds": 0.5419348340947181,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "85051ba3c30277824ebe/stability",
+              "rows": 1,
+              "wall_seconds": 0.5036245000083,
+              "backend_timing": {
+                "total_seconds": 0.5012730000307783,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5005162910092622,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e7798dab5f4f121cab77/stability",
+              "rows": 2,
+              "wall_seconds": 0.8010847079567611,
+              "backend_timing": {
+                "total_seconds": 0.7982865000376478,
+                "prefix_tokens": 83,
+                "prefill_seconds": 0.2591447909362614,
+                "copy_seconds": 0.0007193749770522118,
+                "suffix_forward_seconds": 0.534613125026226,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e7798dab5f4f121cab77/stability",
+              "rows": 1,
+              "wall_seconds": 0.5432626249967143,
+              "backend_timing": {
+                "total_seconds": 0.5412906659767032,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5403792910510674,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "928ebc7817a8f1cac3e4/stability",
+              "rows": 2,
+              "wall_seconds": 0.8942747080000117,
+              "backend_timing": {
+                "total_seconds": 0.8918346249265596,
+                "prefix_tokens": 68,
+                "prefill_seconds": 0.22994750004727393,
+                "copy_seconds": 0.0007247079629451036,
+                "suffix_forward_seconds": 0.6578576251631603,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "928ebc7817a8f1cac3e4/stability",
+              "rows": 1,
+              "wall_seconds": 0.5577000830089673,
+              "backend_timing": {
+                "total_seconds": 0.5558655420318246,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5546502919169143,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "53b0770ec36835b81d3a/stability",
+              "rows": 2,
+              "wall_seconds": 0.819552999921143,
+              "backend_timing": {
+                "total_seconds": 0.8166478750063106,
+                "prefix_tokens": 84,
+                "prefill_seconds": 0.26744304096791893,
+                "copy_seconds": 0.0007380000315606594,
+                "suffix_forward_seconds": 0.5446319580078125,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "53b0770ec36835b81d3a/stability",
+              "rows": 1,
+              "wall_seconds": 0.5112317920429632,
+              "backend_timing": {
+                "total_seconds": 0.5094527920009568,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5084746669745073,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "056cc5b726d6e8300a77/stability",
+              "rows": 2,
+              "wall_seconds": 0.8174616670003161,
+              "backend_timing": {
+                "total_seconds": 0.8147352089872584,
+                "prefix_tokens": 78,
+                "prefill_seconds": 0.25488183402922004,
+                "copy_seconds": 0.0007129989098757505,
+                "suffix_forward_seconds": 0.5556976250372827,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "056cc5b726d6e8300a77/stability",
+              "rows": 1,
+              "wall_seconds": 0.5500491249840707,
+              "backend_timing": {
+                "total_seconds": 0.5481126670492813,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5470689999638125,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e3ce8ec496dbc9974f94/stability",
+              "rows": 2,
+              "wall_seconds": 0.8392197500215843,
+              "backend_timing": {
+                "total_seconds": 0.8367528750095516,
+                "prefix_tokens": 59,
+                "prefill_seconds": 0.19442841596901417,
+                "copy_seconds": 0.0007077909540385008,
+                "suffix_forward_seconds": 0.6379997918847948,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "e3ce8ec496dbc9974f94/stability",
+              "rows": 1,
+              "wall_seconds": 0.5331535000586882,
+              "backend_timing": {
+                "total_seconds": 0.5314762078924105,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5305138330440968,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a5b234c2e4fb304f1071/stability",
+              "rows": 2,
+              "wall_seconds": 0.7966514170402661,
+              "backend_timing": {
+                "total_seconds": 0.792744749924168,
+                "prefix_tokens": 91,
+                "prefill_seconds": 0.2822337920079008,
+                "copy_seconds": 0.0007017090683802962,
+                "suffix_forward_seconds": 0.5058937499998137,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a5b234c2e4fb304f1071/stability",
+              "rows": 1,
+              "wall_seconds": 0.5579502090113238,
+              "backend_timing": {
+                "total_seconds": 0.555779792019166,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5544961250852793,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "d142f7fd0efa0eddc788/stability",
+              "rows": 2,
+              "wall_seconds": 0.8633131670067087,
+              "backend_timing": {
+                "total_seconds": 0.8606700419913977,
+                "prefix_tokens": 80,
+                "prefill_seconds": 0.2595910420641303,
+                "copy_seconds": 0.0007731240475550294,
+                "suffix_forward_seconds": 0.5965517919976264,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "d142f7fd0efa0eddc788/stability",
+              "rows": 1,
+              "wall_seconds": 0.5464246670017019,
+              "backend_timing": {
+                "total_seconds": 0.5444030419457704,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5433404579525813,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3476d3f4f32290fe57c3/stability",
+              "rows": 2,
+              "wall_seconds": 0.8802304168930277,
+              "backend_timing": {
+                "total_seconds": 0.8775751249631867,
+                "prefix_tokens": 63,
+                "prefill_seconds": 0.20700366597156972,
+                "copy_seconds": 0.0007655409863218665,
+                "suffix_forward_seconds": 0.665333625045605,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "3476d3f4f32290fe57c3/stability",
+              "rows": 1,
+              "wall_seconds": 0.5463192909955978,
+              "backend_timing": {
+                "total_seconds": 0.5444312919862568,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5434715000446886,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "c979db7416b206c1eb09/stability",
+              "rows": 2,
+              "wall_seconds": 0.7698833750328049,
+              "backend_timing": {
+                "total_seconds": 0.7672249999595806,
+                "prefix_tokens": 86,
+                "prefill_seconds": 0.2686902501154691,
+                "copy_seconds": 0.0007617081282660365,
+                "suffix_forward_seconds": 0.49440254108048975,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "c979db7416b206c1eb09/stability",
+              "rows": 1,
+              "wall_seconds": 0.5157134999753907,
+              "backend_timing": {
+                "total_seconds": 0.5137761669466272,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.512895833933726,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "f7403e39d6796072491c/stability",
+              "rows": 2,
+              "wall_seconds": 0.7841470000566915,
+              "backend_timing": {
+                "total_seconds": 0.7813346249749884,
+                "prefix_tokens": 71,
+                "prefill_seconds": 0.23597933305427432,
+                "copy_seconds": 0.0007395410211756825,
+                "suffix_forward_seconds": 0.5414571670116857,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "f7403e39d6796072491c/stability",
+              "rows": 1,
+              "wall_seconds": 0.5099266250617802,
+              "backend_timing": {
+                "total_seconds": 0.5080887079238892,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5071452909614891,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a060fd4621be415e9f1a/stability",
+              "rows": 2,
+              "wall_seconds": 0.8577575420495123,
+              "backend_timing": {
+                "total_seconds": 0.8552990419557318,
+                "prefix_tokens": 55,
+                "prefill_seconds": 0.19161516590975225,
+                "copy_seconds": 0.0008397500496357679,
+                "suffix_forward_seconds": 0.6592017910443246,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "a060fd4621be415e9f1a/stability",
+              "rows": 1,
+              "wall_seconds": 0.5203046250389889,
+              "backend_timing": {
+                "total_seconds": 0.5181397079722956,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5171574159758165,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2b0f8eda8903e38a47de/stability",
+              "rows": 2,
+              "wall_seconds": 0.7514285830548033,
+              "backend_timing": {
+                "total_seconds": 0.7486251249210909,
+                "prefix_tokens": 76,
+                "prefill_seconds": 0.2537053329870105,
+                "copy_seconds": 0.0007603740086778998,
+                "suffix_forward_seconds": 0.4904264591168612,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2b0f8eda8903e38a47de/stability",
+              "rows": 1,
+              "wall_seconds": 0.4970541250659153,
+              "backend_timing": {
+                "total_seconds": 0.49536358402110636,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.4944565419573337,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "01020a1eaf46ec2fba5d/stability",
+              "rows": 2,
+              "wall_seconds": 0.8278728330042213,
+              "backend_timing": {
+                "total_seconds": 0.8249156250385568,
+                "prefix_tokens": 78,
+                "prefill_seconds": 0.25483658304437995,
+                "copy_seconds": 0.0007354170083999634,
+                "suffix_forward_seconds": 0.5655965829500929,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "01020a1eaf46ec2fba5d/stability",
+              "rows": 1,
+              "wall_seconds": 0.5539410409983248,
+              "backend_timing": {
+                "total_seconds": 0.5520078749395907,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5510901249945164,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "6a06a2f278301c1412ee/stability",
+              "rows": 2,
+              "wall_seconds": 0.882628291961737,
+              "backend_timing": {
+                "total_seconds": 0.8801542919827625,
+                "prefix_tokens": 56,
+                "prefill_seconds": 0.19219920795876533,
+                "copy_seconds": 0.0008767079561948776,
+                "suffix_forward_seconds": 0.6837950829649344,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "6a06a2f278301c1412ee/stability",
+              "rows": 1,
+              "wall_seconds": 0.5525988329900429,
+              "backend_timing": {
+                "total_seconds": 0.5506597909843549,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5496915000258014,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2797f8c23d05c0ee06b3/stability",
+              "rows": 2,
+              "wall_seconds": 0.7976005830569193,
+              "backend_timing": {
+                "total_seconds": 0.7952286249492317,
+                "prefix_tokens": 69,
+                "prefill_seconds": 0.23781524994410574,
+                "copy_seconds": 0.0008022920228540897,
+                "suffix_forward_seconds": 0.5529807090060785,
+                "batch_size": 2,
+                "suffix_execution": "isolated sequential native branches"
+              },
+              "error": null,
+              "harness_run": 0
+            },
+            {
+              "group_id": "2797f8c23d05c0ee06b3/stability",
+              "rows": 1,
+              "wall_seconds": 0.5101977500598878,
+              "backend_timing": {
+                "total_seconds": 0.5082570419181138,
+                "prefix_tokens": 0,
+                "prefill_seconds": 0.5074209170415998,
+                "copy_seconds": 0.0,
+                "suffix_forward_seconds": 0.0,
+                "batch_size": 1,
+                "suffix_execution": "single decision; direct full prefill"
+              },
+              "error": null,
+              "harness_run": 0
+            }
+          ],
+          "memory": {
+            "active_bytes": 72905301266,
+            "cache_bytes": 271003672,
+            "peak_bytes": 73593825190
+          },
+          "output": "../../artifacts/openjev-native/native-final-quality/qwen38-native/perturbations108-shared.jsonl",
+          "quality": {
+            "available_gold": 108,
+            "scored": 108,
+            "evaluated": 108,
+            "coverage": 1.0,
+            "missing": 0,
+            "invalid": 0,
+            "family_results": {
+              "evidence_interpretation": {
+                "n": 36,
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "source_groups": 12,
+                "invalid_or_missing": 0,
+                "all_decisions_correct_group_rate": 1.0,
+                "probability_rows": 36,
+                "probability_coverage": 1.0,
+                "nll": 0.004292599749344713,
+                "nll_valid_distributions_only": 0.004292599749344713,
+                "brier": 5.22180746482064e-05,
+                "brier_valid_distributions_only": 5.22180746482064e-05,
+                "nll_probability_floor": 1e-12,
+                "risk_coverage": [
+                  {
+                    "requested_coverage": 0.25,
+                    "coverage": 0.2777777777777778,
+                    "n": 10,
+                    "threshold": 0.9987326281954357,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 0.5,
+                    "coverage": 0.5,
+                    "n": 18,
+                    "threshold": 0.9966757018108104,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 0.75,
+                    "coverage": 0.75,
+                    "n": 27,
+                    "threshold": 0.9940441101695225,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 1,
+                    "coverage": 1.0,
+                    "n": 36,
+                    "threshold": 0.9833072171104217,
+                    "error": 0.0
+                  }
+                ],
+                "reliability_bins": [
+                  {
+                    "lower": 0.9,
+                    "upper": 1.0,
+                    "n": 36,
+                    "mean_confidence": 0.9957241269580136,
+                    "accuracy": 1.0
+                  }
+                ],
+                "accuracy_cluster_bootstrap_95": [
+                  1.0,
+                  1.0
+                ]
+              },
+              "rule_application": {
+                "n": 36,
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "source_groups": 12,
+                "invalid_or_missing": 0,
+                "all_decisions_correct_group_rate": 1.0,
+                "probability_rows": 36,
+                "probability_coverage": 1.0,
+                "nll": 0.00910205281274725,
+                "nll_valid_distributions_only": 0.00910205281274725,
+                "brier": 0.00035561163595703387,
+                "brier_valid_distributions_only": 0.00035561163595703387,
+                "nll_probability_floor": 1e-12,
+                "risk_coverage": [
+                  {
+                    "requested_coverage": 0.25,
+                    "coverage": 0.25,
+                    "n": 9,
+                    "threshold": 0.9974371147236779,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 0.5,
+                    "coverage": 0.5,
+                    "n": 18,
+                    "threshold": 0.9943703395351734,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 0.75,
+                    "coverage": 0.75,
+                    "n": 27,
+                    "threshold": 0.9917931206684626,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 1,
+                    "coverage": 1.0,
+                    "n": 36,
+                    "threshold": 0.9478920460310988,
+                    "error": 0.0
+                  }
+                ],
+                "reliability_bins": [
+                  {
+                    "lower": 0.9,
+                    "upper": 1.0,
+                    "n": 36,
+                    "mean_confidence": 0.9910061757697779,
+                    "accuracy": 1.0
+                  }
+                ],
+                "accuracy_cluster_bootstrap_95": [
+                  1.0,
+                  1.0
+                ]
+              },
+              "candidate_selection": {
+                "n": 36,
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "source_groups": 12,
+                "invalid_or_missing": 0,
+                "all_decisions_correct_group_rate": 1.0,
+                "probability_rows": 36,
+                "probability_coverage": 1.0,
+                "nll": 0.012312315897865377,
+                "nll_valid_distributions_only": 0.012312315897865377,
+                "brier": 0.0005291451132997901,
+                "brier_valid_distributions_only": 0.0005291451132997901,
+                "nll_probability_floor": 1e-12,
+                "risk_coverage": [
+                  {
+                    "requested_coverage": 0.25,
+                    "coverage": 0.25,
+                    "n": 9,
+                    "threshold": 0.9958247205194387,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 0.5,
+                    "coverage": 0.5,
+                    "n": 18,
+                    "threshold": 0.9925552450438826,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 0.75,
+                    "coverage": 0.75,
+                    "n": 27,
+                    "threshold": 0.9877106346457337,
+                    "error": 0.0
+                  },
+                  {
+                    "requested_coverage": 1,
+                    "coverage": 1.0,
+                    "n": 36,
+                    "threshold": 0.9430450161270122,
+                    "error": 0.0
+                  }
+                ],
+                "reliability_bins": [
+                  {
+                    "lower": 0.9,
+                    "upper": 1.0,
+                    "n": 36,
+                    "mean_confidence": 0.9878583670200531,
+                    "accuracy": 1.0
+                  }
+                ],
+                "accuracy_cluster_bootstrap_95": [
+                  1.0,
+                  1.0
+                ]
+              }
+            },
+            "mean_family_balanced_accuracy": 1.0,
+            "mean_family_macro_f1": 1.0,
+            "analytic_uncertainty": {
+              "n": 0,
+              "rows": []
+            },
+            "errors": [],
+            "limitations": [
+              "All gold rows count in accuracy, including missing/invalid/unparsed predictions.",
+              "Native decisions have no probability estimates; one-hot distributions are not fabricated.",
+              "Risk/coverage is descriptive; tied confidence values remain together.",
+              "Analytic event hard-label accuracy measures modal-class agreement, not observed-event accuracy."
+            ]
+          }
+        }
+      }
+    }
+  },
+  "comparisons": {}
+}

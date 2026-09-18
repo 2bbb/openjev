@@ -1,0 +1,83 @@
+{
+  "reports": {
+    "mlx-serve": {
+      "metadata": {
+        "source": "../../models/Qwen3.8-Flash-Next",
+        "revision": "7eaef0fa82b4c3bf5c64cec60ace4bf48fd271e3",
+        "revision_basis": "caller-provided; server API does not attest loaded weight hashes",
+        "backend": "mlx-serve-completion-logprobs-v1",
+        "runtime_version": "26.9.4",
+        "base_url": "http://127.0.0.1:18082",
+        "server_model": "Qwen3.8-Flash-Next",
+        "tokenizer_artifact_sha256": {
+          "config.json": "fe0b5952857299b31d75bedf1d8897faea14b4116a04c73a73152361e7788f59",
+          "tokenizer.json": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3",
+          "tokenizer_config.json": "b11349aafa7cdc6a320767cf7ceb29ed82f7eda5d65e8e0819e76f0ce947bf27",
+          "chat_template.jinja": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041"
+        },
+        "quantization": {
+          "group_size": 64,
+          "bits": 4,
+          "mode": "affine"
+        }
+      },
+      "datasets": {
+        "shape777-direct": {
+          "dataset": "shape777",
+          "mode": "direct",
+          "runs": 2,
+          "warmup": {
+            "runs": 1,
+            "timed": false,
+            "records": [
+              {
+                "warmup_index": 0,
+                "mode": "direct",
+                "id": "015c14ff8f2bce2886b3",
+                "status": "ok",
+                "error": null,
+                "wall_seconds": 5.999222708051093
+              }
+            ]
+          },
+          "rows_attempted": 42,
+          "rows_ok": 42,
+          "rows_error": 0,
+          "wall_seconds": 137.11009412503336,
+          "decisions_per_second": 0.30632317969017936,
+          "latency": {
+            "harness_wall_seconds": {
+              "n": 42,
+              "sum": 137.08824100531638,
+              "mean": 3.2640057382218184,
+              "median": 3.286051728995517,
+              "p90": 3.473241832922213,
+              "max": 4.60775870794896
+            },
+            "request_seconds": {
+              "n": 42,
+              "sum": 136.0600099611329,
+              "mean": 3.2395240466936404,
+              "median": 3.2603600205038674,
+              "p90": 3.45104887499474,
+              "max": 4.585049832938239
+            },
+            "total_seconds": {
+              "n": 42,
+              "sum": 137.08725812612101,
+              "mean": 3.263982336336215,
+              "median": 3.285987416515127,
+              "p90": 3.4732153329532593,
+              "max": 4.607738250051625
+            }
+          },
+          "group_timings": [],
+          "memory": null,
+          "output": "../../artifacts/openjev-native/api-shape-warm/mlx-serve/shape777-direct.jsonl",
+          "quality": null
+        }
+      }
+    }
+  },
+  "comparisons": {}
+}

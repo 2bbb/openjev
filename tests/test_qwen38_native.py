@@ -109,3 +109,19 @@ def test_runtime_pin_rejects_unverified_versions(monkeypatch, commit, mlx_versio
     monkeypatch.setattr(backend, 'version', lambda name: mlx_version)
     with pytest.raises(RuntimeError, match='requires'):
         backend.runtime_source()
+
+
+@pytest.mark.parametrize('group_size', [None, 8])
+def test_compiled_folded_norm_matches_packed_formula(group_size):
+    from openjev_phase1.qwen38_native_backend import packed_norm
+    mx = pytest.importorskip('mlx.core')
+    mx.random.seed(29)
+    x = mx.random.normal((1, 13, 32)).astype(mx.bfloat16)
+    weight = (1 + mx.random.normal((32,)) * 0.1).astype(mx.bfloat16)
+    y, w = x.astype(mx.float32), weight.astype(mx.float32)
+    if group_size is not None:
+        y = y.reshape(1, 13, -1, group_size)
+        w = w.reshape(-1, group_size)
+    reference = (y * mx.rsqrt(mx.mean(mx.square(y), axis=-1, keepdims=True) + 1e-6) * w).reshape(x.shape).astype(x.dtype)
+    actual = packed_norm(group_size, 1e-6)(x, weight)
+    assert bool(mx.allclose(actual, reference, atol=1e-5, rtol=1e-5))

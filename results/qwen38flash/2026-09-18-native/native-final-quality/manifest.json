@@ -1,0 +1,52 @@
+{
+  "created_at_epoch": 1789728023.6506891,
+  "platform": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "python": "3.12.13"
+  },
+  "args": {
+    "backend": [
+      "qwen38-native"
+    ],
+    "model": "../../models/Qwen3.8-Flash-Next",
+    "revision": "7eaef0fa82b4c3bf5c64cec60ace4bf48fd271e3",
+    "base_url": "http://127.0.0.1:18082",
+    "prefill_chunk": 2048,
+    "cache_limit_mib": 256,
+    "dataset": [
+      "authored144",
+      "perturbations108"
+    ],
+    "mode": [
+      "shared"
+    ],
+    "limit": null,
+    "group_limit": null,
+    "runs": 1,
+    "warmup": 0,
+    "max_tokens": 20000,
+    "reference": null,
+    "output": "../../artifacts/openjev-native/native-final-quality"
+  },
+  "fixtures": {
+    "authored144": {
+      "path": "benchmarks/data/authored144.jsonl",
+      "sha256": "8162d1c73f925af64453f1ec05ef36d583b3815bf698e60f0d454bd11537e079",
+      "rows_selected": 144
+    },
+    "perturbations108": {
+      "path": "benchmarks/data/perturbations108.jsonl",
+      "sha256": "1dd7ccf80518d0e34886478ca23982aa726e9daccd343b9e95cedaf6b569bec4",
+      "rows_selected": 108
+    }
+  },
+  "source_sha256": {
+    "benchmarks/qwen38_native.py": "95d7fb1dd26899849ec6bd5d7fd2d16b79d6f9f6f4e094de0748e49aaa1f1581",
+    "benchmarks/evaluate.py": "2b8376577294d6836e2aff1bccf5d4d01aa1ec39e21f8f908281437b2bd4f2af",
+    "src/openjev_phase1/qwen38_native_backend.py": "7bd79ea36ee7d0977f716f85540b9838cce2c21942be97e9995e1f15cd380160",
+    "src/openjev_phase1/mlx_serve_backend.py": "c60ded00e717f2c777809ed52184a6e85b525a5ecb15d4adccf9ef878681c42a"
+  },
+  "timing_scope": "Timed runs after model load and after the configured untimed warmup. Per-row harness wall includes backend score call and MLX synchronization for native MLX backends. qwen38-native shared mode uses one prefill followed by isolated sequential suffix branches.",
+  "outputs_are_create_only": true
+}

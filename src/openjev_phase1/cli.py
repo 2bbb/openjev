@@ -17,7 +17,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", choices=("direct", "serial", "shared", "reranker"), required=True)
     parser.add_argument("--backend", choices=("torch", "mlx", "mlx-serve", "qwen38-native"), default="torch")
-    parser.add_argument("--prefill-chunk", type=int, help="Native Qwen3.8 prefill chunk (default: 256)")
+    parser.add_argument("--prefill-chunk", type=int, help="Native Qwen3.8 prefill chunk (default: 2048)")
     parser.add_argument("--server-url", help="mlx-serve loopback base URL (default: http://127.0.0.1:18082)")
     parser.add_argument("--mlx-bits", type=int, choices=(4, 8), help="Quantize MLX weights in memory; default preserves source precision")
     parser.add_argument("--mlx-cache-limit-mib", type=int,
@@ -59,7 +59,7 @@ def main() -> None:
         from . import qwen38_native_backend
 
         model, tokenizer, metadata = qwen38_native_backend.load_model(
-            args.model, args.revision, prefill_chunk=args.prefill_chunk or 256)
+            args.model, args.revision, prefill_chunk=args.prefill_chunk or 2048)
         direct, shared = qwen38_native_backend.score, qwen38_native_backend.score_shared
     elif args.backend == "mlx-serve":
         from . import mlx_serve_backend

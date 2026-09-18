@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 from collections import defaultdict
+import gc
 import hashlib
 import importlib
 import json
@@ -76,7 +77,7 @@ def finite_distribution(row: dict[str, Any]) -> bool:
     return (
         isinstance(values, list)
         and len(values) >= 2
-        and all(isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+        and all(isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value) and value >= 0
                 for value in values)
         and abs(sum(values) - 1) <= 1e-4
     )
@@ -186,8 +187,11 @@ def limited(rows: list[dict[str, Any]], limit: int | None) -> list[dict[str, Any
 def selected_groups(rows: list[dict[str, Any]], group_limit: int | None) -> list[list[dict[str, Any]]]:
     groups: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
-        groups[row["group_id"]].append(row)
-    ordered = [groups[key] for key in sorted(groups)]
+        # Quality fixtures use group_id for a source and its changed evidence.
+        # Match the native CLI: only exactly serialized states share a cache.
+        state_key = json.dumps(row["state"], ensure_ascii=False, allow_nan=False)
+        groups[state_key].append(row)
+    ordered = list(groups.values())
     return ordered if group_limit is None else ordered[:group_limit]
 
 
@@ -354,9 +358,15 @@ def compare_predictions(left: list[dict[str, Any]], right: list[dict[str, Any]],
     flips = []
     probability_deltas = []
     prompt_mismatches = []
+    token_mismatches = []
+    slot_mismatches = []
     for key in common:
         if a[key].get("prompt_sha256") != b[key].get("prompt_sha256"):
             prompt_mismatches.append(key)
+        if a[key].get("input_ids_sha256") != b[key].get("input_ids_sha256"):
+            token_mismatches.append(key)
+        if a[key].get("answer_token_ids") != b[key].get("answer_token_ids"):
+            slot_mismatches.append(key)
         left_choice, right_choice = choose(a[key]), choose(b[key])
         if left_choice != right_choice:
             flips.append({"id": key, "left": left_choice, "right": right_choice})
@@ -375,6 +385,8 @@ def compare_predictions(left: list[dict[str, Any]], right: list[dict[str, Any]],
         "agreement": (len(common) - len(flips)) / len(common) if common else None,
         "argmax_flips": flips,
         "prompt_mismatches": prompt_mismatches,
+        "token_mismatches": token_mismatches,
+        "slot_mismatches": slot_mismatches,
         "max_probability_delta": max(probability_deltas) if probability_deltas else None,
         "mean_probability_delta": statistics.mean(probability_deltas) if probability_deltas else None,
     }
@@ -389,12 +401,12 @@ def read_reference(path: Path | None) -> list[dict[str, Any]] | None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--backend", action="append", choices=sorted(BACKENDS), required=True,
-                        help="Backend to run. Pass twice to compare, e.g. mlx-serve and qwen38-native.")
+                        help="Backend to run. Use separate processes and --reference when switching between resident API and native weights; this harness does not stop servers.")
     parser.add_argument("--model", required=True, help="Local checkpoint directory or backend-supported source.")
     parser.add_argument("--revision", required=True, help="Pinned revision or explicit local manifest label.")
     parser.add_argument("--base-url", default="http://127.0.0.1:18082",
                         help="Loopback mlx-serve URL for --backend mlx-serve.")
-    parser.add_argument("--prefill-chunk", type=int, default=256,
+    parser.add_argument("--prefill-chunk", type=int, default=2048,
                         help="Native Qwen3.8 prefill chunk size; passed only to qwen38-native.")
     parser.add_argument("--cache-limit-mib", type=int, default=256,
                         help="Native MLX inactive allocation cache in MiB; passed only to qwen38-native.")
@@ -466,6 +478,12 @@ def main() -> None:
                     summary["vs_reference"] = compare_predictions(reference, predictions)
                 reports[key]["datasets"][report_key] = summary
                 predictions_by_key[f"{key}:{report_key}"] = predictions
+        del model, tokenizer
+        gc.collect()
+        if uses_mlx_runtime(module):
+            import mlx.core as mx
+            mx.synchronize()
+            mx.clear_cache()
 
     comparisons: dict[str, Any] = {}
     labels = list(predictions_by_key)

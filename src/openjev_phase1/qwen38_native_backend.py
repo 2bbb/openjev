@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import copy
 import hashlib
+from functools import lru_cache
 from importlib.metadata import distribution, version
 import json
 from pathlib import Path
@@ -82,7 +83,23 @@ def text_weight(key):
     return key.startswith(("language_model.model.", "language_model.lm_head."))
 
 
-def load_model(source, revision, *, prefill_chunk=256, cache_limit_mib=256):
+@lru_cache(maxsize=None)
+def packed_norm(group_size, eps):
+    import mlx.core as mx
+
+    @mx.compile
+    def normalize(x, weight):
+        y, weight = x.astype(mx.float32), weight.astype(mx.float32)
+        if group_size is not None:
+            y = y.reshape(*y.shape[:-1], -1, group_size)
+            weight = weight.reshape(-1, group_size)
+        y = y * mx.rsqrt(mx.mean(mx.square(y), axis=-1, keepdims=True) + eps)
+        return (y * weight).reshape(x.shape).astype(x.dtype)
+
+    return normalize
+
+
+def load_model(source, revision, *, prefill_chunk=2048, cache_limit_mib=256):
     import mlx.core as mx
     import mlx.nn as nn
     from mlx.utils import tree_flatten, tree_unflatten
@@ -141,12 +158,7 @@ def load_model(source, revision, *, prefill_chunk=256, cache_limit_mib=256):
             self.eps, self.group_size = original.eps, original.group_size
 
         def __call__(self, x):
-            y, weight = x.astype(mx.float32), self.weight.astype(mx.float32)
-            if self.group_size is not None:
-                y = y.reshape(*y.shape[:-1], -1, self.group_size)
-                weight = weight.reshape(-1, self.group_size)
-            y = y * mx.rsqrt(mx.mean(mx.square(y), axis=-1, keepdims=True) + self.eps)
-            return (y * weight).reshape(x.shape).astype(x.dtype)
+            return packed_norm(self.group_size, self.eps)(x, self.weight)
 
     replacements = [(name, PackedRMSNorm(module)) for name, module in lm.named_modules()
                     if isinstance(module, Qwen4ExpRMSNorm)]
@@ -195,6 +207,7 @@ def load_model(source, revision, *, prefill_chunk=256, cache_limit_mib=256):
                 "mlx_vlm_expected_revision": VLM_REVISION,
                 "quantizers": {str(bits): sum(q["bits"] == bits for q in quantizers.values()) for bits in (4, 8)},
                 "folded_norms": len(replacements), "ngram_storage": "mmap existing merged Q4 table",
+                "norm_execution": "compiled folded-weight RMSNorm",
                 "prefill_chunk": prefill_chunk, "load_seconds": time.perf_counter() - started,
                 "weight_artifacts": artifacts,
                 "weight_identity": "header hashes and caller revision; payload SHA not recomputed",
@@ -264,6 +277,13 @@ def score_shared(model, tokenizer, rows, metadata, max_tokens=4096):
     import mlx.core as mx
     if not rows or len({row["id"] for row in rows}) != len(rows):
         raise ValueError("Shared scoring requires nonempty rows with unique IDs")
+    if len(rows) == 1:
+        # There is nothing to share: avoid an extra prefill boundary and copy.
+        result = score(model, tokenizer, rows[0], metadata, max_tokens)
+        return [result], {"total_seconds": result["total_seconds"], "prefix_tokens": 0,
+                          "prefill_seconds": result["forward_seconds"], "copy_seconds": 0.0,
+                          "suffix_forward_seconds": 0.0, "batch_size": 1,
+                          "suffix_execution": "single decision; direct full prefill"}
     mx.synchronize()
     started = time.perf_counter()
     encoded = [encode_prompt(tokenizer, row, max_tokens) for row in rows]

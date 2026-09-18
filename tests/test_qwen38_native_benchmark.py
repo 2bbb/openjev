@@ -183,3 +183,12 @@ def test_repeated_timed_runs_compare_run_zero_without_duplicate_id_crash(tmp_pat
     assert comparison["right_run"] == 0
     assert comparison["left_rows"] == 1
     assert comparison["right_rows"] == 1
+
+
+def test_shared_groups_exact_states_instead_of_source_groups():
+    rows = [
+        {'id': 'a', 'group_id': 'source', 'state': {'x': 1}},
+        {'id': 'b', 'group_id': 'source', 'state': {'x': 2}},
+        {'id': 'c', 'group_id': 'other-source', 'state': {'x': 1}},
+    ]
+    assert [[row['id'] for row in group] for group in harness.selected_groups(rows, None)] == [['a', 'c'], ['b']]

@@ -1,0 +1,15 @@
+{
+  "date": "2026-09-18",
+  "hardware": "Apple M5 Max, 128 GiB, macOS 26.4",
+  "model_revision": "7eaef0fa82b4c3bf5c64cec60ace4bf48fd271e3",
+  "model_payload_verification": "Previously verified all 103 published payload SHA-256 hashes and all 113 file sizes with parent model-lock.json; not recomputed per score.",
+  "api_runtime": "mlx-serve 26.9.4 / MLX 0.32.2; resident, text-only, context 65536, RAM prefix cache 4 GiB, KV quantization off; MTP/draft/PLD disabled per scoring request.",
+  "api_quality_correction": "This initial quality-only run used an earlier harness without explicit warmup. Its manifest timing_scope incorrectly says warm. No warmup occurred; do not use it as a controlled speed comparison. API scoring implementation is unchanged from caf30c7.",
+  "native_quality_stage": "Initial unfused RMSNorm/chunk256 implementation at 3418bcc; preserved separately from the final shared/chunk2048 evaluation.",
+  "quality_final": "Compiled RMSNorm, chunk2048, exact-state grouping, singleton direct fast path. No untimed warmup; quality only.",
+  "speed_stage": "Compiled RMSNorm, chunk2048. Explicit warmup then two timed repeats of one state / 21 decisions. Shape has no gold labels. API/direct/shared use identical prompt, input-token and answer-slot hashes. Shared suffixes sequential.",
+  "numerical_limits": "Shared versus independent prefill flips one of 21 native decisions; shared agrees with the API on all 21. Probabilities differ. Do not claim bitwise/cache-boundary invariance or universal model/backend superiority.",
+  "gpu_tests": "Small regression tests overlapped some quality runs and a portion of the API speed baseline; speed is a local indicative measurement, not an isolated-system certification.",
+  "published_results": "Original results/raw hashes and 69 claims unchanged.",
+  "launcher_smoke": "Final native shell launcher: 3 original smoke cases plus a 16-option category case all selected expected options; existing-output rerun rejected with exit 2 and unchanged SHA-256."
+}
