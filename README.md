@@ -1,8 +1,8 @@
 # OpenJev
 
-This fork's `qwen38flash` branch adds a bounded direct-scoring bridge for an
-existing Qwen3.8 Flash Next mlx-serve instance, based on Apple Silicon PR #2.
-See [setup, readout limits, and local evidence](docs/QWEN38_FLASH.md).
+This fork's `qwen38flash` branch starts from Apple Silicon PR #2 and supports
+Qwen3.8 Flash Next through [direct native loading and shared prefixes](docs/QWEN38_NATIVE.md)
+or an [existing mlx-serve API](docs/QWEN38_FLASH.md). Both reuse the same packed checkpoint.
 
 <div align="center">
 

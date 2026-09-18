@@ -16,7 +16,8 @@ from .shared import score_shared
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", choices=("direct", "serial", "shared", "reranker"), required=True)
-    parser.add_argument("--backend", choices=("torch", "mlx", "mlx-serve"), default="torch")
+    parser.add_argument("--backend", choices=("torch", "mlx", "mlx-serve", "qwen38-native"), default="torch")
+    parser.add_argument("--prefill-chunk", type=int, help="Native Qwen3.8 prefill chunk (default: 256)")
     parser.add_argument("--server-url", help="mlx-serve loopback base URL (default: http://127.0.0.1:18082)")
     parser.add_argument("--mlx-bits", type=int, choices=(4, 8), help="Quantize MLX weights in memory; default preserves source precision")
     parser.add_argument("--mlx-cache-limit-mib", type=int,
@@ -42,15 +43,25 @@ def main() -> None:
         parser.error("--server-url requires --backend mlx-serve")
     if args.backend == "mlx-serve" and args.mode != "direct":
         parser.error("mlx-serve supports direct mode only; native serial/shared/reranker are unsupported")
+    if args.backend == "qwen38-native" and args.mode not in ("direct", "shared"):
+        parser.error("qwen38-native supports direct and shared modes only")
+    if args.prefill_chunk is not None and (args.backend != "qwen38-native" or args.prefill_chunk < 1):
+        parser.error("--prefill-chunk requires qwen38-native and a positive value")
     rows = [json.loads(line) for line in args.input.read_text().splitlines() if line.strip()]
     if not rows:
         parser.error("Input is empty")
     for row in rows:
         validate_row(row)
-    if args.backend == "mlx-serve" and len({row["id"] for row in rows}) != len(rows):
+    if args.backend in ("mlx-serve", "qwen38-native") and len({row["id"] for row in rows}) != len(rows):
         parser.error("Decision IDs must be unique")
     direct, serial, shared = direct_score, SerialPrefixScorer, score_shared
-    if args.backend == "mlx-serve":
+    if args.backend == "qwen38-native":
+        from . import qwen38_native_backend
+
+        model, tokenizer, metadata = qwen38_native_backend.load_model(
+            args.model, args.revision, prefill_chunk=args.prefill_chunk or 256)
+        direct, shared = qwen38_native_backend.score, qwen38_native_backend.score_shared
+    elif args.backend == "mlx-serve":
         from . import mlx_serve_backend
 
         model, tokenizer, metadata = mlx_serve_backend.load_model(
@@ -69,9 +80,21 @@ def main() -> None:
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("x") as destination:
         if args.mode == "shared":
-            results, timing = shared(model, tokenizer, rows, metadata, args.max_tokens)
+            if args.backend == "qwen38-native":
+                groups = {}
+                for row in rows:
+                    state_key = json.dumps(row["state"], ensure_ascii=False, allow_nan=False)
+                    groups.setdefault(state_key, []).append(row)
+                by_id = {}
+                for group in groups.values():
+                    results, timing = shared(model, tokenizer, group, metadata, args.max_tokens)
+                    by_id.update({result["id"]: {**result, "shared_timing": timing} for result in results})
+                results = [by_id[row["id"]] for row in rows]
+            else:
+                results, timing = shared(model, tokenizer, rows, metadata, args.max_tokens)
+                results = [{**result, "shared_timing": timing} for result in results]
             for result in results:
-                destination.write(json.dumps({**result, "shared_timing": timing}, allow_nan=False) + "\n")
+                destination.write(json.dumps(result, allow_nan=False) + "\n")
         elif args.mode == "serial":
             scorer = serial(model, tokenizer, metadata, args.max_tokens)
             for row in rows:

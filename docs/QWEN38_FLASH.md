@@ -3,7 +3,9 @@
 This branch starts from [Apple Silicon PR #2](https://github.com/TheoLeeCJ/openjev/pull/2),
 commit `1cd6eb2a8395598b5936451e02fbc201ce86f514`, and adds `--backend mlx-serve`.
 It reuses a resident Qwen3.8 Flash Next model without loading a second copy or
-downloading Qwen3.5. Native `--backend mlx` remains limited to Qwen3.5.
+downloading Qwen3.5. Native `--backend mlx` remains limited to Qwen3.5. The additional
+[`qwen38-native` backend](QWEN38_NATIVE.md) directly loads this checkpoint and
+supports shared prefixes without the API top-20 limit.
 
 ## Prerequisites and usage
 
