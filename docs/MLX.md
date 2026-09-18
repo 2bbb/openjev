@@ -1,4 +1,8 @@
-# Apple Silicon / MLX
+# Qwen3.5 on Apple Silicon / MLX
+
+This guide covers `--backend mlx` and Qwen3.5. For this branch's Qwen3.8 packed
+checkpoint, use [`--backend qwen38-native`](QWEN38_NATIVE.md) instead. The model
+formats, installation extras, and supported execution modes differ.
 
 The native MLX backend runs OpenJev's direct, serial-prefix, and parallel-shared
 decision modes on macOS arm64. It uses MLX-LM's Qwen3.5 implementation and the

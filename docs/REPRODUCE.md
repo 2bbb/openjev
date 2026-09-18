@@ -1,5 +1,9 @@
 # Reproduction guide
 
+This guide preserves the original **NVIDIA/CUDA** baselines. For this branch's
+Qwen3.8 setup on Apple Silicon, follow the [native guide](QWEN38_NATIVE.md);
+for Qwen3.5 on Apple Silicon, follow the [MLX guide](MLX.md).
+
 ## Environment
 
 Create an isolated virtual environment and place caches on a drive with room for model weights:

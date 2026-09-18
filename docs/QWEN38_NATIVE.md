@@ -99,11 +99,14 @@ start or stop another process. Stay in the repository root with `.venv` active:
 ```sh
 openjev-score --backend qwen38-native --mode shared \
   --model "$MODEL_DIR" --revision "$MODEL_REVISION" \
-  --input examples/qwen38flash-decisions.jsonl \
+  --input examples/decisions.jsonl \
   --output artifacts/qwen38-sample.jsonl
 ```
 
-The sample's winning option IDs should be `access`, `access`, then `billing`.
+The upstream sample's winning option IDs should be `yes`, `account_access`, then
+`not_required`. Its three different states are scored independently. Additional
+English/option-reversal/Japanese smoke cases are in
+`examples/qwen38flash-decisions.jsonl` (expected IDs: `access`, `access`, `billing`).
 Use a fresh output name on every run. For your own JSONL input, replace the
 `--input` path; the sample file shows the `id`, `state`, `question`, and `options`
 format. `--model` always accepts the local directory you selected; the backend

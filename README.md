@@ -3,6 +3,8 @@
 This fork's `qwen38flash` branch starts from Apple Silicon PR #2 and supports
 Qwen3.8 Flash Next through [direct native loading and shared prefixes](docs/QWEN38_NATIVE.md)
 or an [existing mlx-serve API](docs/QWEN38_FLASH.md). Both reuse the same packed checkpoint.
+Start with [Quick start](#quick-start) for Qwen3.8. The original 4B/RTX 3090
+demo and measurements below retain their upstream model and hardware scope.
 
 <div align="center">
 
@@ -26,39 +28,78 @@ This baseline reads typed option probabilities directly from a model. No answer 
 
 ## Quick start
 
-**Apple Silicon:** use the native [MLX backend](docs/MLX.md) for direct scoring,
-serial prefix reuse, and parallel shared-state decisions on macOS arm64.
-Install `pip install -e '.[test,mlx]'` and add `--backend mlx` to the scorer command.
-
-Python 3.10+, CUDA, and a GPU that can hold a 4B BF16 model:
+This branch's Qwen3.8 backend is **`qwen38-native`**. Use an Apple Silicon Mac
+and native arm64 Python **3.12**. The tested machine has **128 GiB unified memory**;
+the complete model occupies **107.3 GB on disk**. See the
+[setup guide](docs/QWEN38_NATIVE.md) for memory, free-disk and verification details.
 
 ```bash
-python -m venv .venv
+git clone --branch qwen38flash --single-branch https://github.com/2bbb/openjev.git
+cd openjev
+python3.12 -m venv .venv
 . .venv/bin/activate
-export HF_HOME=/path/to/large-drive/huggingface
-pip install -e '.[test]'
+python -m pip install -r requirements/qwen38-macos.txt -e '.[test,qwen38]'
 ```
 
-Run the owned examples:
+Select the pinned checkpoint and its local directory:
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 openjev-score \
-  --mode direct \
-  --model Qwen/Qwen3.5-4B \
-  --revision 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a \
-  --input examples/decisions.jsonl \
-  --output results.jsonl
+MODEL_REPO="ddalcu/Qwen3.8-Flash-Next-MLX-Serve-mixed-4-8bit"
+MODEL_REVISION="7eaef0fa82b4c3bf5c64cec60ace4bf48fd271e3"
+MODEL_DIR="$PWD/models/Qwen3.8-Flash-Next"
 ```
 
-Each result contains typed option scores, timing, the exact model revision, and a prompt hash.
+For a first download, run:
 
-If every row has the same exact state, switch to `--mode shared` to prefill it once and evaluate the criteria in parallel.
+```bash
+hf download "$MODEL_REPO" --revision "$MODEL_REVISION" \
+  --local-dir "$MODEL_DIR" --max-workers 4
+```
+
+If that exact checkpoint already exists, **skip the download** and instead set
+`MODEL_DIR="/absolute/path/to/Qwen3.8-Flash-Next"`. This can be on an external SSD;
+no copy is needed. Follow the [integrity-check instructions](docs/QWEN38_NATIVE.md#3-verify-the-downloaded-or-reused-files)
+for either path. The backend accepts this specific packed format, not GGUF or an
+arbitrary MLX conversion.
+
+Stop any server already holding this model, then run the unmodified upstream
+examples with the Qwen3.8 backend:
+
+```bash
+openjev-score --backend qwen38-native --mode shared \
+  --model "$MODEL_DIR" --revision "$MODEL_REVISION" \
+  --input examples/decisions.jsonl \
+  --output artifacts/qwen38-examples.jsonl
+```
+
+Expected winning option IDs are `yes`, `account_access`, and `not_required`.
+Each result includes option scores, timing, the model revision, and prompt
+fingerprints. Choose a new output path for every run.
+
+`shared` groups identical states and reuses their prefix computation; the
+remaining suffixes run as isolated sequential branches. These three examples
+have different states, so each uses an independent forward. Use `--mode direct`
+to explicitly score every row independently. Qwen3.8 supports `direct` and
+`shared`; it does not implement `serial` or `reranker`.
+
+Keep **`--backend qwen38-native`** in the command. The CLI default is still
+Torch/CUDA for upstream compatibility; setting `CUDA_VISIBLE_DEVICES` does not
+select MLX and is unnecessary for this native backend.
+
+Other runtime/model paths have separate instructions:
+
+- [Qwen3.5 on Apple Silicon](docs/MLX.md): `--backend mlx`, with its own model,
+  dependency extra, and direct/serial/parallel-shared modes.
+- [Original NVIDIA/CUDA reproduction](docs/REPRODUCE.md): the original
+  Qwen3.5-4B and reranker baselines using Torch.
+- [Qwen3.8 through a resident mlx-serve API](docs/QWEN38_FLASH.md):
+  `--backend mlx-serve --mode direct`.
 
 ## How it works
 
 ```mermaid
 flowchart LR
-    S[Unstructured state] --> M[4B model]
+    S[Unstructured state] --> M[Loaded language model]
     C[Runtime criteria] --> M
     O[Typed options] --> M
     M -- native option logits --> P[Probabilities]
@@ -70,6 +111,9 @@ flowchart LR
 - **Auditable:** the owned fixture, exact runners, row-level outputs, revisions, prompts, and known failures are committed.
 
 ## Speed
+
+The tables below retain the original **Qwen3.5-4B / RTX 3090** results. For this
+branch's Qwen3.8 / Apple Silicon measurements, see [Qwen3.8 performance](docs/QWEN38_PERFORMANCE.md).
 
 ### Decisions versus a compact generated array
 
@@ -96,6 +140,10 @@ On an owned 37-state × 21-criterion workload:
 The owned [37×21 fixture](benchmarks/data/shape777.jsonl), [direct/reuse runner](benchmarks/shape777.py), [reranker runner](benchmarks/shape777_reranker.py), [raw timings](results/raw/shape777-direct.json), and [row-level predictions](results/raw/shape777-direct.predictions.jsonl) are included. The fast reuse paths are experimental: BF16 execution changed 5–6 of 777 argmaxes relative to fresh scoring.
 
 ## Quality
+
+These are the original frozen-model results. The separate
+[Qwen3.8 evaluation](docs/QWEN38_PERFORMANCE.md#quality-and-numerical-agreement)
+reports this branch's native backend.
 
 | Frozen workload | Rows | Direct logits | Native reranker | Published Jev |
 |---|---:|---:|---:|---:|
