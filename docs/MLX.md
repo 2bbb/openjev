@@ -71,6 +71,46 @@ The screenshot shows the completed recording of a real local CLI run.
 
 ## Cache correctness
 
+For a long-running Python process, keep a `SharedPrefixScorer` per loaded model:
+
+```python
+from openjev_phase1.mlx_backend import SharedPrefixScorer
+
+scorer = SharedPrefixScorer(model, tokenizer, metadata,
+                           max_prefix_tokens=160, suffix_batch_size=2)
+results, timing = scorer.score(rows)  # All rows share this frame's state.
+results, timing = scorer.score(next_rows)  # A different frame or policy is OK.
+# After in-place changes to weights, dtype, adapters or tokenizer settings:
+scorer.clear()
+```
+
+This opt-in API extends within-frame sharing to the exact common prefix of the
+full encoded prompts, preserving a scoring position. It retains one bounded
+snapshot across calls and processes the remainder from independent copies.
+`suffix_batch_size=2` groups similar-length questions into pairs, then restores
+the original result order. Omit it to keep a single batch. The existing CLI and
+stateless API keep their previous prefix scope and cache lifetime.
+
+`timing.reused_prefix_tokens` reports hits; a miss, rebuild and all copying are
+included in request timing. A prefix-token mismatch or a different model or
+tokenizer object rebuilds the snapshot. A policy change after the saved boundary
+can safely reuse the unchanged earlier tokens. The cache includes convolution,
+delta and attention state and never attempts to trim recurrent history.
+Use one scoring worker per instance; this is not a shared concurrent cache.
+The retained cache owns references to its model/tokenizer: call `clear()` or
+release the scorer when unloading. The first call populates the cache; startup
+and warm steady-state latency are different measurements.
+
+Validation scope: real tiny hybrid-model regressions cover cache hits and misses,
+state changes, different model/tokenizer objects, clear, unequal suffix lengths,
+question reordering and one/three output rows. In the parent `qwens` project,
+the opt-in sample backend additionally tests the resident cache with Qwen3.5-9B
+MLX 4bit / FP16 on 20 OSC inputs × 4 categorical effect outputs. That measurement
+also uses selected vocabulary projection and a close-score recomputation guard;
+its latency is **not a benchmark of this full-vocabulary API**, nor a claim for
+arbitrary models, prompts, languages or spatial-synth control. See the parent
+`reports/resident-inference-speed.md` for case definitions and limitations.
+
 Qwen3.5 combines attention history with recurrent convolution/delta state.
 Serial scoring deep-copies the entire native prefix cache for each question.
 Parallel scoring merges native cache copies, right-pads question suffixes,

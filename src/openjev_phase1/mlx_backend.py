@@ -18,6 +18,7 @@ import time
 from .core import softmax
 from .direct import PROMPT_VERSION, encode_prompt
 from .shared import _state_prefix
+from .mlx_prefix_cache import ResidentPrefixCache, common_prefix, suffix_groups
 
 
 DEFAULT_CACHE_LIMIT_MIB = 256
@@ -182,7 +183,8 @@ class SerialPrefixScorer:
         return result
 
 
-def score_shared(model, tokenizer, rows, metadata, max_tokens=4096):
+def score_shared(model, tokenizer, rows, metadata, max_tokens=4096, *,
+                 prefix_scope="state", prefix_cache=None, suffix_batch_size=None):
     """Prefill once, merge independent cache branches, then score padded suffixes.
 
     Right padding is masked by native recurrent caches. Causal attention prevents
@@ -191,6 +193,8 @@ def score_shared(model, tokenizer, rows, metadata, max_tokens=4096):
     """
     import mlx.core as mx
 
+    if prefix_scope not in ("state", "full"):
+        raise ValueError("prefix_scope must be state or full")
     if not rows or any(row["state"] != rows[0]["state"] for row in rows):
         raise ValueError("Shared scoring requires one nonempty exact state")
     if len({row["id"] for row in rows}) != len(rows):
@@ -198,33 +202,44 @@ def score_shared(model, tokenizer, rows, metadata, max_tokens=4096):
     mx.synchronize()
     started = time.perf_counter()
     encoded = [encode_prompt(tokenizer, row, max_tokens) for row in rows]
-    prefix = _state_prefix(tokenizer, rows[0]["state"])
+    prefix = (common_prefix([ids for ids, _, _ in encoded]) if prefix_scope == "full"
+              else _state_prefix(tokenizer, rows[0]["state"]))
     _check_prefix(prefix, encoded)
     suffixes = [ids[len(prefix):] for ids, _, _ in encoded]
     lengths = [len(ids) for ids in suffixes]
-    width = max(lengths)
+    groups = suffix_groups(lengths, suffix_batch_size)
     pad = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id
     if pad is None:
         raise ValueError("Tokenizer requires a padding or EOS token")
-    tokens = mx.array([ids + [pad] * (width - len(ids)) for ids in suffixes])
     encode_seconds = time.perf_counter() - started
     mark = time.perf_counter()
-    cache = _prefill(model, prefix)
+    if prefix_cache is None:
+        cache, reused_tokens = _prefill(model, prefix), 0
+    else:
+        cache, reused_tokens = prefix_cache.prepare(model, tokenizer, prefix)
     prefill_seconds = time.perf_counter() - mark
-    mark = time.perf_counter()
-    branches = [entry.merge([entry] * len(rows)) for entry in cache]
-    for entry in branches:
-        entry.prepare(lengths=lengths, right_padding=[width - size for size in lengths])
-    mx.eval([entry.state for entry in branches])
-    mx.synchronize()
-    replicate_seconds = time.perf_counter() - mark
-    mark = time.perf_counter()
-    logits = model(tokens, cache=branches)
-    selected = [logits[i, lengths[i] - 1, mx.array(slots)].astype(mx.float32)
-                for i, (_, slots, _) in enumerate(encoded)]
-    mx.eval(selected)
-    mx.synchronize()
-    suffix_seconds = time.perf_counter() - mark
+    selected = [None] * len(rows)
+    replicate_seconds = suffix_seconds = 0.0
+    padded_tokens = 0
+    for group in groups:
+        mark = time.perf_counter()
+        sizes = [lengths[i] for i in group]
+        width = max(sizes)
+        padded_tokens += width * len(group)
+        branches = [entry.merge([entry] * len(group)) for entry in cache]
+        for entry in branches:
+            entry.prepare(lengths=sizes, right_padding=[width - size for size in sizes])
+        mx.eval([entry.state for entry in branches])
+        mx.synchronize()
+        replicate_seconds += time.perf_counter() - mark
+        mark = time.perf_counter()
+        tokens = mx.array([suffixes[i] + [pad] * (width - lengths[i]) for i in group])
+        logits = model(tokens, cache=branches)
+        for j, i in enumerate(group):
+            selected[i] = logits[j, sizes[j] - 1, mx.array(encoded[i][1])].astype(mx.float32)
+        mx.eval([selected[i] for i in group])
+        mx.synchronize()
+        suffix_seconds += time.perf_counter() - mark
     results = [_result(row, enc, values.tolist(), metadata, "shared")
                for row, enc, values in zip(rows, encoded, selected)]
     timing = {
@@ -232,6 +247,29 @@ def score_shared(model, tokenizer, rows, metadata, max_tokens=4096):
         "prefix_tokens": len(prefix), "prefill_seconds": prefill_seconds,
         "replicate_seconds": replicate_seconds, "suffix_forward_seconds": suffix_seconds,
         "batch_size": len(rows), "true_suffix_tokens": sum(lengths),
-        "padded_suffix_tokens": width * len(rows),
+        "padded_suffix_tokens": padded_tokens, "batch_groups": len(groups),
+        "prefix_scope": prefix_scope, "reused_prefix_tokens": reused_tokens,
     }
     return results, timing
+
+
+class SharedPrefixScorer:
+    """Resident shared scorer with exact full-prefix reuse across calls.
+
+    Keep one instance per immutable loaded model on a single scoring worker.
+    Existing stateless score_shared behavior is unchanged.
+    """
+    def __init__(self, model, tokenizer, metadata, max_tokens=4096, *, max_prefix_tokens=160,
+                 suffix_batch_size=None):
+        self.model, self.tokenizer, self.metadata = model, tokenizer, metadata
+        self.max_tokens = max_tokens
+        self.prefix_cache = ResidentPrefixCache(max_prefix_tokens)
+        self.suffix_batch_size = suffix_batch_size
+
+    def clear(self):
+        self.prefix_cache.clear()
+
+    def score(self, rows):
+        return score_shared(self.model, self.tokenizer, rows, self.metadata, self.max_tokens,
+                            prefix_scope="full", prefix_cache=self.prefix_cache,
+                            suffix_batch_size=self.suffix_batch_size)

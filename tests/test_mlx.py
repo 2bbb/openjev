@@ -158,3 +158,42 @@ def test_loader_applies_cache_limit_and_records_bytes(tmp_path, monkeypatch, mod
 def test_loader_rejects_invalid_cache_limit_before_loading(limit):
     with pytest.raises(ValueError, match='nonnegative integer'):
         backend.load_model('Qwen/Qwen3.5-4B', '0' * 40, cache_limit_mib=limit)
+
+
+def test_resident_shared_cache_hit_miss_clear_and_model_identity(model, rows):
+    tokenizer = Tokenizer()
+    scorer = backend.SharedPrefixScorer(model, tokenizer, {}, max_prefix_tokens=200, suffix_batch_size=2)
+    _, cold = scorer.score(rows)
+    assert cold['reused_prefix_tokens'] == 0
+    for order in (rows[::-1], rows[:1], rows):
+        actual, timing = scorer.score(order)
+        assert timing['reused_prefix_tokens'] == 200
+        for row, result in zip(order, actual):
+            assert_same(backend.score(model, tokenizer, row, {}), result)
+    changed = copy.deepcopy(rows)
+    for row in changed:
+        row['state'] = {'evidence': 'Motion and policy changed.'}
+    actual, timing = scorer.score(changed)
+    assert timing['reused_prefix_tokens'] == 0
+    for row, result in zip(changed, actual):
+        assert_same(backend.score(model, tokenizer, row, {}), result)
+    scorer.tokenizer = Tokenizer()
+    assert scorer.score(changed)[1]['reused_prefix_tokens'] == 0
+    scorer.model = copy.deepcopy(model)
+    assert scorer.score(changed)[1]['reused_prefix_tokens'] == 0
+    assert scorer.score(changed)[1]['reused_prefix_tokens'] == 200
+    scorer.clear()
+    assert scorer.score(changed)[1]['reused_prefix_tokens'] == 0
+
+
+def test_common_prefix_leaves_scoring_position():
+    from openjev_phase1.mlx_prefix_cache import common_prefix, ResidentPrefixCache
+    assert common_prefix([[1,2,3],[1,2,4]]) == [1,2]
+    assert common_prefix([[1,2],[1,2]]) == [1]
+    assert common_prefix([[1],[2]]) == []
+    for sequences in ([], [[]], [[1],[]]):
+        with pytest.raises(ValueError):
+            common_prefix(sequences)
+    for size in (0, -1, True, 1.2):
+        with pytest.raises(ValueError):
+            ResidentPrefixCache(size)
