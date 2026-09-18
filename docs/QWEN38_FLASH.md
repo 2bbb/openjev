@@ -18,6 +18,12 @@ supports shared prefixes without the API top-20 limit.
   itself loads only the tokenizer and uses standard-library HTTP; the MLX extra
   is needed for PR #2's separate native MLX backend, not this bridge.
 
+For first-time model download, an existing model directory, and integrity checks,
+follow [the model setup steps](QWEN38_NATIVE.md#2-download-the-model-or-point-to-an-existing-copy).
+In API mode, `--model` selects the local tokenizer/configuration directory; it
+does not tell the running server to switch models. The server must already be
+serving those same weights and revision.
+
 Run from this repository, replacing the model directory with your existing path:
 
 ```sh

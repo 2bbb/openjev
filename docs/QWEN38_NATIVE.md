@@ -5,27 +5,113 @@ bridge. It directly reads the **same existing packed checkpoint**; it does not
 convert or duplicate weights on disk. Text decisions only, with zero generated
 tokens and no API top-20 restriction.
 
-## Installation and execution
+## Standalone installation: start here
 
-Install `pip install -e '.[test,qwen38]'` on Apple Silicon. The adapter enforces
-MLX `0.32.2` and [mlx-vlm commit
+These steps use only this public fork; they do not require the author's parent
+`qwens` project, personal paths, or an existing mlx-serve installation.
+
+Requirements: Apple Silicon, Git, and native arm64 Python **3.12** (not Rosetta).
+The tested machine has **128 GiB unified memory**. The loader needs roughly
+72.9 GB of weight storage in memory plus at least 5 GiB of available headroom;
+64 GB machines cannot fit this pack. The complete download is **107.3 GB**
+(about 100 GiB). Plan roughly **150–160 GB free disk** for a fresh setup,
+including Python dependencies, download working space and headroom. The 32 GB
+n-gram table stays read-only mmap; it is not all allocated on the GPU.
+
+### 1. Clone the fork and install the environment
+
+```sh
+git clone --branch qwen38flash --single-branch https://github.com/2bbb/openjev.git
+cd openjev
+python3.12 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements/qwen38-macos.txt -e '.[test,qwen38]'
+```
+
+The requirements file preserves the tested macOS/Python 3.12 dependency versions.
+It installs the `hf` download CLI and `openjev-score` in this virtual environment.
+The backend enforces MLX `0.32.2` and [mlx-vlm commit
 `10db092733a416439fce874cd96a7835b700f43d`](https://github.com/Blaizzy/mlx-vlm/tree/10db092733a416439fce874cd96a7835b700f43d/mlx_vlm/models/qwen4_exp).
-The tested checkpoint is
-[`ddalcu/Qwen3.8-Flash-Next-MLX-Serve-mixed-4-8bit`](https://huggingface.co/ddalcu/Qwen3.8-Flash-Next-MLX-Serve-mixed-4-8bit/tree/7eaef0fa82b4c3bf5c64cec60ace4bf48fd271e3)
-at revision `7eaef0fa82b4c3bf5c64cec60ace4bf48fd271e3`.
+For later shells, return to this clone and run `. .venv/bin/activate` again.
 
-Stop another server holding this model before loading it directly. The loader
-requires the selected weight bytes plus 5 GiB of available memory. Weights are
-approximately 72.9 GB on the tested pack; the 32 GB n-gram table remains a
-read-only CPU mmap, with only requested rows transferred to the GPU.
+### 2. Download the model OR point to an existing copy
+
+The supported, tested pack is
+[`ddalcu/Qwen3.8-Flash-Next-MLX-Serve-mixed-4-8bit`](https://huggingface.co/ddalcu/Qwen3.8-Flash-Next-MLX-Serve-mixed-4-8bit/tree/7eaef0fa82b4c3bf5c64cec60ace4bf48fd271e3).
+Use this exact revision for the commands below:
+
+```sh
+MODEL_REPO="ddalcu/Qwen3.8-Flash-Next-MLX-Serve-mixed-4-8bit"
+MODEL_REVISION="7eaef0fa82b4c3bf5c64cec60ace4bf48fd271e3"
+```
+
+**A. First download:** choose where to store the complete checkpoint. This may
+be outside the repository, including an external SSD. Keep the quotes for paths
+with spaces. Do not limit the download to `*.safetensors`: the tokenizer,
+configuration and `ngram_table.bin` are also required.
+
+```sh
+MODEL_DIR="$PWD/models/Qwen3.8-Flash-Next"
+hf download "$MODEL_REPO" --revision "$MODEL_REVISION" \
+  --local-dir "$MODEL_DIR" --max-workers 4
+```
+
+Rerun the same command after an interruption; already downloaded, up-to-date
+files are reused. Keep the download metadata under `.cache/huggingface` inside
+the model directory. See the [official Hugging Face CLI guide](https://huggingface.co/docs/huggingface_hub/guides/cli).
+The downloaded model has its own [Qwen Community License](https://huggingface.co/ddalcu/Qwen3.8-Flash-Next-MLX-Serve-mixed-4-8bit/blob/7eaef0fa82b4c3bf5c64cec60ace4bf48fd271e3/LICENSE),
+separate from the code license.
+
+**B. Already downloaded:** skip the download command and set the existing
+**directory** instead. No copying, symlink or model registration is necessary.
+An existing Hugging Face snapshot directory also works if all its files resolve.
+
+```sh
+MODEL_DIR="/Volumes/Models/Qwen3.8-Flash-Next"
+```
+
+Point to the folder containing `config.json`, tokenizer assets,
+`model-00001.safetensors` through `model-00100.safetensors`, and
+`ngram_table.bin`. Do not pass a single shard or a GGUF file. This custom pack's
+layout matters: another model with a similar name, an ordinary MLX conversion,
+or Qwen3.5 GGUF cannot be substituted into `qwen38-native`.
+
+### 3. Verify the downloaded or reused files
+
+Run this for either path above. It checks local files against the pinned Hub
+revision, requires the complete download, needs network access for metadata,
+and reads roughly 107 GB from disk. It does not load the model onto the GPU.
+
+```sh
+hf cache verify "$MODEL_REPO" --revision "$MODEL_REVISION" \
+  --local-dir "$MODEL_DIR" --fail-on-missing-files
+```
+
+A mismatch or missing file must be resolved before scoring. The scorer's
+`--revision` argument records provenance; it does not download files, switch an
+existing directory to that revision, or verify payload checksums for you.
+
+### 4. Run the sample, then your own decisions
+
+Stop any server holding this model first. The standalone OpenJev CLI does not
+start or stop another process. Stay in the repository root with `.venv` active:
 
 ```sh
 openjev-score --backend qwen38-native --mode shared \
-  --model /path/to/Qwen3.8-Flash-Next \
-  --revision 7eaef0fa82b4c3bf5c64cec60ace4bf48fd271e3 \
+  --model "$MODEL_DIR" --revision "$MODEL_REVISION" \
   --input examples/qwen38flash-decisions.jsonl \
-  --output native-scores.jsonl
+  --output artifacts/qwen38-sample.jsonl
 ```
+
+The sample's winning option IDs should be `access`, `access`, then `billing`.
+Use a fresh output name on every run. For your own JSONL input, replace the
+`--input` path; the sample file shows the `id`, `state`, `question`, and `options`
+format. `--model` always accepts the local directory you selected; the backend
+never downloads weights automatically.
+
+The `bash openjev.sh` convenience wrapper mentioned in the author's local setup
+belongs to the separate `qwens` parent project and is not part of this fork.
+The standalone commands above are the supported entry point for other users.
 
 Outputs are create-only. The CLI groups rows by their exact JSON-serialized
 state, computes each group's prefix once, and preserves the original output
