@@ -9,12 +9,14 @@ No model weights or third-party raw evaluation records are distributed here.
 | TypeSafe public evaluations | https://evals.typesafe.ai/ | Exact case URLs and snapshot hashes are in `benchmarks/fetch_sources.py`; no redistribution grant inferred. |
 | Every parallel judgment lab | https://typesafe-parallel-judgment-lab.every-4573.chatgpt.site/ | [Experiment JSON](https://typesafe-parallel-judgment-lab.every-4573.chatgpt.site/downloads/experiments.json) and [source archive](https://typesafe-parallel-judgment-lab.every-4573.chatgpt.site/downloads/typesafe-lab-source.zip) are public downloads. |
 | WANLI | https://huggingface.co/datasets/alisawuffles/WANLI | Pinned at `61c95318fd71c55b6ba355d76253254615f387ec`; CC-BY-4.0. |
-| WebLLM | https://github.com/mlc-ai/web-llm | `0.2.85` | Browser inference runtime; Apache-2.0. |
+| wllama | https://github.com/ngxson/wllama | `3.6.1` | Vendored browser inference runtime; MIT. |
 | Vue | https://github.com/vuejs/core | `3.5.21` | Browser demo UI runtime; MIT. |
 | Material Symbols | https://fonts.google.com/icons | Google Fonts CDN | Browser demo icons; Apache-2.0. |
-| MLC Qwen3-0.6B build | https://huggingface.co/mlc-ai/Qwen3-0.6B-q4f16_1-MLC | Catalog entry from WebLLM `0.2.85` | Quantized browser model; upstream terms apply. |
-| MLC Qwen3.5-0.8B build | https://huggingface.co/mlc-ai/Qwen3.5-0.8B-q4f16_1-MLC | Catalog entry from WebLLM `0.2.85` | Quantized browser model; upstream terms apply. |
+| Star History | https://www.star-history.com/ | Live SVG endpoint | README star-history chart; service and generated chart remain external. |
+| Qwen3-0.6B GGUF | https://huggingface.co/Qwen/Qwen3-0.6B-GGUF | `23749fefcc72300e3a2ad315e1317431b06b590a` | External Q8_0 browser model; weights are not redistributed. |
+| MiniCPM5-2B GGUF | https://huggingface.co/openbmb/MiniCPM5-2B-GGUF | `2079a22f3beaa4e306449978533478fe0522f4b3` | External Q4_K_M browser model; Apache-2.0 on its model card; weights are not redistributed. |
+| Qwen3.5-4B GGUF | https://huggingface.co/bartowski/Qwen_Qwen3.5-4B-GGUF | `4168f45a16a1290d65a4ec0fa312ae917a4c15d6` | External Q4_K_M browser model; weights are not redistributed. |
 
-These URLs returned HTTP 200 on 2026-09-16. `benchmarks/fetch_sources.py` refuses content whose SHA-256 differs from the evaluated snapshot.
+These URLs were checked on 2026-09-18. `benchmarks/fetch_sources.py` refuses content whose SHA-256 differs from the evaluated snapshot.
 
 TypeSafe and Jev are marks of their respective owner. OpenJev is unaffiliated. OpenJev code is provided under the repository's MIT License; third-party models and material retain their upstream terms.

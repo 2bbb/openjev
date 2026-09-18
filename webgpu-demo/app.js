@@ -7,8 +7,21 @@ const loadButton = $("#load");
 const runButton = $("#run");
 const modelSelect = $("#model-select");
 const models = {
-  "Qwen3-0.6B-q4f16_1-MLC": { name: "Qwen3 0.6B", short: "Qwen3 · 0.6B", size: "~352 MB", url: "https://huggingface.co/mlc-ai/Qwen3-0.6B-q4f16_1-MLC" },
-  "Qwen3.5-0.8B-q4f16_1-MLC": { name: "Qwen3.5 0.8B", short: "Qwen3.5 · 0.8B", size: "~447 MB", url: "https://huggingface.co/mlc-ai/Qwen3.5-0.8B-q4f16_1-MLC" },
+  "qwen3-0.6b": {
+    name: "Qwen3 0.6B", short: "Qwen3 · 0.6B", size: "639 MB",
+    url: "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF",
+    notice: "Smaller model optimized for small devices. Accuracy may be worse.", noticeClass: "mobile",
+  },
+  "minicpm5-2b": {
+    name: "MiniCPM5 2B", short: "MiniCPM5 · 2B", size: "1.56 GB",
+    url: "https://huggingface.co/openbmb/MiniCPM5-2B-GGUF",
+    notice: "Larger model. Loading may be slower or may not fit on some low-end devices.", noticeClass: "",
+  },
+  "qwen3.5-4b": {
+    name: "Qwen3.5 4B", short: "Qwen3.5 · 4B", size: "3.01 GB",
+    url: "https://huggingface.co/bartowski/Qwen_Qwen3.5-4B-GGUF",
+    notice: "High-memory desktop model. Allow several gigabytes of free GPU memory and browser storage.", noticeClass: "desktop-heavy",
+  },
 };
 const presets = {
   account: {
@@ -52,6 +65,12 @@ function renderSelectedModel() {
   $("#model-size").textContent = `${selected.size} model`;
   $("#model-link").href = selected.url;
   $("#download-detail").textContent = `${selected.size} on first load`;
+  const notice = $("#model-notice");
+  notice.textContent = selected.notice;
+  notice.className = `model-notice ${selected.noticeClass}`.trim();
+  document.querySelectorAll("[data-quality-model]").forEach((row) => {
+    row.classList.toggle("selected", row.dataset.qualityModel === modelSelect.value);
+  });
   loadButton.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">download</span> load ${selected.name}`;
 }
 
@@ -235,11 +254,6 @@ async function checkWebGPU() {
     loadButton.disabled = true;
     return;
   }
-  if (!adapter.features.has("shader-f16")) {
-    setSupport("WebGPU is available, but this browser does not expose the half-precision feature Qwen3 needs.", "error");
-    loadButton.disabled = true;
-    return;
-  }
   setSupport("WebGPU is ready. The model does not download until you click load.", "ok");
 }
 
@@ -247,7 +261,13 @@ loadButton.addEventListener("click", () => {
   loadButton.disabled = true;
   modelSelect.disabled = true;
   loadButton.innerHTML = '<span class="material-symbols-rounded spin" aria-hidden="true">progress_activity</span> loading…';
-  worker.postMessage({ type: "load", modelId: modelSelect.value });
+  worker.postMessage({
+    type: "load",
+    modelId: modelSelect.value,
+    useLocal:
+      ["127.0.0.1", "localhost"].includes(location.hostname) &&
+      new URLSearchParams(location.search).has("local"),
+  });
 });
 
 document.querySelectorAll("[data-preset]").forEach((button) => {
@@ -262,12 +282,10 @@ document.querySelectorAll("[data-preset]").forEach((button) => {
 });
 
 modelSelect.addEventListener("change", renderSelectedModel);
-modelSelect.value = isMobileDevice
-  ? "Qwen3-0.6B-q4f16_1-MLC"
-  : "Qwen3.5-0.8B-q4f16_1-MLC";
+modelSelect.value = "minicpm5-2b";
 $("#device-note").textContent = isMobileDevice
-  ? "Phone detected · Qwen3 0.6B selected for the lightest load."
-  : "Works best on a laptop or desktop · Qwen3.5 0.8B selected by default.";
+  ? "Phone or small device detected · MiniCPM5 2B is selected. Switch to Qwen3 0.6B in the model box if loading is too heavy."
+  : "Desktop detected · MiniCPM5 2B selected by default.";
 renderSelectedModel();
 
 runButton.addEventListener("click", () => {

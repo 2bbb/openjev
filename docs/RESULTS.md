@@ -6,6 +6,17 @@ Open components reproduce the *interface pattern* of a semantic decision operato
 
 ### Semantic quality
 
+The browser demo now exposes three device tiers. Their base checkpoints were scored with the same native BF16 direct-logit interface before browser quantization:
+
+| Model | Browser artifact | Download | Authored balanced accuracy | Perturbation balanced accuracy | TypeSafe subset agreement |
+|---|---|---:|---:|---:|---:|
+| Qwen3-0.6B | Q8_0 | 639 MB | 0.440 | 0.528 | 0.407 |
+| MiniCPM5-2B | Q4_K_M | 1.56 GB | 0.686 | 0.693 | 0.637 |
+| **Qwen3.5-4B** | Q4_K_M | 3.01 GB | **0.813** | **0.766** | 0.845 |
+| Published Jev | Closed hosted service | — | — | — | **0.883** |
+
+The owned quality values belong to the native BF16 checkpoints; they isolate model capability and are not presented as measurements of the quantized artifacts. TypeSafe agreement is an equal-case macro over the same selected 102 public rows and 20 cases for all four systems. Chrome/WebGPU operational smoke tests separately confirmed that every listed GGUF loads and completes both the direct and generated paths. Exact revisions, row-level predictions, and smoke timings are in `results/raw/browser-model-ladder.json`.
+
 | Frozen workload | Metric | Direct Qwen3.5-4B | Qwen3-Reranker-4B | Public Jev value |
 |---|---|---:|---:|---:|
 | Authored, 144 rows | Mean family balanced accuracy | **0.813** | 0.625 | — |

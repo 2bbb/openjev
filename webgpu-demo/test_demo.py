@@ -1,87 +1,68 @@
 import re
 from pathlib import Path
 
-
 WEBGPU = Path(__file__).resolve().parent
 
+def sources():
+    return {name: (WEBGPU / name).read_text() for name in ("index.html", "app.js", "worker.js", "README.md", "_headers")}
 
-def test_browser_demo_files_and_pins_exist():
-    html = (WEBGPU / "index.html").read_text()
-    worker = (WEBGPU / "worker.js").read_text()
-    assert 'src="app.js"' in html
-    assert 'href="style.css"' in html
-    assert "@mlc-ai/web-llm@0.2.85" in worker
-    for model in (
-        "Qwen3-0.6B-q4f16_1-MLC",
-        "Qwen3.5-0.8B-q4f16_1-MLC",
+def test_static_runtime_and_pins():
+    text = sources()
+    assert 'src="app.js"' in text["index.html"]
+    assert 'href="style.css"' in text["index.html"]
+    assert 'new Worker("worker.js", { type: "module" })' in text["app.js"]
+    assert 'import("./vendor/wllama/index.js")' in text["worker.js"]
+    assert (WEBGPU / "vendor/wllama/wasm/wllama.wasm").stat().st_size > 1_000_000
+    assert (WEBGPU / "vendor/wllama/LICENCE").is_file()
+    assert "wllama" in text["README.md"] and "3.6.1" in text["README.md"]
+    assert "vue@3.5.21" in text["app.js"]
+    assert "Material+Symbols+Rounded" in text["index.html"]
+    assert "Cross-Origin-Opener-Policy: same-origin" in text["_headers"]
+    assert "Cross-Origin-Embedder-Policy: require-corp" in text["_headers"]
+
+def test_three_pinned_model_tiers():
+    text = sources()
+    for model_id in ("qwen3-0.6b", "minicpm5-2b", "qwen3.5-4b"):
+        assert model_id in text["index.html"]
+        assert model_id in text["app.js"]
+        assert model_id in text["worker.js"]
+    for revision in (
+        "23749fefcc72300e3a2ad315e1317431b06b590a",
+        "2079a22f3beaa4e306449978533478fe0522f4b3",
+        "4168f45a16a1290d65a4ec0fa312ae917a4c15d6",
     ):
-        assert model in worker
-        assert model in html
-    assert "vue@3.5.21" in (WEBGPU / "app.js").read_text()
-    assert "Material+Symbols+Rounded" in html
-    assert "icon_names=" in html and "display=block" in html
-    assert 'id="model-select"' in html
-    assert "There is no waitlist!" in html
-    assert 'data-preset="account"' in html
-    assert 'data-preset="email"' in html
-    assert 'options: ["Legitimate", "Spam", "Phishing"]' in (WEBGPU / "app.js").read_text()
-    app = (WEBGPU / "app.js").read_text()
-    assert 'document.querySelectorAll("[data-preset]")' in app
-    assert 'id="add-option"' in html and 'id="remove-option"' in html
-    assert "const MAX_OPTIONS = 20" in app
-    assert "const MIN_OPTIONS = 2" in app
-    assert "setOptions(preset.options)" in app
-    assert "join the waitlist" not in html.lower()
-    assert html.index('class="machine"') < html.index('class="workbench"') < html.index('class="method-map"')
-    assert "Can we run something like Jev in your browser?" in html
-    assert "Decision model <mark>in your browser.</mark>" in html
-    assert "Works best on a laptop or desktop" in html
-    assert "isMobileDevice" in (WEBGPU / "app.js").read_text()
-    assert "Qwen3-0.6B-q4f16_1-MLC" in (WEBGPU / "app.js").read_text()
-    assert "Qwen3.5-0.8B-q4f16_1-MLC" in (WEBGPU / "app.js").read_text()
-    assert '<meta name="referrer" content="no-referrer"' in html
-    assert 'referrerPolicy: "no-referrer"' in worker
-    assert "modelId: modelSelect.value" in (WEBGPU / "app.js").read_text()
-    assert "load(data.modelId)" in worker
+        assert revision in text["worker.js"]
+        assert revision in text["README.md"]
+    assert 'modelSelect.value = "minicpm5-2b"' in text["app.js"]
+    assert "Phone or small device detected" in text["app.js"]
+    assert "Switch to Qwen3 0.6B in the model box" in text["app.js"]
+    assert "recommended for phones and small devices" in text["index.html"]
+    assert "Smaller model optimized for small devices. Accuracy may be worse." in text["app.js"]
+    assert "may not fit on some low-end devices" in text["app.js"]
+    assert 'id="model-notice"' in text["index.html"]
+    assert 'id="quality-title"' in text["index.html"]
+    assert 'owned + public benchmarks' in text["index.html"]
+    assert "Published Jev" in text["index.html"]
+    for score in ("44.0%", "52.8%", "40.7%", "68.6%", "69.3%", "63.7%", "81.3%", "76.6%", "84.5%", "88.3%"):
+        assert score in text["index.html"]
+    assert 'row.dataset.qualityModel === modelSelect.value' in text["app.js"]
 
-
-def test_demo_has_no_canned_benchmark_results_or_backend_calls():
-    sources = "\n".join((WEBGPU / name).read_text() for name in ("index.html", "app.js", "worker.js", "README.md"))
-    assert "performance.now()" in sources
-    assert "WebSocket" not in sources
-    assert re.search(r"https?://", sources)
-    assert not re.search(r"(?:fetch|axios)\s*\(\s*['\"]/(?:api|generate|score)", sources)
-
-
-def test_demo_discloses_measurement_and_probability_limits():
-    text = ((WEBGPU / "index.html").read_text() + (WEBGPU / "README.md").read_text()).lower()
+def test_live_comparison_and_limits():
+    text = sources()
+    combined = "\n".join(text.values())
+    assert "performance.now()" in combined
+    assert "createChatCompletion" in text["worker.js"]
+    assert "logprobs: true" in text["worker.js"]
+    assert "top_logprobs: 20" in text["worker.js"]
+    assert "grammar" in text["worker.js"]
+    assert "stream: true" in text["worker.js"]
+    assert "JSON.parse" in text["worker.js"]
+    assert "<think>" in text["worker.js"]
+    assert "probabilities must sum to 1" in text["worker.js"]
+    assert "Route north" in text["worker.js"]
+    assert "const MAX_OPTIONS = 20" in text["app.js"]
+    assert "const MIN_OPTIONS = 2" in text["app.js"]
     for phrase in ("conditional probabilities", "not calibrated", "sequential", "warmup", "no backend"):
-        assert phrase in text
-
-
-def test_demo_checks_required_gpu_feature_and_generated_format():
-    html = (WEBGPU / "index.html").read_text()
-    app = (WEBGPU / "app.js").read_text()
-    worker = (WEBGPU / "worker.js").read_text()
-    readme = (WEBGPU / "README.md").read_text()
-    assert 'id="generation-validity"' not in html
-    assert 'adapter.features.has("shader-f16")' in app
-    assert "JSON.parse" in worker
-    assert "<think>" in worker and "<\\/think>" in worker
-    assert "exactKeys(parsed, expectedKeys)" in worker
-    assert "probabilities must sum to 1" in worker
-    assert "JSON probabilities" in html
-    assert "Estimate the probability" in worker
-    assert '{"A: Route north": 0.65, "B: Route south": 0.35}' in worker
-    assert "Account access support" not in worker
-    assert "generated, self-reported probabilities" in readme
-    assert "max_tokens: 512" in worker
-    assert "verbose" not in html.lower() + readme.lower()
-    assert "Qwen3.5-2B" not in html + app + worker + readme
-    assert "top_logprobs: group.length" in worker
-    assert "group.map((label)" in worker
-    assert "groups.length" in worker
-    assert "relativeLogits" in worker
-    assert "optionLogprobs" in worker
-    assert "CreateMLCEngine" in worker
-    assert "format failure" not in app
+        assert phrase in combined.lower()
+    assert "WebSocket" not in combined
+    assert not re.search(r"/api/(?:generate|score)", combined)

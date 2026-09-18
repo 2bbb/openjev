@@ -1,15 +1,32 @@
 const browserFetch = self.fetch.bind(self);
 self.fetch = (input, init = {}) => browserFetch(input, { ...init, referrerPolicy: "no-referrer" });
 
-const webllm = await import("https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm@0.2.85/+esm");
+const { Wllama, LoggerWithoutDebug } = await import("./vendor/wllama/index.js");
+
 const MODELS = {
-  "Qwen3-0.6B-q4f16_1-MLC": "Qwen3 0.6B",
-  "Qwen3.5-0.8B-q4f16_1-MLC": "Qwen3.5 0.8B",
+  "qwen3-0.6b": {
+    name: "Qwen3 0.6B",
+    url: "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF/resolve/23749fefcc72300e3a2ad315e1317431b06b590a/Qwen3-0.6B-Q8_0.gguf",
+    localFile: "qwen3-0.6b.gguf",
+    labelBase: 32,
+  },
+  "minicpm5-2b": {
+    name: "MiniCPM5 2B",
+    url: "https://huggingface.co/openbmb/MiniCPM5-2B-GGUF/resolve/2079a22f3beaa4e306449978533478fe0522f4b3/MiniCPM5-2B-Q4_K_M.gguf",
+    localFile: "minicpm5-2b.gguf",
+    labelBase: 54,
+  },
+  "qwen3.5-4b": {
+    name: "Qwen3.5 4B",
+    url: "https://huggingface.co/bartowski/Qwen_Qwen3.5-4B-GGUF/resolve/4168f45a16a1290d65a4ec0fa312ae917a4c15d6/Qwen_Qwen3.5-4B-Q4_K_M.gguf",
+    localFile: "qwen3.5-4b.gguf",
+    labelBase: 32,
+  },
 };
+
 const MIN_OPTIONS = 2;
 const MAX_OPTIONS = 20;
 const labelsFor = (count) => Array.from({ length: count }, (_, index) => String.fromCharCode(65 + index));
-const labelTokenId = (label) => label.charCodeAt(0) - 33;
 let engine;
 let modelId;
 
@@ -37,36 +54,30 @@ function softmax(values) {
   const total = exponents.reduce((sum, value) => sum + value, 0);
   return exponents.map((value) => value / total);
 }
-
-function validateOptionLogprobs(values, labels) {
-  if (!values || values.length !== labels.length || values.some((value) => !Number.isFinite(value))) {
-    throw new Error(`The model did not return log-probabilities for ${labels.join(", ")}.`);
-  }
-}
-
 function optionLogprobs(response, labels) {
   const entries = response.choices?.[0]?.logprobs?.content?.[0]?.top_logprobs ?? [];
   return labels.map((label) => {
     const ascii = label.charCodeAt(0);
-    const entry = entries.find((item) => item.token === label || item.bytes?.[0] === ascii);
+    const entry = entries.find((item) => item.token === label || (item.bytes?.length === 1 && item.bytes[0] === ascii));
     return Number(entry?.logprob);
   });
 }
+function validateOptionLogprobs(values, labels) {
+  if (!values || values.length !== labels.length || values.some((value) => !Number.isFinite(value))) {
+    throw new Error(`The model did not return valid option logits for ${labels.join(", ")}.`);
+  }
+}
 function validateGeneration(text, data) {
   try {
-    // Qwen3 may emit an empty or populated reasoning wrapper even when thinking
-    // is disabled. It is model output, so keep displaying it, but validate the
-    // decision payload that follows it.
     const payload = text.trim().replace(/^<think>[\s\S]*?<\/think>\s*/i, "");
     const parsed = JSON.parse(payload);
-    const exactKeys = (value, expected) => {
-      if (!value || typeof value !== "object" || Array.isArray(value)) return false;
-      const actual = Object.keys(value);
-      return actual.length === expected.length && expected.every((key) => actual.includes(key));
-    };
     const labels = labelsFor(data.options.length);
     const expectedKeys = data.options.map((option, index) => `${labels[index]}: ${option}`);
-    if (!exactKeys(parsed, expectedKeys)) throw new Error("expected one probability for every exact option key");
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error("expected one JSON object");
+    const actualKeys = Object.keys(parsed);
+    if (actualKeys.length !== expectedKeys.length || !expectedKeys.every((key) => actualKeys.includes(key))) {
+      throw new Error("expected one probability for every exact option key");
+    }
     const probabilities = expectedKeys.map((key) => {
       const probability = parsed[key];
       if (typeof probability !== "number" || !Number.isFinite(probability) || probability < 0 || probability > 1) {
@@ -83,87 +94,96 @@ function validateGeneration(text, data) {
   }
 }
 
-async function load(requestedModelId) {
+async function load(requestedModelId, useLocal = false) {
   if (engine) return;
   if (!Object.hasOwn(MODELS, requestedModelId)) throw new Error("Choose one of the listed models.");
   modelId = requestedModelId;
+  const selected = MODELS[modelId];
+  const modelUrl = useLocal ? new URL(`./assets/${selected.localFile}`, self.location.href).href : selected.url;
+  const wasmUrl = new URL("./vendor/wllama/wasm/wllama.wasm", self.location.href).href;
+  engine = new Wllama(
+    { default: wasmUrl },
+    { logger: LoggerWithoutDebug, suppressNativeLog: true, parallelDownloads: 4 },
+  );
   send("loading", { message: "Fetching the model or reading it from your browser cache…" });
   const loadStart = performance.now();
-  engine = await webllm.CreateMLCEngine(
-    modelId,
-    {
-      logLevel: "WARN",
-      initProgressCallback: (report) => {
-        send("progress", { event: {
-          status: "progress", file: modelId,
-          loaded: Math.max(0, Math.min(1, report.progress ?? 0)), total: 1, text: report.text,
-        } });
-        if (report.text) send("loading", { message: report.text });
-      },
-    },
-    { context_window_size: 2048 },
-  );
+  await engine.loadModelFromUrl(modelUrl, {
+    n_ctx: 2048,
+    n_batch: 512,
+    n_gpu_layers: 999,
+    cache_prompt: false,
+    progressCallback: ({ loaded, total }) => send("progress", { event: {
+      status: "progress", file: modelUrl, loaded, total,
+      text: total ? `${(loaded / total * 100).toFixed(0)}% of model downloaded or read from cache` : "loading model",
+    } }),
+  });
   const loadMs = performance.now() - loadStart;
   send("loaded", { loadMs });
-  send("loading", { message: "Model loaded. Compiling a real Qwen pass…" });
+  send("loading", { message: "Model loaded. Compiling a real model pass…" });
   const warmupStart = performance.now();
-  const warmup = await engine.chat.completions.create({
+  const warmup = await engine.createChatCompletion({
     messages: [{ role: "user", content: "Reply with the single word ready." }],
-    max_tokens: 1, temperature: 0, extra_body: { enable_thinking: false },
+    max_tokens: 1,
+    temperature: 0,
+    cache_prompt: false,
+    chat_template_kwargs: { enable_thinking: false },
   });
-  if (!warmup?.choices?.length) throw new Error("Qwen warmup returned no completion.");
-  send("ready", { warmupMs: performance.now() - warmupStart, modelId, modelName: MODELS[modelId] });
+  if (!warmup?.choices?.length) throw new Error("Model warmup returned no completion.");
+  send("ready", { warmupMs: performance.now() - warmupStart, modelId, modelName: selected.name });
 }
 
 async function directScore(data) {
   const started = performance.now();
   const labels = labelsFor(data.options.length);
-  const groups = labels.length <= 5
-    ? [labels]
-    : Array.from({ length: Math.ceil((labels.length - 1) / 4) }, (_, index) => [labels[0], ...labels.slice(1 + index * 4, 1 + (index + 1) * 4)]);
-  const relativeLogits = new Map([[labels[0], 0]]);
-  let inputTokens = 0;
-  for (const group of groups) {
-    const logitBias = Object.fromEntries(group.map((label) => [String(labelTokenId(label)), 100]));
-    const response = await engine.chat.completions.create({
-      messages: messagesFor(data, "direct"), max_tokens: 1, temperature: 1,
-      logprobs: true, top_logprobs: group.length, logit_bias: logitBias,
-      extra_body: { enable_thinking: false },
-    });
-    inputTokens += response.usage?.prompt_tokens ?? 0;
-    const values = optionLogprobs(response, group);
-    validateOptionLogprobs(values, group);
-    const anchor = values[0];
-    group.forEach((label, index) => relativeLogits.set(label, values[index] - anchor));
-  }
-  const logits = labels.map((label) => relativeLogits.get(label));
+  const grammar = `root ::= ${labels.map((label) => `"${label}"`).join(" | ")}`;
+  const response = await engine.createChatCompletion({
+    messages: messagesFor(data, "direct"),
+    max_tokens: 1,
+    temperature: 1,
+    top_k: 0,
+    top_p: 1,
+    logprobs: true,
+    top_logprobs: 20,
+    logit_bias: Object.fromEntries(labels.map((label, index) => [String(MODELS[modelId].labelBase + index), 100])),
+    grammar,
+    cache_prompt: false,
+    chat_template_kwargs: { enable_thinking: false },
+  });
+  const logits = optionLogprobs(response, labels);
   validateOptionLogprobs(logits, labels);
   const probabilities = softmax(logits);
   return {
-    totalMs: performance.now() - started, inputTokens, readouts: groups.length,
+    totalMs: performance.now() - started,
+    inputTokens: response.usage?.prompt_tokens ?? 0,
+    readouts: 1,
     options: data.options.map((description, index) => ({
       label: labels[index], description, probability: probabilities[index], logit: logits[index],
     })),
   };
 }
+
 async function generateAnswer(data) {
   const started = performance.now();
   let firstTokenAt = null;
   let generatedText = "";
   let usage = null;
   send("generation-start");
-  const stream = await engine.chat.completions.create({
-    messages: messagesFor(data, "generation"), stream: true,
-    stream_options: { include_usage: true }, max_tokens: 512, temperature: 0,
-    extra_body: { enable_thinking: false },
+  const stream = await engine.createChatCompletion({
+    messages: messagesFor(data, "generation"),
+    stream: true,
+    max_tokens: 512,
+    temperature: 0,
+    cache_prompt: false,
+    chat_template_kwargs: { enable_thinking: false },
   });
   for await (const chunk of stream) {
-    const text = chunk.choices[0]?.delta?.content ?? "";
+    const text = chunk.choices?.[0]?.delta?.content ?? "";
     if (text && firstTokenAt == null) firstTokenAt = performance.now();
     generatedText += text;
     if (chunk.usage) usage = chunk.usage;
     send("generation-update", {
-      text: generatedText, tokens: usage?.completion_tokens ?? 0,
+      text: generatedText,
+      tokens: usage?.completion_tokens ?? 0,
       ttftMs: firstTokenAt == null ? null : firstTokenAt - started,
     });
   }
@@ -173,7 +193,8 @@ async function generateAnswer(data) {
     inputTokens: usage?.prompt_tokens ?? 0,
     ttftMs: firstTokenAt == null ? null : firstTokenAt - started,
     generatedTokens: usage?.completion_tokens ?? 0,
-    generatedText, ...validateGeneration(generatedText, data),
+    generatedText,
+    ...validateGeneration(generatedText, data),
   };
 }
 
@@ -190,9 +211,14 @@ async function compare(data) {
 
 self.addEventListener("message", async ({ data }) => {
   try {
-    if (data.type === "load") await load(data.modelId);
+    if (data.type === "load") await load(data.modelId, data.useLocal);
     if (data.type === "compare") await compare(data.data);
   } catch (error) {
+    if (data.type === "load" && engine) {
+      try { await engine.exit(); } catch (_) { /* best-effort cleanup after a failed load */ }
+      engine = undefined;
+      modelId = undefined;
+    }
     console.error(error);
     send("error", { message: error?.message ?? String(error) });
   }

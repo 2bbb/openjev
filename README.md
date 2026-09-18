@@ -89,12 +89,28 @@ The owned [37×21 fixture](benchmarks/data/shape777.jsonl), [direct/reuse runner
 
 ## Quality
 
-| Frozen workload | Rows | Direct logits | Native reranker | Published Jev |
+### Browser model ladder
+
+| System | Browser artifact | Download | Authored balanced accuracy | Perturbation balanced accuracy | TypeSafe subset agreement |
+|---|---|---:|---:|---:|---:|
+| Qwen3-0.6B | Q8_0 | 639 MB | 0.440 | 0.528 | 0.407 |
+| MiniCPM5-2B | Q4_K_M | 1.56 GB | 0.686 | 0.693 | 0.637 |
+| **Qwen3.5-4B** | Q4_K_M | 3.01 GB | **0.813** | **0.766** | 0.845 |
+| Published Jev | Closed hosted service | — | — | — | **0.883** |
+
+*Native BF16 scores. Browser builds use quantized GGUF. Jev is TypeSafe's published result on the same 102-row subset.*
+
+### General decision baseline
+
+| Frozen workload | Rows | Direct logits (4B) | Native reranker (4B) | Published Jev |
 |---|---:|---:|---:|---:|
 | Authored decisions, balanced accuracy | 144 | **0.813** | 0.625 | — |
 | WANLI, balanced accuracy | 256 | **0.637** | 0.522 | — |
 | TypeSafe selected subset, modal agreement | 102 across 20 cases | **0.845** | 0.560 | 0.883 |
 | Every judgment grid, accuracy | 36 | **0.806** | 0.694 | — |
+| Every action firewall, composed accuracy | 10 actions | 0.700 | 0.700 | — |
+| Every code retrieval, Recall@1 | 6 queries | 1.000 | 1.000 | — |
+| Every company knowledge, Recall@1 | 7 queries | 0.929 | 0.929 | — |
 
 The reranker remained strong at retrieval ranking, but direct logits were the better general-decision baseline.
 
@@ -129,11 +145,15 @@ Returned probabilities are conditional on the supplied options. Calibrate and va
 - [Raw results and checksums](results/raw/)
 - [Third-party sources](THIRD_PARTY.md)
 
+## Star history
+
+[![OpenJev star history](https://api.star-history.com/svg?repos=TheoLeeCJ/openjev&type=Date)](https://www.star-history.com/#TheoLeeCJ/openjev&Date)
+
 ## Evaluation sources
 
 - [TypeSafe public evaluations](https://evals.typesafe.ai/) — public comparison cases used for selected-subset agreement
 - [Every parallel judgment lab](https://typesafe-parallel-judgment-lab.every-4573.chatgpt.site/) and its [downloadable experiment data](https://typesafe-parallel-judgment-lab.every-4573.chatgpt.site/downloads/experiments.json)
 - [WANLI](https://huggingface.co/datasets/alisawuffles/WANLI) — external natural-language inference check
-- [Qwen3.5-4B](https://huggingface.co/Qwen/Qwen3.5-4B) and [Qwen3-Reranker-4B](https://huggingface.co/Qwen/Qwen3-Reranker-4B) — frozen baseline models
+- [Qwen3-0.6B](https://huggingface.co/Qwen/Qwen3-0.6B), [MiniCPM5-2B](https://huggingface.co/openbmb/MiniCPM5-2B), [Qwen3.5-4B](https://huggingface.co/Qwen/Qwen3.5-4B), and [Qwen3-Reranker-4B](https://huggingface.co/Qwen/Qwen3-Reranker-4B) — frozen baseline models
 
 This is an independent research project. Model weights and third-party records without a redistribution grant are excluded; immutable selection IDs and fetch manifests are included. Upstream models retain their licenses. Project code is released under the [MIT License](LICENSE).
